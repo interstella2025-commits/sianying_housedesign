@@ -9,7 +9,7 @@ import { SiteHeader } from "../components/SiteHeader";
 export const metadata: Metadata = {
   title: "國際獎項",
   description:
-    "翔胤室內設計作品《鉑金石韻》榮獲義大利 A' Design Award 國際設計獎。",
+    "翔胤室內設計作品《鉑金石韻》榮獲 2022 Iron A' Design Award 室內空間及展覽設計類得獎作品。",
 };
 
 const awardGallery = [
@@ -29,7 +29,7 @@ export default function AwardsPage() {
           <div className="award-stage-media" data-hero-media data-parallax>
             <Image
               src="/projects/project-03-1.png"
-              alt="A' Design Award 得獎作品鉑金石韻"
+              alt="Iron A' Design Award 得獎作品鉑金石韻"
               fill
               priority
               unoptimized
@@ -38,17 +38,17 @@ export default function AwardsPage() {
           </div>
           <div className="award-stage-shade" />
           <div className="award-stage-copy">
-            <p className="section-kicker" data-hero-kicker>國際獎項 / Awards</p>
+            <p className="section-kicker" data-hero-kicker>國際獎項</p>
             <h1>
-              <span className="line-mask"><span data-hero-word>鉑金石韻，</span></span>
-              <span className="line-mask"><span data-hero-word>讓世界看見</span></span>
+              <span className="line-mask"><span data-hero-word>《鉑金石韻》</span></span>
+              <span className="line-mask"><span data-hero-word>獲 2022 Iron A&apos; Design Award</span></span>
             </h1>
-            <p data-hero-summary>2022 義大利 A&apos; Design Award<br />室內空間及展覽設計類得獎作品</p>
+            <p data-hero-summary>《鉑金石韻》為 2022 年室內空間及展覽設計類得獎作品。</p>
           </div>
           <div className="award-year-seal" data-float-card>
             <span>Winner</span>
             <strong>2022</strong>
-            <p>Italy · A&apos; Design Award</p>
+            <p>Iron A&apos; Design Award</p>
           </div>
         </section>
 
@@ -57,13 +57,13 @@ export default function AwardsPage() {
             <span>20</span><span>22</span>
           </div>
           <div className="award-editorial-copy" data-reveal>
-            <p className="section-kicker">Platinum and Stone Sentiment</p>
-            <h2>美學不是表面，<br />而是空間的秩序</h2>
-            <p>恭喜《鉑金石韻（竹北）》榮獲 2022 年度義大利 A&apos; Design Award 國際設計獎。</p>
-            <p>Chou Shu-Lung 設計師將美學素養轉化為空間邏輯，讓創意、平衡感與生活互相契合，呈現充滿都會氣度的優雅景致。</p>
-            <p>作品從兩萬多件參賽作品中脫穎而出，獲各國評審委員肯定，展現翔胤獨特的美學視野與思考魅力。</p>
+            <p className="section-kicker">得獎作品介紹</p>
+            <h2>《鉑金石韻》</h2>
+            <p>
+              本案為約 120 平方公尺的單層住宅。依屋主需求放大廚房，並將中島、餐桌與餐區安排在同一條動線上。書房臨走道的隔間拆除後，廊道縮短，公共區域也更加開放。
+            </p>
             <a className="outline-button" href="https://competition.adesignaward.com/design.php?ID=136768" target="_blank" rel="noreferrer">
-              查看獲獎作品
+              查看獲獎頁面
               <ArrowUpRight aria-hidden="true" />
             </a>
           </div>
@@ -72,8 +72,8 @@ export default function AwardsPage() {
         <section className="award-exhibition" data-horizontal>
           <div className="award-exhibition-track" data-horizontal-track>
             <article className="award-exhibition-intro">
-              <p className="section-kicker">Exhibition archive</p>
-              <h2>把得獎那一刻，<br />展開成一條時間線</h2>
+              <p className="section-kicker">照片紀錄</p>
+              <h2>獎盃、頒獎典禮<br />與展覽紀錄</h2>
               <span>向右滑動 / Scroll</span>
             </article>
             {awardGallery.map((image, index) => (
@@ -89,25 +89,25 @@ export default function AwardsPage() {
 
         <section className="award-credentials content-shell">
           <header data-reveal>
-            <p className="section-kicker">About the award</p>
-            <h2>跨越國界的<br />專業評選</h2>
+            <p className="section-kicker">關於 A&apos; Design Award</p>
+            <h2>關於<br />A&apos; Design Award</h2>
           </header>
           <div className="award-credentials-copy" data-reveal>
-            <p>A&apos; Design Award 是國際年度設計比賽，獲國際平面設計協會聯合會 ICOGRADA 與歐洲設計協會 BEDA 認可，也是 ICSID、ICOGRADA 與 ADI 義大利工業設計協會的成員組織。</p>
-            <p>參賽作品採同行評審，由學者、新聞工作者與專業人士組成評審團匿名評選，表揚全球不同創意領域中的優秀設計師。</p>
-            <div className="award-proof-grid">
-              <div><strong>20,000+</strong><span>年度參賽作品</span></div>
-              <div><strong>Global</strong><span>國際專業評審</span></div>
-              <div><strong>Blind</strong><span>匿名評選制度</span></div>
-            </div>
+            <p>
+              A&apos; Design Award 為國際設計競賽。獎項類別與評選方式請參閱主辦單位官方網站。
+            </p>
+            <a className="outline-button" href="https://competition.adesignaward.com/" target="_blank" rel="noreferrer">
+              前往官方網站
+              <ArrowUpRight aria-hidden="true" />
+            </a>
           </div>
         </section>
 
         <section className="inner-page-cta content-shell" data-reveal>
-          <p>Beyond the award</p>
-          <h2>從得獎作品，<br />看見生活</h2>
+          <p>View the project</p>
+          <h2>查看《鉑金石韻》<br />完整作品</h2>
           <Link className="primary-button" href="/works">
-            <span>瀏覽作品</span>
+            <span>瀏覽完工作品集</span>
             <ArrowRight aria-hidden="true" />
           </Link>
         </section>

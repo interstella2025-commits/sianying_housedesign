@@ -82,12 +82,14 @@ export function WorksArchive() {
     <>
       <section className="works-hero">
         <div className="works-hero-copy">
-          <p className="section-kicker" data-hero-kicker>完工作品集 / Selected works</p>
+          <p className="section-kicker" data-hero-kicker>完工作品集</p>
           <h1>
-            <span className="line-mask"><span data-hero-word>每個空間，</span></span>
-            <span className="line-mask"><span data-hero-word>都有自己的語氣</span></span>
+            <span className="line-mask"><span data-hero-word>住宅設計</span></span>
+            <span className="line-mask"><span data-hero-word>完工作品</span></span>
           </h1>
-          <p data-hero-summary>十二個家的光線、材質與生活動線，完整收錄在這裡。</p>
+          <p data-hero-summary>
+            本頁收錄 12 個住宅案例，內容包含格局、收納、採光、材質與完工細節。
+          </p>
         </div>
 
         <div className="works-hero-collage" data-hero-media>
@@ -114,18 +116,17 @@ export function WorksArchive() {
       </section>
 
       <section className="works-manifesto content-shell">
-        <p data-reveal>作品不是風格樣本，而是屋主生活被整理後留下的樣子</p>
         <div className="works-facts" data-reveal>
           <div><strong>12</strong><span>完整案例</span></div>
           <div><strong>60</strong><span>空間影像</span></div>
-          <div><strong>2010</strong><span>創立台北</span></div>
+          <div><strong>2010</strong><span>成立</span></div>
         </div>
       </section>
 
       <section className="works-catalog">
         <header className="works-catalog-heading content-shell" data-reveal>
           <h2>完整作品索引</h2>
-          <p>點開任一作品，從第一個空間走到最後一處細節。</p>
+          <p>點開作品，查看完整照片與設計說明。</p>
         </header>
 
         <div className="works-masonry content-shell">
@@ -162,8 +163,7 @@ export function WorksArchive() {
       </section>
 
       <section className="works-closing content-shell" data-reveal>
-        <p>空間會完成，生活才正要開始。</p>
-        <h2>下一個作品，<br />也許是你的家</h2>
+        <h2>有裝修需求？<br />歡迎預約丈量或透過 LINE 諮詢。</h2>
         <Link className="primary-button" href="/#contact">
           預約丈量
           <ArrowRight aria-hidden="true" />
@@ -233,7 +233,7 @@ export function WorksArchive() {
             </div>
 
             <div className="project-gallery-cta">
-              <p>喜歡這個作品的空間語言？</p>
+              <p>想進一步了解設計流程？</p>
               <Link className="primary-button" href="/#contact" onClick={() => setSelected(null)}>
                 預約丈量
                 <ArrowUpRight aria-hidden="true" />

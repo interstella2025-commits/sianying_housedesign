@@ -11,7 +11,11 @@ export function SiteFooter() {
   return (
     <footer className="site-footer">
       <div className="footer-lead" data-reveal>
-        <p>下一個空間，從一次對話開始</p>
+        <p>
+          有裝修需求？
+          <br />
+          歡迎透過 LINE 與我們聯絡。
+        </p>
         <a className="footer-contact-link" href={contact.lineUrl} target="_blank" rel="noreferrer">
           LINE 線上諮詢
           <ArrowUpRight aria-hidden="true" />
@@ -25,7 +29,7 @@ export function SiteFooter() {
           </span>
           <div>
             <strong>翔胤室內設計</strong>
-            <p>裝修工程、室內設計、商業空間、舊屋翻修、毛胚屋規劃</p>
+            <p>住宅與商業空間設計、裝修工程、舊屋翻修及毛胚屋規劃。</p>
           </div>
         </div>
 

@@ -84,8 +84,8 @@ export function ProjectPresentation() {
       <section className="featured-projects" id="works">
         <div className="featured-projects-heading content-shell" data-reveal>
           <p className="section-kicker">精選完工作品</p>
-          <h2>空間有自己的語氣，光替它說出來</h2>
-          <p>從作品的第一眼進入細節，閱讀每一段生活如何被安排。</p>
+          <h2>住宅設計案例</h2>
+          <p>以下收錄不同格局與需求的完工作品。</p>
         </div>
 
         <div className="featured-stack" data-project-stack>
@@ -120,7 +120,7 @@ export function ProjectPresentation() {
 
       <section className="project-archive content-shell">
         <div className="project-archive-heading" data-reveal>
-          <h2>居住的樣子，不需要被同一種風格定義</h2>
+          <h2>更多完工作品</h2>
         </div>
         <div className="project-archive-grid">
           {archive.map((project, index) => (

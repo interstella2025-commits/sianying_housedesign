@@ -10,10 +10,16 @@ import { SiteFooter } from "./components/SiteFooter";
 import { SiteHeader } from "./components/SiteHeader";
 import { contact, routes } from "./data";
 
+const studioFacts = [
+  { value: "2010", label: "SINCE", text: "翔胤室內設計成立" },
+  { value: "20+", label: "EXPERIENCE", text: "超過 20 年設計經驗" },
+  { value: "2022", label: "AWARD", text: "Iron A' Design Award 得獎" },
+] as const;
+
 export const metadata: Metadata = {
   title: "翔胤室內設計｜住宅、商業空間與舊屋翻修",
   description:
-    "翔胤室內設計完工作品集。從光、材質與動線出發，提供住宅、商業空間、舊屋翻修與毛胚屋規劃服務。",
+    "翔胤室內設計提供住宅與商業空間設計、裝修工程、舊屋翻修及毛胚屋規劃。",
 };
 
 export default function Home() {
@@ -37,14 +43,14 @@ export default function Home() {
           <div className="home-hero-copy">
             <h1>
               <span className="line-mask">
-                <span data-hero-word>把繁複思維</span>
+                <span data-hero-word>讓室內空間</span>
               </span>
               <span className="line-mask">
-                <span data-hero-word>融入簡約生活</span>
+                <span data-hero-word>與生活密不可分</span>
               </span>
             </h1>
             <p data-hero-summary>
-              從光、材質與動線出發，讓家的機能與感受自然相遇。
+              我們依照您的生活習慣，規劃格局、收納、採光與材質。
             </p>
           </div>
 
@@ -58,21 +64,36 @@ export default function Home() {
 
         <section className="studio-intro content-shell" data-reveal>
           <div className="studio-statement">
-            <p>空間不是風格的堆疊，而是生活被理解之後，留下的秩序</p>
+            <p className="studio-service-kicker">
+              <span>SERVICES</span> / 服務內容
+            </p>
+            <p className="studio-statement-lead">
+              我們提供住宅與商業
+              <br />
+              空間設計、裝修工程、
+              <br />
+              舊屋翻修及毛胚屋規劃
+            </p>
+            <p className="studio-statement-detail">
+              空間規劃、設計繪圖、
+              <br />
+              工程施工與完工保固。
+            </p>
+            <Link className="studio-service-link" href={routes.services}>
+              查看服務與收費
+              <ArrowUpRight aria-hidden="true" />
+            </Link>
           </div>
           <div className="studio-facts">
-            <div>
-              <strong>2010</strong>
-              <span>創立於台北</span>
-            </div>
-            <div>
-              <strong>20+</strong>
-              <span>年產業經驗</span>
-            </div>
-            <div>
-              <strong>A&apos; Design</strong>
-              <span>國際設計獎肯定</span>
-            </div>
+            {studioFacts.map((fact) => (
+              <div className="studio-fact" key={fact.label}>
+                <strong className="studio-fact-value">{fact.value}</strong>
+                <div className="studio-fact-meta">
+                  <span className="studio-fact-label">{fact.label}</span>
+                  <p className="studio-fact-text">{fact.text}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </section>
 
@@ -80,14 +101,18 @@ export default function Home() {
 
         <section className="service-preview content-shell">
           <div className="service-preview-copy" data-reveal>
-            <h2>設計，直到入住之後仍然成立</h2>
-            <p>
-              從圖面、預算、工序到交屋保固，以清楚的節點讓想像逐步成形。
-            </p>
-            <Link className="outline-button" href={routes.services}>
-              查看服務與收費
-              <ArrowUpRight aria-hidden="true" />
-            </Link>
+            <h2>
+              從需求、報價到完工，
+              <br />
+              每一步都清清楚楚
+            </h2>
+            <div className="service-preview-copy__footer">
+              <p>圖面、報價、工期與保固內容都清楚列出。</p>
+              <Link className="outline-button" href={routes.services}>
+                查看服務與收費
+                <ArrowUpRight aria-hidden="true" />
+              </Link>
+            </div>
           </div>
           <div className="service-preview-list" data-reveal>
             {["室內設計", "裝修工程", "商業空間", "舊屋翻修", "毛胚屋規劃"].map((item, index) => (
@@ -110,10 +135,10 @@ export default function Home() {
             <h2>心如境</h2>
             <p className="film-title">Serenity Within: When Space Reflects the Mind</p>
             <p>
-              空間不僅承載功能，也成為一種生活修行。讓自然光影、柔和色調與材質留白，帶居住者回到內在。
+              本案以自然採光、柔和色調及簡潔的材質搭配，營造舒適、安定的居住環境。
             </p>
             <a href={contact.youtube} target="_blank" rel="noreferrer">
-              更多精彩影片
+              觀看更多影片
               <ArrowUpRight aria-hidden="true" />
             </a>
           </div>
@@ -121,9 +146,11 @@ export default function Home() {
 
         <section className="contact-section" id="contact">
           <div className="contact-copy" data-reveal>
-            <p className="section-kicker">線上預約丈量</p>
-            <h2>告訴我們，你想如何生活</h2>
-            <p>公司將盡速派專人與您聯絡。</p>
+            <p className="section-kicker">線上預約</p>
+            <h2>預約丈量</h2>
+            <p>
+              填寫資料後，網站會開啟 LINE。請將預約內容傳送給我們，我們會儘快與您聯絡。
+            </p>
             <div className="contact-direct">
               <a href="tel:0222888123">{contact.phone}</a>
               <a href={contact.lineUrl} target="_blank" rel="noreferrer">

@@ -6,7 +6,7 @@ import { WorksArchive } from "../components/WorksArchive";
 
 export const metadata: Metadata = {
   title: "完工作品集",
-  description: "翔胤室內設計完工作品集，閱讀住宅空間中的光線、材質、動線與生活細節。",
+  description: "翔胤室內設計住宅完工作品集，收錄 12 個住宅案例的格局、收納、採光、材質與完工細節。",
 };
 
 export default function WorksPage() {

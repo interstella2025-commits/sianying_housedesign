@@ -8,7 +8,7 @@ import { SiteHeader } from "../components/SiteHeader";
 
 export const metadata: Metadata = {
   title: "媒體採訪",
-  description: "翔胤室內設計媒體專訪、設計觀點、作品報導與外部媒體收錄。",
+  description: "翔胤室內設計媒體報導、設計師資料與業主評價。",
 };
 
 const lineTodayUrl = "https://today.line.me/tw/v2/article/keVy7q";
@@ -22,16 +22,12 @@ export default function PressPage() {
       <main className="press-page">
         <section className="press-hero">
           <div className="press-hero-copy">
-            <p className="section-kicker" data-hero-kicker>媒體採訪 / Press</p>
+            <p className="section-kicker" data-hero-kicker>媒體採訪</p>
             <h1>
-              <span className="line-mask"><span data-hero-word>好的空間，</span></span>
-              <span className="line-mask"><span data-hero-word>值得被說出來</span></span>
+              <span className="line-mask"><span data-hero-word>媒體報導</span></span>
+              <span className="line-mask"><span data-hero-word>與設計師資料</span></span>
             </h1>
-            <p data-hero-summary>從設計師的思考，到作品被媒體重新閱讀，收錄翔胤對空間與生活的長期觀察。</p>
-            <a className="primary-button" href={lineTodayUrl} target="_blank" rel="noreferrer" data-reveal>
-              閱讀 LINE TODAY 報導
-              <ArrowUpRight aria-hidden="true" />
-            </a>
+            <p data-hero-summary>本頁收錄作品報導、設計師資料與業主評價。</p>
           </div>
 
           <div className="press-hero-media" data-hero-media data-parallax>
@@ -43,14 +39,6 @@ export default function PressPage() {
               unoptimized
               sizes="(max-width: 899px) 100vw, 62vw"
             />
-          </div>
-        </section>
-
-        <section className="press-opening content-shell">
-          <p data-reveal>媒體讓作品被更多人看見，我們更在意的是，設計背後的判斷有沒有被清楚理解</p>
-          <div data-reveal>
-            <span>翔胤設計 X 北歐制作</span>
-            <p>從光線、材質、機能到工程細節，每一次受訪都回到同一件事：空間如何真正服務居住者。</p>
           </div>
         </section>
 
@@ -66,10 +54,10 @@ export default function PressPage() {
           </div>
           <article data-reveal>
             <div className="press-source"><span>LINE TODAY</span><span>Media feature</span></div>
-            <h2>從作品出發，閱讀空間背後的想法</h2>
-            <p>透過媒體視角，重新閱讀設計如何回應尺度、光線、材質與居住需求，讓作品不只停留在完成後的照片。</p>
+            <h2>LINE TODAY｜作品報導</h2>
+            <p>報導內容包含格局、採光、材質與居住需求等設計考量。</p>
             <a className="outline-button" href={lineTodayUrl} target="_blank" rel="noreferrer">
-              前往原始報導
+              閱讀 LINE TODAY 報導
               <ArrowUpRight aria-hidden="true" />
             </a>
           </article>
@@ -78,8 +66,8 @@ export default function PressPage() {
         <section className="press-profile content-shell">
           <article data-reveal>
             <div className="press-source"><span>100 室內設計</span><span>Designer profile</span></div>
-            <h2>二十年經驗，如何落到每個決定</h2>
-            <p>設計師專頁收錄翔胤設計 X 北歐制作的最新作品與業主點評，也延伸閱讀設計總監對空間、預算與執行的觀點。</p>
+            <h2>100 室內設計｜設計師專頁</h2>
+            <p>查看完工作品、業主評價與設計團隊資料。</p>
             <a className="outline-button" href={oneHundredUrl} target="_blank" rel="noreferrer">
               查看設計師專頁
               <ArrowUpRight aria-hidden="true" />
@@ -96,18 +84,9 @@ export default function PressPage() {
           </div>
         </section>
 
-        <section className="press-statement content-shell" data-wipe>
-          <p>Design in words</p>
-          <h2>把專業說清楚，<br />也是一種設計</h2>
-          <div>
-            <p>好的設計不只需要好看的結果，也需要清楚說明為什麼這樣安排，以及每個選擇如何回應真正的生活。</p>
-            <p>這裡會持續收錄媒體專訪、作品報導與翔胤對室內設計的觀察。</p>
-          </div>
-        </section>
-
         <section className="inner-page-cta content-shell" data-reveal>
-          <p>Start a conversation</p>
-          <h2>下一篇故事，<br />從你的空間開始</h2>
+          <p>Contact us</p>
+          <h2>有裝修需求？<br />歡迎預約丈量。</h2>
           <Link className="primary-button" href="/#contact">
             <span>預約丈量</span>
             <ArrowRight aria-hidden="true" />
