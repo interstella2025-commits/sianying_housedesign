@@ -14,7 +14,7 @@ export function SiteFooter() {
         <p>
           有裝修需求？
           <br />
-          歡迎透過 LINE 與我們聯絡。
+          歡迎透過 LINE 與我們聯絡
         </p>
         <a className="footer-contact-link" href={contact.lineUrl} target="_blank" rel="noreferrer">
           LINE 線上諮詢

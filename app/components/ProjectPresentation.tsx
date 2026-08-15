@@ -5,6 +5,7 @@ import { ArrowDown, ArrowUpRight, X } from "@phosphor-icons/react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import galleryAssets from "../project-gallery-assets.json";
 import { projects, type Project } from "../data";
+import { SiteMusicPlayer } from "./SiteMusicProvider";
 
 type PresentationProject = Project & {
   slug: string;
@@ -89,7 +90,7 @@ export function ProjectPresentation() {
         </div>
 
         <div className="featured-stack" data-project-stack>
-          {featured.map((project) => (
+          {featured.map((project, index) => (
             <article className="featured-stack-card" key={project.slug} data-stack-card>
               <div className="featured-stack-inner content-shell">
                 <div className="featured-stack-media" data-parallax>
@@ -108,8 +109,10 @@ export function ProjectPresentation() {
                   </div>
                 </div>
                 <div className="featured-stack-copy">
-                  <p>{project.english}</p>
+                  {index === 0 && <SiteMusicPlayer />}
+                  {index !== 0 && <p>{project.english}</p>}
                   <h3>{project.title}</h3>
+                  {index === 0 && project.english && <p>{project.english}</p>}
                   <p>{project.paragraphs.join(" ")}</p>
                 </div>
               </div>

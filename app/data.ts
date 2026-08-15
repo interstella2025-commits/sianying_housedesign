@@ -218,6 +218,12 @@ export const processItems = [
   },
 ] as const;
 
+export const siteMusic = {
+  src: "/audio/disco-of-the-70s.mp3",
+  credit: "Disco Of The 70's - Frank Schröter",
+  defaultVolume: 0.45,
+} as const;
+
 export const contact = {
   phone: "02-2288-8123",
   line: "0926-160-880",

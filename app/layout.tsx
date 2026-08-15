@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { AppProviders } from "./components/AppProviders";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -62,7 +63,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="zh-Hant">
       <body>
-        {children}
+        <AppProviders>{children}</AppProviders>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
