@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowUpRight, List, X } from "@phosphor-icons/react";
 import { useEffect, useState } from "react";
 import { navItems } from "../data";
+import { BrandMark } from "./BrandMark";
 
 type SiteHeaderProps = {
   integrated?: boolean;
@@ -21,9 +22,7 @@ export function SiteHeader({ integrated = false }: SiteHeaderProps) {
     <header className={`site-header${integrated ? " site-header-integrated" : ""}`}>
       <div className="header-inner">
         <Link className="brand" href="/" aria-label="翔胤室內設計首頁">
-          <span className="brand-mark" aria-hidden="true">
-            翔
-          </span>
+          <BrandMark />
           <span className="brand-type">
             <strong>翔胤室內設計</strong>
             <small>SIANG YIN INTERIOR</small>

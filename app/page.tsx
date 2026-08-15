@@ -43,14 +43,14 @@ export default function Home() {
           <div className="home-hero-copy">
             <h1>
               <span className="line-mask">
-                <span data-hero-word>讓室內空間</span>
+                <span data-hero-word>讓空間與生活</span>
               </span>
               <span className="line-mask">
-                <span data-hero-word>與生活密不可分</span>
+                <span data-hero-word>密不可分</span>
               </span>
             </h1>
             <p data-hero-summary>
-              我們依照您的生活習慣，規劃格局、收納、採光與材質。
+              我們依照您的生活習慣，規劃格局、收納、採光與材質
             </p>
           </div>
 

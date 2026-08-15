@@ -11,8 +11,8 @@ export const metadata: Metadata = {
   description:
     "翔胤室內設計提供住宅、商業空間、舊屋翻修、毛胚屋規劃與完整工程服務。",
   icons: {
-    icon: "/media/2023-logo-d3cfa837ff.png",
-    shortcut: "/media/2023-logo-d3cfa837ff.png",
+    icon: "/media/siang-yin-logo.png",
+    shortcut: "/media/siang-yin-logo.png",
   },
   openGraph: {
     type: "website",

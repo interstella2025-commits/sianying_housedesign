@@ -6,6 +6,7 @@ import {
   YoutubeLogo,
 } from "@phosphor-icons/react/dist/ssr";
 import { contact, navItems, routes } from "../data";
+import { BrandMark } from "./BrandMark";
 
 export function SiteFooter() {
   return (
@@ -24,9 +25,7 @@ export function SiteFooter() {
 
       <div className="footer-grid">
         <div className="footer-brand">
-          <span className="brand-mark" aria-hidden="true">
-            翔
-          </span>
+          <BrandMark />
           <div>
             <strong>翔胤室內設計</strong>
             <p>住宅與商業空間設計、裝修工程、舊屋翻修及毛胚屋規劃。</p>
