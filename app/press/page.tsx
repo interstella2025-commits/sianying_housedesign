@@ -44,9 +44,7 @@ export default function PressPage() {
 
         <section className="press-opening content-shell">
           <p data-reveal>
-            媒體報導提供作品資訊，
-            <br />
-            也記錄設計與施工過程中的實際考量
+            媒體報導提供作品資訊，也記錄設計與施工過程中的實際考量
           </p>
           <div data-reveal>
             <span>翔胤設計 X 北歐制作</span>

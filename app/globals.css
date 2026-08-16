@@ -339,10 +339,10 @@ img {
 .mobile-menu {
   position: fixed;
   z-index: -1;
-  inset: var(--header-height) 0 0;
-  display: grid;
-  grid-template-rows: 1fr auto;
-  padding: 42px 22px 28px;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding: var(--header-height) 22px 28px;
   background: var(--paper);
   opacity: 0;
   pointer-events: none;
@@ -362,6 +362,7 @@ img {
 .mobile-menu nav {
   display: grid;
   align-content: start;
+  margin: 0;
 }
 
 .mobile-menu nav a {
@@ -394,6 +395,8 @@ img {
 .mobile-menu-foot {
   display: grid;
   gap: 5px;
+  margin-top: auto;
+  padding-top: 24px;
   color: var(--ink-soft);
   font-size: 0.76rem;
 }
@@ -3948,11 +3951,24 @@ img {
     top: 18px;
     right: 18px;
     bottom: auto;
-    width: 138px;
-    padding: 20px;
+    width: 118px;
+    height: 118px;
+    min-width: 118px;
+    min-height: 118px;
+    max-width: 118px;
+    max-height: 118px;
+    aspect-ratio: 1 / 1;
+    padding: 14px 10px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    overflow: hidden;
   }
 
-  .about-cinema-note strong,
+  .about-cinema-note strong {
+    font-size: 1.72rem;
+    line-height: 1;
+  }
+
   .award-year-seal strong {
     font-size: 2.5rem;
   }

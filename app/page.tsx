@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 import { ExternalPopupLink } from "./components/ExternalPopupLink";
 import { FilmPlayer } from "./components/FilmPlayer";
+import { HomeHeroScrollLink } from "./components/HomeHeroScrollLink";
 import { MotionDirector } from "./components/MotionDirector";
 import { ProjectPresentation } from "./components/ProjectPresentation";
 import { ReservationForm } from "./components/ReservationForm";
@@ -50,31 +51,39 @@ export default function Home() {
           </div>
 
           <div className="home-hero-copy">
-            <p className="home-hero-eyebrow" data-hero-kicker>
-              RESIDENTIAL · COMMERCIAL · RENOVATION
-            </p>
-            <h1>
-              <span className="line-mask">
-                <span data-hero-word>讓空間與生活</span>
-              </span>
-              <span className="line-mask">
-                <span data-hero-word>密不可分</span>
-              </span>
-            </h1>
-            <p data-hero-summary>
-              我們從居住需求、動線與收納開始，再處理採光、材質與整體風格。
-            </p>
-            <div className="home-hero-actions" data-hero-award>
-              <Link className="primary-button home-hero-primary" href="#contact">
-                預約丈量
-                <ArrowUpRight aria-hidden="true" />
-              </Link>
-              <Link className="home-hero-secondary" href={routes.works}>
-                瀏覽完工作品
-                <ArrowRight aria-hidden="true" />
-              </Link>
+            <div className="home-hero-lead">
+              <p className="home-hero-eyebrow home-hero-mobile-only" data-hero-kicker>
+                RESIDENTIAL · COMMERCIAL · RENOVATION
+              </p>
+              <h1>
+                <span className="line-mask">
+                  <span data-hero-word>讓空間與生活</span>
+                </span>
+                <span className="line-mask">
+                  <span data-hero-word>密不可分</span>
+                </span>
+              </h1>
             </div>
-            <p className="home-hero-proof">SINCE 2010 · 2022 A&apos; DESIGN AWARD</p>
+            <div className="home-hero-detail">
+              <p data-hero-summary>
+                我們從居住需求、動線與收納開始，再處理採光、材質與整體風格。
+              </p>
+              <p className="home-hero-award" data-hero-award>
+                2022 義大利 A&apos; Design Award 得獎
+              </p>
+            </div>
+          </div>
+
+          <HomeHeroScrollLink />
+
+          <div
+            className="hero-notch hero-notch-signature home-hero-desktop-only"
+            data-block-slot="hero-project-entry"
+          >
+            <div className="hero-notch-signature-copy">
+              <span className="hero-notch-signature-kicker">SIANG YIN INTERIOR</span>
+              <strong>翔胤設計 ✖ 北歐制作</strong>
+            </div>
           </div>
         </section>
 
@@ -118,7 +127,7 @@ export default function Home() {
         <section className="service-preview content-shell">
           <div className="service-preview-copy" data-reveal>
             <h2>
-              從需求、報價到完工，
+              從需求、報價到完工
               <br />
               每個階段都有明確內容
             </h2>

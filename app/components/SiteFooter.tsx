@@ -45,7 +45,6 @@ export function SiteFooter() {
               </SiteLink>
             ),
           )}
-          <SiteLink href={routes.privacy}>隱私權政策</SiteLink>
         </nav>
 
         <div className="footer-contact">
@@ -70,7 +69,12 @@ export function SiteFooter() {
 
       <div className="footer-bottom">
         <span>統一編號 {contact.companyId}</span>
-        <span>Copyright © 2017-2026 翔胤室內設計有限公司</span>
+        <div className="footer-bottom-legal">
+          <SiteLink className="footer-privacy-link" href={routes.privacy}>
+            隱私權政策
+          </SiteLink>
+          <span>Copyright © 2017-2026 翔胤室內設計有限公司</span>
+        </div>
       </div>
     </footer>
   );

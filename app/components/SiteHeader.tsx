@@ -86,6 +86,16 @@ export function SiteHeader({ integrated = false }: SiteHeaderProps) {
               </SiteLink>
             ),
           )}
+          <SiteLink
+            href="/#contact"
+            scroll={false}
+            tabIndex={open ? 0 : -1}
+            onClick={() => setOpen(false)}
+            style={{ "--menu-index": navItems.length } as React.CSSProperties}
+          >
+            <span>預約丈量</span>
+            <ArrowUpRight aria-hidden="true" />
+          </SiteLink>
         </nav>
         <div className="mobile-menu-foot">
           <a href="tel:0222888123" tabIndex={open ? 0 : -1}>
