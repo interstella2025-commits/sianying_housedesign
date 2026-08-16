@@ -2,16 +2,16 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
+import { ExternalPopupLink } from "../components/ExternalPopupLink";
 import { MotionDirector } from "../components/MotionDirector";
 import { SiteFooter } from "../components/SiteFooter";
 import { SiteHeader } from "../components/SiteHeader";
 
 export const metadata: Metadata = {
   title: "媒體採訪",
-  description: "翔胤室內設計媒體報導、設計師資料與業主評價。",
+  description: "翔胤室內設計媒體專訪、設計觀點、作品報導與外部媒體收錄。",
 };
 
-const lineTodayUrl = "https://today.line.me/tw/v2/article/keVy7q";
 const oneHundredUrl = "https://www.100.com.tw/5193";
 
 export default function PressPage() {
@@ -22,18 +22,18 @@ export default function PressPage() {
       <main className="press-page">
         <section className="press-hero">
           <div className="press-hero-copy">
-            <p className="section-kicker" data-hero-kicker>媒體採訪</p>
+            <p className="section-kicker" data-hero-kicker>媒體採訪 / Press</p>
             <h1>
               <span className="line-mask"><span data-hero-word>媒體報導</span></span>
-              <span className="line-mask"><span data-hero-word>與設計師資料</span></span>
+              <span className="line-mask"><span data-hero-word>與設計師專訪</span></span>
             </h1>
-            <p data-hero-summary>本頁收錄作品報導、設計師資料與業主評價。</p>
+            <p data-hero-summary>本頁收錄翔胤室內設計的媒體報導、作品介紹與設計師專頁。</p>
           </div>
 
           <div className="press-hero-media" data-hero-media data-parallax>
             <Image
-              src="/media/myvideo_0312_111-be044f433c.jpg"
-              alt="翔胤室內設計住宅空間媒體影像"
+              src="/images/projects/realm-of-light/sjd-2236_orig.png"
+              alt="翔胤室內設計御光境完工作品空間"
               fill
               priority
               unoptimized
@@ -42,40 +42,31 @@ export default function PressPage() {
           </div>
         </section>
 
-        <section className="press-feature content-shell">
-          <div className="press-feature-media" data-wipe data-parallax>
-            <Image
-              src="/images/projects/platinum-stone/sjd-6699_2.png"
-              alt="翔胤室內設計作品鉑金石韻"
-              fill
-              unoptimized
-              sizes="(max-width: 899px) 100vw, 58vw"
-            />
+        <section className="press-opening content-shell">
+          <p data-reveal>
+            媒體報導提供作品資訊，
+            <br />
+            也記錄設計與施工過程中的實際考量
+          </p>
+          <div data-reveal>
+            <span>翔胤設計 X 北歐制作</span>
+            <p>內容包含採光、材質、機能、預算與工程細節，方便進一步了解我們的工作方式。</p>
           </div>
-          <article data-reveal>
-            <div className="press-source"><span>LINE TODAY</span><span>Media feature</span></div>
-            <h2>LINE TODAY｜作品報導</h2>
-            <p>報導內容包含格局、採光、材質與居住需求等設計考量。</p>
-            <a className="outline-button" href={lineTodayUrl} target="_blank" rel="noreferrer">
-              閱讀 LINE TODAY 報導
-              <ArrowUpRight aria-hidden="true" />
-            </a>
-          </article>
         </section>
 
         <section className="press-profile content-shell">
           <article data-reveal>
             <div className="press-source"><span>100 室內設計</span><span>Designer profile</span></div>
-            <h2>100 室內設計｜設計師專頁</h2>
-            <p>查看完工作品、業主評價與設計團隊資料。</p>
-            <a className="outline-button" href={oneHundredUrl} target="_blank" rel="noreferrer">
+            <h2>100 室內設計 設計師專頁</h2>
+            <p>專頁收錄翔胤設計 X 北歐制作的作品、業主點評與設計師資料。</p>
+            <ExternalPopupLink className="outline-button" href={oneHundredUrl} popupTitle="100 室內設計 設計師專頁">
               查看設計師專頁
               <ArrowUpRight aria-hidden="true" />
-            </a>
+            </ExternalPopupLink>
           </article>
           <div className="press-profile-media" data-wipe data-parallax>
             <Image
-              src="/images/projects/second-order-space/sjd-9831.png"
+              src="/images/projects/second-order-space/sjd-9831_orig.png"
               alt="翔胤室內設計住宅作品"
               fill
               unoptimized
@@ -84,9 +75,18 @@ export default function PressPage() {
           </div>
         </section>
 
+        <section className="press-statement content-shell" data-wipe>
+          <p>Information</p>
+          <h2>設計觀點與<br />施工資訊</h2>
+          <div>
+            <p>報導內容補充案例照片以外的設計條件、施工方式與選材考量。</p>
+            <p>本頁將持續更新媒體專訪與相關外部連結。</p>
+          </div>
+        </section>
+
         <section className="inner-page-cta content-shell" data-reveal>
-          <p>Contact us</p>
-          <h2>有裝修需求？<br />歡迎預約丈量。</h2>
+          <p>Contact</p>
+          <h2>有裝修需求？<br />與我們聯絡</h2>
           <Link className="primary-button" href="/#contact">
             <span>預約丈量</span>
             <ArrowRight aria-hidden="true" />

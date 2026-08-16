@@ -13,6 +13,13 @@ export function MotionDirector() {
   useEffect(() => {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const media = gsap.matchMedia();
+
+    if (!window.location.hash) {
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    }
+
     const context = gsap.context(() => {
       if (reduceMotion) {
         gsap.set("[data-hero-word], [data-hero-media], [data-reveal], [data-project-card], [data-wipe], [data-process-step], [data-float-card], [data-award-year], [data-works-card]", {
@@ -25,12 +32,12 @@ export function MotionDirector() {
       intro
         .fromTo(
           "[data-hero-kicker]",
-          { opacity: 0, transform: "translateY(18px)" },
+          { opacity: 0.62, transform: "translateY(10px)" },
           { opacity: 1, transform: "translateY(0px)", duration: 0.7 },
         )
         .fromTo(
           "[data-hero-word]",
-          { transform: "translateY(110%)" },
+          { transform: "translateY(18px)" },
           {
             transform: "translateY(0%)",
             duration: 1.05,
@@ -40,13 +47,19 @@ export function MotionDirector() {
         )
         .fromTo(
           "[data-hero-summary]",
-          { opacity: 0, transform: "translateY(22px)" },
+          { opacity: 0.72, transform: "translateY(12px)" },
           { opacity: 1, transform: "translateY(0px)", duration: 0.78 },
           "-=0.62",
         )
         .fromTo(
+          "[data-hero-award]",
+          { opacity: 0.72, transform: "translateY(10px)" },
+          { opacity: 1, transform: "translateY(0px)", duration: 0.72 },
+          "-=0.48",
+        )
+        .fromTo(
           "[data-hero-media]",
-          { opacity: 0, clipPath: "inset(14% 0% 0% 0% round 32px)" },
+          { opacity: 1, clipPath: "inset(5% 0% 0% 0% round 32px)" },
           {
             opacity: 1,
             clipPath: "inset(0% 0% 0% 0% round 32px)",
@@ -58,7 +71,7 @@ export function MotionDirector() {
       gsap.utils.toArray<HTMLElement>("[data-reveal]").forEach((element) => {
         gsap.fromTo(
           element,
-          { opacity: 0, transform: "translateY(42px)" },
+          { opacity: 0.78, transform: "translateY(24px)" },
           {
             opacity: 1,
             transform: "translateY(0px)",
@@ -76,7 +89,7 @@ export function MotionDirector() {
       gsap.utils.toArray<HTMLElement>("[data-wipe]").forEach((element) => {
         gsap.fromTo(
           element,
-          { opacity: 0.35, clipPath: "inset(0 100% 0 0 round 28px)" },
+          { opacity: 0.68, clipPath: "inset(0 36% 0 0 round 28px)" },
           {
             opacity: 1,
             clipPath: "inset(0 0% 0 0 round 28px)",
@@ -94,10 +107,10 @@ export function MotionDirector() {
       gsap.utils.toArray<HTMLElement>("[data-process-step]").forEach((element, index) => {
         gsap.fromTo(
           element,
-          { opacity: 0.22, transform: `translateX(${index % 2 === 0 ? 54 : 34}px)` },
+          { opacity: 0.7, transform: `translateY(${22 + (index % 3) * 4}px)` },
           {
             opacity: 1,
-            transform: "translateX(0px)",
+            transform: "translateY(0px)",
             duration: 0.95,
             ease: "syEaseOut",
             scrollTrigger: {
@@ -140,18 +153,16 @@ export function MotionDirector() {
         gsap.fromTo(
           element,
           {
-            opacity: 0,
-            clipPath: "inset(12% 0 0 0 round 28px)",
-            transform: `translateY(${36 + (index % 3) * 10}px) scale(0.975)`,
+            opacity: 0.65,
+            transform: `translateY(${24 + (index % 3) * 6}px) scale(0.985)`,
           },
           {
             opacity: 1,
-            clipPath: "inset(0% 0 0 0 round 28px)",
             transform: "translateY(0px) scale(1)",
             duration: 1.05,
             ease: "syEaseOut",
             scrollTrigger: {
-              trigger: element,
+              trigger: element.closest(".works-index-card") ?? element,
               start: "top 88%",
               once: true,
             },
@@ -210,24 +221,51 @@ export function MotionDirector() {
               },
             });
           });
+
+          ScrollTrigger.create({
+            trigger: lastCard,
+            start: "top top",
+            end: () => {
+              const inner = lastCard.querySelector<HTMLElement>(".featured-stack-inner");
+              const contentHeight = inner?.offsetHeight ?? lastCard.offsetHeight;
+              return `+=${Math.max(0, contentHeight - window.innerHeight + 120)}`;
+            },
+            pin: true,
+            pinSpacing: true,
+            invalidateOnRefresh: true,
+          });
         });
 
         gsap.utils.toArray<HTMLElement>("[data-horizontal]").forEach((wrapper) => {
           const track = wrapper.querySelector<HTMLElement>("[data-horizontal-track]");
           if (!track) return;
 
-          const distance = () => Math.max(0, track.scrollWidth - window.innerWidth);
+          const getMetrics = () => {
+            const travel = Math.max(0, track.scrollWidth - wrapper.clientWidth);
+            const dwell = Math.max(window.innerHeight * 0.24, 180);
+            return { travel, dwell };
+          };
+
           gsap.to(track, {
-            transform: () => `translate3d(${-distance()}px, 0, 0)`,
+            x: () => -getMetrics().travel,
             ease: "none",
             scrollTrigger: {
               trigger: wrapper,
               start: "top top",
-              end: () => `+=${distance()}`,
+              end: () => {
+                const { travel, dwell } = getMetrics();
+                return `+=${travel + dwell}`;
+              },
               pin: true,
               scrub: 1,
+              anticipatePin: 1,
               invalidateOnRefresh: true,
             },
+          });
+
+          track.querySelectorAll("img").forEach((image) => {
+            if (image.complete) return;
+            image.addEventListener("load", () => ScrollTrigger.refresh(), { once: true });
           });
         });
       });
@@ -254,7 +292,14 @@ export function MotionDirector() {
       });
     });
 
-    ScrollTrigger.refresh();
+    requestAnimationFrame(() => {
+      ScrollTrigger.refresh();
+      if (!window.location.hash) {
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+      }
+    });
     return () => {
       media.revert();
       context.revert();

@@ -1,0 +1,52 @@
+"use client";
+
+import Image from "next/image";
+import type { GalleryProject } from "../lib/project-gallery";
+import { PanoramaViewer } from "./PanoramaViewer";
+
+type ProjectCoverMediaProps = {
+  project: GalleryProject;
+  priority?: boolean;
+  sizes?: string;
+  autoRotate?: number;
+  className?: string;
+  imageIndex?: number;
+  showHint?: boolean;
+};
+
+export function ProjectCoverMedia({
+  project,
+  priority = false,
+  sizes = "100vw",
+  autoRotate = 0.035,
+  className,
+  imageIndex = 0,
+  showHint = true,
+}: ProjectCoverMediaProps) {
+  if (project.panorama) {
+    return (
+      <PanoramaViewer
+        src={project.panorama}
+        className={className}
+        autoRotate={autoRotate}
+        showHint={showHint}
+      />
+    );
+  }
+
+  const image =
+    project.cover ??
+    project.gallery[imageIndex] ??
+    project.gallery[0];
+
+  return (
+    <Image
+      src={image}
+      alt={`${project.title}完工作品`}
+      fill
+      priority={priority}
+      unoptimized
+      sizes={sizes}
+    />
+  );
+}

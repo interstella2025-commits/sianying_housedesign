@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { AppProviders } from "./components/AppProviders";
 import "./globals.css";
+import "./site-custom.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.siangyin.com"),
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
     locale: "zh_TW",
     siteName: "翔胤室內設計",
     title: "翔胤室內設計",
-    description: "讓室內空間與生活密不可分。提供住宅與商業空間設計、裝修工程、舊屋翻修及毛胚屋規劃。",
+    description: "把繁複思維融入簡約生活，從光、材質與動線出發。",
     images: [
       {
         url: "/og.png",
@@ -32,7 +33,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "翔胤室內設計",
-    description: "讓室內空間與生活密不可分。提供住宅與商業空間設計、裝修工程、舊屋翻修及毛胚屋規劃。",
+    description: "把繁複思維融入簡約生活，從光、材質與動線出發。",
     images: ["/og.png"],
   },
 };

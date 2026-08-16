@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
+import { ExternalPopupLink } from "./components/ExternalPopupLink";
 import { FilmPlayer } from "./components/FilmPlayer";
 import { MotionDirector } from "./components/MotionDirector";
 import { ProjectPresentation } from "./components/ProjectPresentation";
@@ -16,10 +17,18 @@ const studioFacts = [
   { value: "2022", label: "AWARD", text: "Iron A' Design Award 得獎" },
 ] as const;
 
+const servicePreviewItems = [
+  { title: "室內設計", english: "Interior Design" },
+  { title: "裝修工程", english: "Renovation" },
+  { title: "商業空間", english: "Commercial Space" },
+  { title: "舊屋翻修", english: "Old House Renovation" },
+  { title: "毛胚屋規劃", english: "Shell House Planning" },
+] as const;
+
 export const metadata: Metadata = {
   title: "翔胤室內設計｜住宅、商業空間與舊屋翻修",
   description:
-    "翔胤室內設計提供住宅與商業空間設計、裝修工程、舊屋翻修及毛胚屋規劃。",
+    "翔胤室內設計完工作品集。從光、材質與動線出發，提供住宅、商業空間、舊屋翻修與毛胚屋規劃服務。",
 };
 
 export default function Home() {
@@ -50,7 +59,10 @@ export default function Home() {
               </span>
             </h1>
             <p data-hero-summary>
-              我們依照您的生活習慣，規劃格局、收納、採光與材質
+              我們從居住需求、動線與收納開始，再處理採光、材質與整體風格。
+            </p>
+            <p className="home-hero-award" data-hero-award>
+              2022 義大利 A&apos; Design Award 得獎
             </p>
           </div>
 
@@ -58,7 +70,10 @@ export default function Home() {
             className="hero-notch hero-notch-signature"
             data-block-slot="hero-project-entry"
           >
-            <strong data-hero-kicker>翔胤設計 X 北歐制作</strong>
+            <div className="hero-notch-signature-copy">
+              <span className="hero-notch-signature-kicker">SIANG YIN INTERIOR</span>
+              <strong data-hero-kicker>翔胤設計 ✖ 北歐制作</strong>
+            </div>
           </div>
         </section>
 
@@ -104,10 +119,10 @@ export default function Home() {
             <h2>
               從需求、報價到完工，
               <br />
-              每一步都清清楚楚
+              每個階段都有明確內容
             </h2>
             <div className="service-preview-copy__footer">
-              <p>圖面、報價、工期與保固內容都清楚列出。</p>
+              <p>圖面、報價、工期與保固內容會在對應階段確認，方便掌握進度與預算。</p>
               <Link className="outline-button" href={routes.services}>
                 查看服務與收費
                 <ArrowUpRight aria-hidden="true" />
@@ -115,10 +130,13 @@ export default function Home() {
             </div>
           </div>
           <div className="service-preview-list" data-reveal>
-            {["室內設計", "裝修工程", "商業空間", "舊屋翻修", "毛胚屋規劃"].map((item, index) => (
-              <div key={item}>
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                <strong>{item}</strong>
+            {servicePreviewItems.map((item, index) => (
+              <div key={item.title}>
+                <span className="service-preview-number">{String(index + 1).padStart(2, "0")}</span>
+                <span className="service-preview-label">
+                  <small>{item.english}</small>
+                  <strong>{item.title}</strong>
+                </span>
                 <ArrowRight aria-hidden="true" />
               </div>
             ))}
@@ -128,34 +146,34 @@ export default function Home() {
         <section className="film-section content-shell" data-reveal>
           <FilmPlayer
             videoId={contact.featuredVideoId}
-            poster="/media/myvideo_0312_111-be044f433c.jpg"
+            poster={contact.featuredVideoPoster}
             title="心如境"
           />
           <div className="film-copy">
             <h2>心如境</h2>
             <p className="film-title">Serenity Within: When Space Reflects the Mind</p>
-            <p>
-              本案以自然採光、柔和色調及簡潔的材質搭配，營造舒適、安定的居住環境。
-            </p>
-            <a href={contact.youtube} target="_blank" rel="noreferrer">
+            <p>以自然採光、柔和色調與簡潔的材質配置，完成安靜且實用的住宅空間。</p>
+            <ExternalPopupLink href={contact.youtube}>
               觀看更多影片
               <ArrowUpRight aria-hidden="true" />
-            </a>
+            </ExternalPopupLink>
           </div>
         </section>
 
         <section className="contact-section" id="contact">
           <div className="contact-copy" data-reveal>
-            <p className="section-kicker">線上預約</p>
-            <h2>預約丈量</h2>
-            <p>
-              填寫資料後，網站會開啟 LINE。請將預約內容傳送給我們，我們會儘快與您聯絡。
-            </p>
+            <p className="section-kicker">線上預約丈量</p>
+            <h2>
+              提供空間資訊，
+              <br />
+              我們與你確認需求
+            </h2>
+            <p>送出表單後，我們會與您聯絡並安排丈量。</p>
             <div className="contact-direct">
               <a href="tel:0222888123">{contact.phone}</a>
-              <a href={contact.lineUrl} target="_blank" rel="noreferrer">
+              <ExternalPopupLink href={contact.lineUrl}>
                 LINE {contact.line}
-              </a>
+              </ExternalPopupLink>
             </div>
           </div>
           <div data-reveal>

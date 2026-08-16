@@ -212,6 +212,8 @@ img {
 
 .site-header-integrated .brand-mark {
   background: transparent;
+  color: var(--ink);
+  box-shadow: inset 0 0 0 1px var(--ink);
 }
 
 .site-header-integrated .header-cta {
@@ -238,19 +240,14 @@ img {
 
 .brand-mark {
   display: grid;
-  width: 44px;
-  height: 44px;
-  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
   place-items: center;
-  overflow: hidden;
-  border-radius: 10px;
-  background: transparent;
-}
-
-.brand-mark img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+  border-radius: 12px;
+  background: var(--ink);
+  color: var(--surface);
+  font-size: 1rem;
+  font-weight: 700;
 }
 
 .brand-type {
@@ -426,28 +423,21 @@ img {
 }
 
 .home-hero h1 {
-  max-width: none;
+  max-width: 8.6em;
   margin: 24px 0 22px;
   font-size: clamp(4.1rem, 8vw, 8.2rem);
   font-weight: 520;
   letter-spacing: -0.08em;
   line-height: 0.98;
-}
-
-.home-hero h1 [data-hero-word] {
-  white-space: nowrap;
+  text-wrap: balance;
 }
 
 .home-hero-copy > p:last-child {
-  max-width: none;
+  max-width: 25rem;
   margin: 0;
   color: rgb(255 255 255 / 0.82);
-  font-size: clamp(1.15rem, 1.65vw, 1.45rem);
+  font-size: clamp(0.95rem, 1.15vw, 1.08rem);
   line-height: 1.7;
-}
-
-.home-hero-copy [data-hero-summary] {
-  white-space: nowrap;
 }
 
 .home-hero .section-kicker {
@@ -585,7 +575,7 @@ img {
 .project-archive-heading h2 {
   max-width: 13ch;
   margin: 20px 0 0;
-  font-size: clamp(2.45rem, 5.4vw, 5.6rem);
+  font-size: clamp(3rem, 6.6vw, 6.8rem);
   font-weight: 480;
   letter-spacing: -0.068em;
   line-height: 1.04;
@@ -711,105 +701,36 @@ img {
   text-transform: uppercase;
 }
 
-.site-music {
-  width: min(100%, 360px);
-}
-
-.site-music--embedded {
-  margin-bottom: 18px;
-}
-
-.site-music--floating {
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
-  z-index: 40;
-  padding: 10px 12px 12px;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  background: rgb(255 255 255 / 0.96);
-  box-shadow: 0 12px 36px rgb(27 27 25 / 0.12);
-  backdrop-filter: blur(8px);
-}
-
-.site-music__bar {
-  display: grid;
-  grid-template-columns: auto auto minmax(0, 1fr) auto auto auto;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 8px;
-  border-radius: 6px;
-  background: #e8e8e8;
-}
-
-.site-music__play,
-.site-music__mute {
-  display: inline-flex;
-  width: 28px;
-  height: 28px;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  border: 0;
-  border-radius: 4px;
-  background: transparent;
-  color: #333;
-  cursor: pointer;
-}
-
-.site-music__play svg,
-.site-music__mute svg {
-  width: 16px;
-  height: 16px;
-}
-
-.site-music__time {
-  min-width: 2.8rem;
-  color: #333;
-  font-size: 0.72rem;
-  font-variant-numeric: tabular-nums;
-  line-height: 1;
-}
-
-.site-music__progress,
-.site-music__volume {
-  width: 100%;
-  height: 4px;
-  margin: 0;
-  accent-color: #666;
-  cursor: pointer;
-}
-
-.site-music__volume {
-  width: 56px;
-}
-
-.site-music__credit {
-  margin: 8px 0 0;
-  color: var(--ink-soft);
-  font-size: 0.78rem;
-  line-height: 1.4;
-}
-
-.featured-stack-copy .site-music + h3 {
-  margin-top: 10px;
-}
-
-.featured-stack-copy .site-music + h3 + p {
-  margin-top: 10px;
-  color: var(--accent);
-  font-size: 0.69rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
 .featured-stack-copy h3 {
   margin: 12px 0 0;
   font-size: clamp(2.8rem, 4.8vw, 5rem);
   font-weight: 480;
   letter-spacing: -0.065em;
   line-height: 1;
+}
+
+.featured-stack-open {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 18px 0 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.84rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-decoration: underline;
+  text-decoration-color: rgb(27 27 25 / 0.28);
+  text-underline-offset: 0.28em;
+}
+
+.featured-stack-open svg {
+  width: 16px;
+  height: 16px;
 }
 
 .featured-stack-copy > p:last-child {
@@ -1126,105 +1047,13 @@ img {
   padding-block: clamp(72px, 7vw, 108px) clamp(56px, 5vw, 80px);
   display: grid;
   grid-template-columns: 1.15fr 0.85fr;
-  align-items: start;
+  align-items: end;
   gap: 10vw;
-}
-
-.studio-statement {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  min-height: 100%;
-}
-
-.studio-service-kicker {
-  margin: 0 0 22px;
-  color: var(--accent);
-  font-size: 0.72rem;
-  font-weight: 700;
-  line-height: 1.4;
-}
-
-.studio-service-kicker span {
-  letter-spacing: 0.18em;
-}
-
-.studio-statement-lead {
-  max-width: 920px;
-  margin: 0 0 clamp(20px, 2.5vw, 28px);
-  padding-top: 0.08em;
-  font-size: clamp(1.65rem, 3.2vw, 3rem);
-  font-weight: 500;
-  letter-spacing: -0.05em;
-  line-height: 1.22;
-}
-
-.studio-statement-detail {
-  max-width: 920px;
-  margin: 0 0 clamp(28px, 3vw, 40px);
-  color: var(--ink-soft);
-  font-size: clamp(1.08rem, 1.75vw, 1.42rem);
-  font-weight: 500;
-  letter-spacing: -0.03em;
-  line-height: 1.35;
-}
-
-.studio-service-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  margin-top: auto;
-  font-size: 0.82rem;
-  font-weight: 700;
-}
-
-.studio-service-link svg {
-  width: 17px;
-  height: 17px;
 }
 
 .studio-facts {
   display: grid;
-  gap: 24px;
-}
-
-.studio-fact {
-  display: grid;
-  grid-template-columns: clamp(88px, 8vw, 120px) minmax(0, 1fr);
-  align-items: center;
-  gap: clamp(32px, 5vw, 56px);
-  border-bottom: 1px solid var(--line);
-  padding-bottom: 20px;
-}
-
-.studio-fact-value {
-  font-size: clamp(2.4rem, 4.2vw, 3.6rem);
-  font-weight: 620;
-  letter-spacing: -0.06em;
-  line-height: 1;
-  color: var(--ink);
-}
-
-.studio-fact-meta {
-  display: grid;
-  gap: 6px;
-}
-
-.studio-fact-label {
-  color: var(--accent);
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  line-height: 1;
-}
-
-.studio-fact-text {
-  max-width: 18rem;
-  margin: 0;
-  color: var(--ink);
-  font-size: clamp(0.98rem, 1.15vw, 1.12rem);
-  font-weight: 520;
-  line-height: 1.45;
+  gap: 34px;
 }
 
 .horizontal-projects {
@@ -1375,28 +1204,14 @@ img {
 .service-preview {
   padding-block: clamp(80px, 8vw, 120px);
   display: grid;
-  grid-template-columns: 46fr 54fr;
-  align-items: stretch;
-  gap: clamp(40px, 6vw, 88px);
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 10vw;
 }
 
 .service-preview-copy {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  min-height: 100%;
-}
-
-.service-preview-copy__footer {
-  display: grid;
-  gap: 34px;
-  margin-top: auto;
-}
-
-.service-preview-copy__footer p {
-  max-width: 32rem;
-  margin: 0;
-  color: var(--ink-soft);
+  position: sticky;
+  top: calc(var(--header-height) + 54px);
+  align-self: start;
 }
 
 .service-preview-copy h2,
@@ -1417,9 +1232,10 @@ img {
   line-height: 1.08;
 }
 
-.service-preview-copy h2 {
-  font-size: clamp(2.05rem, 3.8vw, 4.1rem);
-  line-height: 1.12;
+.service-preview-copy > p {
+  max-width: 32rem;
+  margin: 26px 0 34px;
+  color: var(--ink-soft);
 }
 
 .service-preview-list {
@@ -1455,33 +1271,17 @@ img {
   padding-bottom: clamp(80px, 8vw, 120px);
   display: grid;
   grid-template-columns: 1.35fr 0.65fr;
-  align-items: center;
+  align-items: end;
   gap: 7vw;
 }
 
 .film-media {
   position: relative;
   display: block;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  max-height: min(42vw, 480px);
+  min-height: min(66vw, 760px);
   overflow: hidden;
-  border: none;
-  padding: 0;
   border-radius: var(--radius-card);
   background: var(--surface-soft);
-  cursor: pointer;
-  text-align: inherit;
-  font: inherit;
-  color: inherit;
-}
-
-.film-media-playing iframe {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
 }
 
 .film-media img {
@@ -1549,7 +1349,6 @@ img {
 .contact-copy h2 {
   max-width: 590px;
   margin-top: 24px;
-  font-size: clamp(2.1rem, 4.2vw, 4.4rem);
 }
 
 .contact-copy > p:not(.section-kicker) {
@@ -1589,7 +1388,7 @@ img {
 .field-block > span,
 .location-fieldset legend {
   color: var(--ink);
-  font-size: 0.72rem;
+  font-size: 0.92rem;
   font-weight: 700;
 }
 
@@ -1601,6 +1400,7 @@ img {
   background: var(--surface);
   color: var(--ink);
   padding: 0 14px;
+  font-size: 0.95rem;
   transition:
     border-color 180ms ease,
     box-shadow 180ms ease;
@@ -1644,7 +1444,7 @@ img {
   border: 1px solid #b9b9b1;
   border-radius: 999px;
   background: var(--surface);
-  font-size: 0.78rem;
+  font-size: 0.9rem;
   transition:
     background-color 180ms ease,
     border-color 180ms ease,
@@ -1708,7 +1508,7 @@ img {
 .footer-lead p {
   max-width: 980px;
   margin: 0;
-  font-size: clamp(2rem, 4.8vw, 5.2rem);
+  font-size: clamp(3rem, 7.2vw, 8rem);
   font-weight: 500;
   letter-spacing: -0.075em;
   line-height: 1;
@@ -1744,7 +1544,8 @@ img {
 }
 
 .footer-brand .brand-mark {
-  background: transparent;
+  background: var(--surface);
+  color: var(--ink);
 }
 
 .footer-brand strong {
@@ -2253,20 +2054,6 @@ img {
   color: var(--ink-soft);
 }
 
-.consent-field a {
-  border-bottom: 1px solid currentColor;
-}
-
-.privacy-list ul {
-  margin: 16px 0 0;
-  padding-left: 1.2em;
-  color: var(--ink-soft);
-}
-
-.privacy-list li + li {
-  margin-top: 8px;
-}
-
 .privacy-list p + p {
   margin-top: 18px;
 }
@@ -2600,13 +2387,16 @@ img {
 
 .scope-showcase-title span {
   color: var(--accent);
-  font-size: 0.72rem;
+  font-size: 0.84rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
 .scope-showcase h3 {
   max-width: 9em;
   margin: 0;
-  font-size: clamp(2.2rem, 4.5vw, 5rem);
+  font-size: clamp(2.4rem, 4.8vw, 5.4rem);
   font-weight: 500;
   letter-spacing: -0.065em;
   line-height: 1;
@@ -2631,12 +2421,12 @@ img {
 
 .scope-showcase li span {
   color: var(--accent);
-  font-size: 0.62rem;
+  font-size: 0.72rem;
   font-variant-numeric: tabular-nums;
 }
 
 .scope-showcase li strong {
-  font-size: 0.84rem;
+  font-size: 0.98rem;
   font-weight: 500;
 }
 
@@ -3556,14 +3346,14 @@ img {
   padding-block: clamp(100px, 13vw, 180px);
   display: grid;
   grid-template-columns: 1.3fr 0.7fr;
-  align-items: end;
+  align-items: start;
   gap: 9vw;
 }
 
 .works-manifesto > p {
   max-width: 14em;
   margin: 0;
-  font-size: clamp(2.8rem, 5.5vw, 6.2rem);
+  font-size: clamp(2.5rem, 4.9vw, 5.5rem);
   font-weight: 490;
   letter-spacing: -0.07em;
   line-height: 1.1;
@@ -3879,7 +3669,7 @@ img {
   }
 
   .works-manifesto > p {
-    font-size: clamp(2.9rem, 12.5vw, 4.7rem);
+    font-size: clamp(2.6rem, 11vw, 4.2rem);
   }
 
   .works-facts {
@@ -4451,8 +4241,8 @@ img {
   }
 
   .brand-mark {
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
   }
 
   .brand-type strong {
@@ -4484,20 +4274,16 @@ img {
   }
 
   .home-hero h1 {
-    max-width: none;
+    max-width: 8em;
     margin: 18px 0 16px;
     font-size: clamp(3rem, 13vw, 4.8rem);
     line-height: 1.02;
   }
 
   .home-hero-copy > p:last-child {
-    max-width: none;
-    font-size: clamp(1.05rem, 3.8vw, 1.22rem);
+    max-width: 24rem;
+    font-size: 0.92rem;
     line-height: 1.65;
-  }
-
-  .home-hero-copy [data-hero-summary] {
-    font-size: clamp(0.88rem, 3.4vw, 1.22rem);
   }
 
   .page-hero-media {
@@ -4527,37 +4313,6 @@ img {
     padding-block: 72px 64px;
     grid-template-columns: 1fr;
     gap: 52px;
-  }
-
-  .studio-statement {
-    min-height: auto;
-  }
-
-  .studio-statement-lead {
-    font-size: clamp(1.5rem, 6.5vw, 2.4rem);
-    padding-top: 0;
-  }
-
-  .studio-statement-detail {
-    font-size: clamp(1rem, 4.8vw, 1.2rem);
-  }
-
-  .studio-service-link {
-    margin-top: 8px;
-  }
-
-  .studio-fact {
-    grid-template-columns: clamp(76px, 22vw, 96px) minmax(0, 1fr);
-    gap: 28px;
-  }
-
-  .studio-fact-value {
-    font-size: clamp(2.1rem, 10vw, 2.8rem);
-  }
-
-  .studio-fact-text {
-    max-width: none;
-    font-size: 0.95rem;
   }
 
   .horizontal-projects {
@@ -4641,28 +4396,6 @@ img {
   .service-preview {
     padding-block: 78px;
     gap: 52px;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .service-preview-copy {
-    display: contents;
-    min-height: auto;
-  }
-
-  .service-preview-copy h2 {
-    order: 1;
-    font-size: clamp(1.95rem, 8.5vw, 3.4rem);
-  }
-
-  .service-preview-list {
-    order: 2;
-  }
-
-  .service-preview-copy__footer {
-    order: 3;
-    margin-top: 0;
-    gap: 24px;
   }
 
   .service-preview-copy,
@@ -4684,17 +4417,12 @@ img {
     font-size: clamp(2.5rem, 11vw, 4.5rem);
   }
 
-  .contact-copy h2 {
-    font-size: clamp(2.1rem, 9.5vw, 3.8rem);
-  }
-
   .film-section {
     gap: 34px;
   }
 
   .film-media {
-    max-height: none;
-    aspect-ratio: 16 / 9;
+    min-height: 62vw;
   }
 
   .film-copy {
@@ -4721,7 +4449,7 @@ img {
   }
 
   .footer-lead p {
-    font-size: clamp(2rem, 10vw, 4rem);
+    font-size: clamp(3rem, 14vw, 5.8rem);
   }
 
   .footer-contact-link {
@@ -4924,7 +4652,7 @@ img {
 
   .featured-projects-heading h2,
   .project-archive-heading h2 {
-    font-size: clamp(2.3rem, 10.5vw, 4rem);
+    font-size: clamp(2.8rem, 12vw, 4.7rem);
   }
 
   .featured-projects-heading > p:last-child {
@@ -5075,7 +4803,7 @@ img {
 @media (max-width: 560px) {
   .featured-projects-heading h2,
   .project-archive-heading h2 {
-    font-size: clamp(2.15rem, 11vw, 3.3rem);
+    font-size: clamp(2.65rem, 12.5vw, 3.9rem);
   }
 
   .featured-stack-media {
@@ -5148,246 +4876,561 @@ img {
   }
 }
 
-/*
- * 翔胤室內設計｜全站字級與排版修正
- * 依 1440px 桌機與 390px 手機的 computed styles 制定。
- */
-
+/* Readable site-wide type scale and balanced editorial layouts. */
 :root {
-  --type-caption: 0.8125rem; /* 13px */
-  --type-legal: 0.8125rem; /* 13px */
-  --type-small: 0.9375rem; /* 15px */
-  --type-body: 1.0625rem; /* 17px */
-  --type-nav: 0.9375rem; /* 15px */
+  --type-page-title: clamp(3.5rem, 4.8vw, 4.5rem);
+  --type-section-title: clamp(2.75rem, 4vw, 4rem);
+  --type-card-title: clamp(2rem, 3vw, 3rem);
+  --type-body: clamp(1rem, 1.08vw, 1.08rem);
+  --type-small: 0.8rem;
 }
 
-/* Header：目前桌機導覽只有約 12.6px。 */
-.desktop-nav a {
-  min-height: 44px;
-  padding-block: 10px;
-  font-size: var(--type-nav);
-  line-height: 1.4;
+.section-kicker {
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
 }
 
+.brand-type strong {
+  font-size: 1rem;
+}
+
+.brand-type small {
+  font-size: 0.7rem;
+  letter-spacing: 0.13em;
+}
+
+.desktop-nav a,
 .header-cta {
-  min-height: 46px;
-  padding-inline: 20px;
-  font-size: var(--type-nav);
-}
-
-/* 重複出現的輔助標籤：統一保留在 13px，不再掉到 9–11px。 */
-.section-kicker,
-.studio-service-kicker,
-.archive-project-meta small,
-.project-gallery-header span,
-.studio-fact-label,
-.service-preview-list span,
-.service-hero-progress,
-.service-hero-counter > span,
-.service-hero-cutout span,
-.rate-number,
-.scope-showcase li span,
-.inner-page-cta > p,
-.about-cinema-note span,
-.about-cinema-note p,
-.about-cinema-cutout span,
-.founder-vertical-name,
-.award-year-seal span,
-.award-year-seal p,
-.award-exhibition-intro > span,
-.award-exhibit figcaption,
-.press-opening > div span,
-.press-source,
-.press-statement > p,
-.works-index-meta small,
-.works-index-action,
-.works-facts span,
-.project-count,
-.project-title-row > span,
-.film-copy .film-title,
-.process-grid span,
-.journey-list > li > span,
-.manifesto-index span,
-.founder-copy .founder-role {
-  font-size: var(--type-caption);
-  line-height: 1.5;
-}
-
-/* 一般說明文字：目前多數只有 14–15px。 */
-.featured-projects-heading > p:last-child,
-.featured-stack-copy > p:last-child,
-.works-hero-copy > p:last-child,
-.press-hero-copy > p:nth-of-type(2),
-.service-story-summary,
-.film-copy > p:not(.film-title),
-.contact-copy > p,
-.service-preview-copy__footer p {
-  font-size: var(--type-body);
-  line-height: 1.75;
-}
-
-/* 表單、價格與服務資料屬於重要資訊，不應使用裝飾性小字。 */
-.field-block > span,
-.location-fieldset legend,
-.rate-name p,
-.studio-facts-panel p,
-.pricing-cards span,
-.scope-items span,
-.coverage-section span {
-  font-size: var(--type-small);
-  line-height: 1.6;
-}
-
-.consent-field,
-.form-helper {
-  font-size: 0.875rem; /* 14px */
-  line-height: 1.6;
+  font-size: 1rem;
 }
 
 .primary-button,
 .outline-button,
-.studio-service-link,
-.footer-contact-link {
+.footer-contact-link,
+.project-cutout-control button {
+  font-size: 0.95rem;
+}
+
+.home-hero h1 {
+  max-width: 11em;
+  font-size: clamp(3.75rem, 6vw, 5.5rem);
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+}
+
+.home-hero-copy > p:last-child,
+.works-hero-copy > p:last-child,
+.service-story-summary,
+.press-hero-copy > p:nth-of-type(2),
+.page-hero-summary {
+  font-size: var(--type-body);
+}
+
+.featured-projects-heading h2,
+.project-archive-heading h2 {
+  max-width: 15ch;
+  font-size: var(--type-section-title);
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+}
+
+.featured-stack-copy h3 {
+  font-size: var(--type-card-title);
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+}
+
+.featured-stack-copy > p:first-child,
+.project-title-row > span,
+.project-count,
+.works-index-meta small,
+.works-index-action,
+.project-gallery-story > p {
   font-size: var(--type-small);
 }
 
-/* Works hero：桌機左欄目前只有 316px，卻使用 100.8px 標題。 */
-@media (min-width: 1024px) {
-  .works-hero {
-    grid-template-columns: minmax(520px, 0.8fr) minmax(0, 1.2fr);
-    gap: 24px;
-  }
-
-  .works-hero-copy {
-    padding: clamp(48px, 4.5vw, 68px);
-  }
-
-  .works-hero-copy h1 {
-    max-width: none;
-    font-size: clamp(4.75rem, 6.1vw, 5.6rem);
-    line-height: 0.98;
-    letter-spacing: -0.035em;
-  }
-
-  .home-hero h1,
-  .page-hero h1,
-  .press-hero-copy h1 {
-    letter-spacing: -0.035em;
-  }
+.featured-stack-copy > p:last-child,
+.project-description p,
+.project-gallery-story div p {
+  font-size: 1rem;
+  line-height: 1.85;
 }
 
-/* 首頁服務區：兩欄同高；左側說明與按鈕固定在底部。 */
-.service-preview {
-  grid-template-columns: minmax(0, 46fr) minmax(0, 54fr);
-  align-items: stretch;
+.service-preview-copy h2,
+.film-copy h2,
+.contact-copy h2 {
+  font-size: clamp(2.6rem, 3.7vw, 3.6rem);
+  letter-spacing: -0.035em;
+  line-height: 1.12;
 }
 
-.service-preview-copy {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+.service-preview-copy > p,
+.film-copy > p:not(.film-title),
+.contact-copy > p:not(.section-kicker),
+.press-feature article > p,
+.press-profile article > p,
+.award-editorial-copy > p:not(.section-kicker),
+.award-credentials-copy > p,
+.founder-copy > p:not(.section-kicker):not(.founder-role),
+.privacy-list p {
+  font-size: var(--type-body);
 }
 
-.service-preview-copy__footer {
-  margin-top: auto;
-}
-
-/* Footer：目前主要資料約 12px、版權只有 10.7px。 */
-.footer-contact-link {
-  min-height: 54px;
-  padding-inline: 22px;
+.service-preview-list span,
+.film-copy .film-title,
+.footer-brand p,
+.footer-nav,
+.footer-contact {
+  font-size: 1rem;
 }
 
 .footer-brand p {
-  max-width: 34ch;
-  font-size: var(--type-small);
+  font-size: 0.95rem;
+}
+
+.footer-bottom {
+  font-size: 0.875rem;
+}
+
+.service-preview-list strong {
+  font-size: clamp(1.45rem, 1.8vw, 2rem);
+}
+
+.site-footer {
+  border-radius: 30px;
+}
+
+.footer-lead p {
+  max-width: 18ch;
+  font-size: clamp(2.75rem, 4vw, 3.75rem);
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+  text-wrap: pretty;
+}
+
+.footer-grid {
+  grid-template-columns: minmax(280px, 1.2fr) minmax(130px, 0.65fr) minmax(250px, 1fr) auto;
+  gap: clamp(32px, 4vw, 58px);
+}
+
+.footer-brand p,
+.footer-contact p {
   line-height: 1.75;
 }
 
 .footer-nav,
 .footer-contact {
-  gap: 4px;
-  font-size: 1rem;
-  line-height: 1.6;
+  gap: 10px;
+  overflow-wrap: anywhere;
 }
 
-.footer-nav a,
-.footer-contact a {
-  display: flex;
-  align-items: center;
-  min-height: 36px;
+.page-hero h1 {
+  font-size: clamp(3.25rem, 4.5vw, 4.25rem);
+  letter-spacing: -0.035em;
+  line-height: 1.08;
 }
 
-.footer-contact p {
+.works-hero,
+.service-story-hero,
+.press-hero {
+  grid-template-columns: minmax(390px, 0.82fr) minmax(0, 1.18fr);
+}
+
+.works-hero-copy,
+.service-story-copy,
+.press-hero-copy {
+  min-width: 0;
+  padding: clamp(38px, 4vw, 64px);
+}
+
+.works-hero-copy h1,
+.service-story-copy h1,
+.press-hero-copy h1 {
+  max-width: 9em;
+  font-size: var(--type-page-title);
+  letter-spacing: -0.035em;
+  line-height: 1.04;
+}
+
+.service-story-copy h1 {
+  font-size: clamp(3.25rem, 4.3vw, 4rem);
+}
+
+.service-story-copy h1 .line-mask > span {
+  white-space: nowrap;
+}
+
+.works-hero-collage,
+.service-story-visual,
+.press-hero-media {
+  min-width: 0;
+}
+
+.works-manifesto > p,
+.press-opening > p,
+.manifesto-copy p {
+  font-size: clamp(2.25rem, 3.4vw, 3.35rem);
+  letter-spacing: -0.035em;
+  line-height: 1.16;
+}
+
+.works-facts span,
+.works-closing > p,
+.press-opening > div span,
+.press-source,
+.press-statement > p {
   font-size: var(--type-small);
-  line-height: 1.65;
 }
 
-.footer-bottom {
-  font-size: var(--type-legal);
-  line-height: 1.6;
+.works-catalog-heading h2 {
+  font-size: var(--type-section-title);
+  letter-spacing: -0.035em;
+  line-height: 1.06;
 }
 
-.footer-lead p {
+.works-index-meta strong {
+  font-size: clamp(1.35rem, 1.9vw, 2rem);
+}
+
+.works-closing {
+  grid-template-columns: minmax(220px, 0.44fr) minmax(0, 1fr) auto;
+}
+
+.works-closing h2 {
+  font-size: clamp(2.75rem, 3.8vw, 3.75rem);
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+}
+
+.rates-layout,
+.process-journey-layout,
+.award-editorial,
+.award-credentials,
+.founder-feature {
+  grid-template-columns: minmax(300px, 0.72fr) minmax(0, 1.28fr);
+  gap: clamp(48px, 7vw, 104px);
+}
+
+.rates-heading h2,
+.service-field-heading h2,
+.journey-heading h2,
+.founder-copy h2,
+.award-editorial-copy h2,
+.award-credentials h2,
+.inner-page-cta h2 {
+  font-size: var(--type-section-title);
+  letter-spacing: -0.035em;
+  line-height: 1.06;
+}
+
+.rate-name h3 {
+  font-size: clamp(1.5rem, 1.9vw, 2rem);
+  letter-spacing: -0.025em;
+}
+
+.rate-name p,
+.rate-price span,
+.rate-number,
+.service-hero-progress,
+.service-hero-counter > span,
+.service-hero-cutout span,
+.scope-showcase-title span,
+.scope-showcase li span,
+.journey-list > li > span {
+  font-size: var(--type-small);
+}
+
+.scope-showcase h3 {
+  font-size: clamp(2.65rem, 3.6vw, 3.85rem);
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+}
+
+.scope-showcase li strong {
+  font-size: 1.05rem;
+}
+
+.process-journey-layout,
+.process-journey-layout > *,
+.journey-list,
+.journey-list li,
+.journey-list li > div {
+  min-width: 0;
+}
+
+.journey-list li {
+  grid-template-columns: 54px minmax(0, 1fr);
+}
+
+.journey-list h3 {
+  font-size: clamp(2.2rem, 3.2vw, 3.25rem);
+  letter-spacing: -0.035em;
+  line-height: 1.1;
+  overflow-wrap: anywhere;
+}
+
+.journey-list p {
+  font-size: 1rem;
+  overflow-wrap: anywhere;
+}
+
+.about-cinema-copy h1,
+.award-stage-copy h1 {
+  font-size: clamp(3.5rem, 5vw, 4.75rem);
+  letter-spacing: -0.035em;
+  line-height: 1.04;
+}
+
+.manifesto-copy p + p {
+  font-size: clamp(1.2rem, 1.6vw, 1.6rem);
+  letter-spacing: -0.02em;
+}
+
+.values-marquee span {
+  font-size: clamp(2.25rem, 4vw, 4rem);
   letter-spacing: -0.035em;
 }
 
-@media (max-width: 900px) {
-  /* 手機作品頁維持兩行標題，避免退回逐字直排。 */
-  .works-hero-copy h1 {
-    max-width: 100%;
-    font-size: clamp(3rem, 13vw, 4.2rem);
-    line-height: 0.98;
-    letter-spacing: -0.035em;
+.about-cinema-note span,
+.about-cinema-note p,
+.about-cinema-cutout span,
+.manifesto-index span,
+.manifesto-index p,
+.founder-experience span,
+.founder-vertical-name,
+.founder-copy .founder-role,
+.studio-facts-panel span,
+.studio-facts-panel p,
+.award-year-seal span,
+.award-year-seal p,
+.award-exhibition-intro > span,
+.award-exhibit figcaption,
+.award-proof-grid span {
+  font-size: var(--type-small);
+}
+
+.studio-facts-panel h2,
+.studio-facts-panel strong {
+  font-size: clamp(2rem, 2.8vw, 3rem);
+  letter-spacing: -0.035em;
+}
+
+.award-editorial-year {
+  font-size: clamp(7rem, 15vw, 16rem);
+  letter-spacing: -0.04em;
+}
+
+.award-exhibition-intro h2 {
+  font-size: clamp(3rem, 4.5vw, 4.5rem);
+  letter-spacing: -0.035em;
+  line-height: 1.06;
+}
+
+.press-feature h2,
+.press-profile h2,
+.press-statement h2 {
+  font-size: clamp(2.5rem, 3.5vw, 3.5rem);
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+}
+
+.press-statement > div p {
+  font-size: 0.95rem;
+}
+
+.privacy-list h2 {
+  font-size: clamp(1.25rem, 1.7vw, 1.6rem);
+  letter-spacing: -0.02em;
+}
+
+.inner-page-cta {
+  grid-template-columns: minmax(150px, 0.3fr) minmax(0, 1fr) auto;
+}
+
+@media (max-width: 899px) {
+  :root {
+    --type-page-title: clamp(2.45rem, 10.5vw, 3.15rem);
+    --type-section-title: clamp(2.25rem, 9.4vw, 2.85rem);
+    --type-card-title: clamp(2rem, 8.4vw, 2.55rem);
+    --type-body: 1rem;
+    --type-small: 0.78rem;
   }
 
-  .section-kicker,
-  .studio-service-kicker {
-    font-size: 0.75rem; /* 12px；手機上僅限短標籤 */
-    letter-spacing: 0.14em;
+  .brand-type strong {
+    font-size: 0.92rem;
+  }
+
+  .brand-type small {
+    font-size: 0.68rem;
+  }
+
+  .mobile-menu nav a {
+    padding-block: 14px;
+    font-size: clamp(1.35rem, 6.2vw, 1.75rem);
+    letter-spacing: -0.025em;
+  }
+
+  .mobile-menu-foot {
+    font-size: 0.86rem;
+  }
+
+  .home-hero h1 {
+    font-size: clamp(2.5rem, 10.8vw, 3.25rem);
+    letter-spacing: -0.03em;
+    line-height: 1.08;
+  }
+
+  .featured-projects-heading h2,
+  .project-archive-heading h2 {
+    font-size: clamp(2.35rem, 9.8vw, 2.9rem);
+  }
+
+  .featured-stack-copy h3,
+  .project-title-row h3 {
+    font-size: clamp(2rem, 8.5vw, 2.45rem);
+  }
+
+  .service-preview-copy h2,
+  .film-copy h2,
+  .contact-copy h2 {
+    font-size: clamp(2.25rem, 9.4vw, 2.85rem);
+  }
+
+  .works-hero,
+  .service-story-hero,
+  .press-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .works-hero-copy,
+  .service-story-copy,
+  .press-hero-copy {
+    padding: 46px 16px 8px;
+  }
+
+  .works-hero-copy h1,
+  .service-story-copy h1,
+  .press-hero-copy h1 {
+    font-size: var(--type-page-title);
+    line-height: 1.08;
+  }
+
+  .service-story-copy h1 {
+    font-size: clamp(2.4rem, 10vw, 3rem);
+  }
+
+  .works-manifesto > p,
+  .press-opening > p,
+  .manifesto-copy p {
+    font-size: clamp(2rem, 8.2vw, 2.45rem);
+  }
+
+  .works-catalog-heading h2 {
+    font-size: clamp(2.45rem, 10vw, 3rem);
+  }
+
+  .works-closing h2 {
+    font-size: clamp(2.25rem, 9.5vw, 2.85rem);
+  }
+
+  .rates-layout,
+  .process-journey-layout,
+  .award-editorial,
+  .award-credentials,
+  .founder-feature {
+    grid-template-columns: 1fr;
+    gap: 56px;
+  }
+
+  .rates-heading h2,
+  .service-field-heading h2,
+  .journey-heading h2,
+  .founder-copy h2,
+  .award-editorial-copy h2,
+  .award-credentials h2,
+  .inner-page-cta h2 {
+    font-size: var(--type-section-title);
+    line-height: 1.1;
+  }
+
+  .scope-showcase h3 {
+    font-size: clamp(2.35rem, 9vw, 2.95rem);
+  }
+
+  .journey-list li {
+    min-height: auto;
+    padding-block: 34px;
+    grid-template-columns: 32px minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .journey-list h3 {
+    margin: 0 0 14px;
+    font-size: clamp(1.9rem, 8vw, 2.35rem);
+  }
+
+  .rate-row {
+    grid-template-columns: 28px minmax(0, 1fr);
+  }
+
+  .about-cinema-copy h1,
+  .award-stage-copy h1 {
+    font-size: clamp(2.55rem, 10.8vw, 3.25rem);
+    line-height: 1.08;
+  }
+
+  .values-marquee span {
+    font-size: 2.6rem;
+  }
+
+  .award-editorial-year {
+    font-size: clamp(6.5rem, 34vw, 10rem);
+  }
+
+  .award-exhibition-intro h2,
+  .press-feature h2,
+  .press-profile h2,
+  .press-statement h2 {
+    font-size: clamp(2.2rem, 9.2vw, 2.75rem);
+  }
+
+  .page-hero h1 {
+    font-size: clamp(2.4rem, 10vw, 3rem);
+    line-height: 1.1;
+  }
+
+  .footer-lead {
+    padding: 56px 24px;
+  }
+
+  .footer-lead p {
+    max-width: 16ch;
+    font-size: clamp(2.1rem, 9vw, 2.65rem);
   }
 
   .footer-grid {
-    gap: 36px;
+    gap: 40px 28px;
   }
 
+  .footer-brand p,
   .footer-nav,
-  .footer-contact {
-    font-size: 1rem;
-  }
-
-  .footer-nav a,
-  .footer-contact a {
-    min-height: 44px;
-  }
-
-  .footer-social a {
-    width: 46px;
-    height: 46px;
-  }
-
+  .footer-contact,
   .footer-bottom {
-    font-size: var(--type-legal);
+    font-size: 0.95rem;
+  }
+
+  .inner-page-cta,
+  .works-closing {
+    grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 560px) {
-  .featured-projects-heading > p:last-child,
-  .featured-stack-copy > p:last-child,
-  .works-hero-copy > p:last-child,
-  .film-copy > p:not(.film-title),
-  .contact-copy > p,
-  .service-preview-copy__footer p {
-    font-size: 1rem;
-    line-height: 1.75;
+  .footer-grid {
+    grid-template-columns: 1fr;
   }
 
-  .field-block > span,
-  .location-fieldset legend,
-  .rate-name p,
-  .pricing-cards span,
-  .scope-items span,
-  .coverage-section span {
-    font-size: 0.9375rem;
+  .footer-bottom {
+    line-height: 1.6;
   }
 }

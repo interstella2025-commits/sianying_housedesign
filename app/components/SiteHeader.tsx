@@ -1,10 +1,11 @@
 "use client";
 
-import Link from "next/link";
 import { ArrowUpRight, List, X } from "@phosphor-icons/react";
 import { useEffect, useState } from "react";
 import { navItems } from "../data";
 import { BrandMark } from "./BrandMark";
+import { ExternalPopupLink } from "./ExternalPopupLink";
+import { SiteLink } from "./SiteLink";
 
 type SiteHeaderProps = {
   integrated?: boolean;
@@ -21,32 +22,32 @@ export function SiteHeader({ integrated = false }: SiteHeaderProps) {
   return (
     <header className={`site-header${integrated ? " site-header-integrated" : ""}`}>
       <div className="header-inner">
-        <Link className="brand" href="/" aria-label="翔胤室內設計首頁">
+        <SiteLink className="brand" href="/" aria-label="翔胤室內設計首頁">
           <BrandMark />
           <span className="brand-type">
             <strong>翔胤室內設計</strong>
             <small>SIANG YIN INTERIOR</small>
           </span>
-        </Link>
+        </SiteLink>
 
         <nav className="desktop-nav" aria-label="主要導覽">
           {navItems.map((item) =>
             item.external ? (
-              <a key={item.label} href={item.href} target="_blank" rel="noreferrer">
+              <ExternalPopupLink key={item.label} href={item.href}>
                 {item.label}
-              </a>
+              </ExternalPopupLink>
             ) : (
-              <Link key={item.label} href={item.href}>
+              <SiteLink key={item.label} href={item.href}>
                 {item.label}
-              </Link>
+              </SiteLink>
             ),
           )}
         </nav>
 
-        <Link className="header-cta" href="/#contact">
+        <SiteLink className="header-cta" href="/#contact" scroll={false}>
           預約丈量
           <ArrowUpRight aria-hidden="true" weight="regular" />
-        </Link>
+        </SiteLink>
 
         <button
           className="menu-button"
@@ -64,19 +65,17 @@ export function SiteHeader({ integrated = false }: SiteHeaderProps) {
         <nav aria-label="手機導覽">
           {navItems.map((item, index) =>
             item.external ? (
-              <a
+              <ExternalPopupLink
                 key={item.label}
                 href={item.href}
-                target="_blank"
-                rel="noreferrer"
                 tabIndex={open ? 0 : -1}
                 style={{ "--menu-index": index } as React.CSSProperties}
               >
                 <span>{item.label}</span>
                 <ArrowUpRight aria-hidden="true" />
-              </a>
+              </ExternalPopupLink>
             ) : (
-              <Link
+              <SiteLink
                 key={item.label}
                 href={item.href}
                 tabIndex={open ? 0 : -1}
@@ -84,7 +83,7 @@ export function SiteHeader({ integrated = false }: SiteHeaderProps) {
                 style={{ "--menu-index": index } as React.CSSProperties}
               >
                 <span>{item.label}</span>
-              </Link>
+              </SiteLink>
             ),
           )}
         </nav>

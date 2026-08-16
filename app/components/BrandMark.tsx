@@ -6,8 +6,8 @@ export function BrandMark() {
       <Image
         src="/media/siang-yin-logo.png"
         alt=""
-        width={44}
-        height={44}
+        width={72}
+        height={72}
         unoptimized
         priority
       />

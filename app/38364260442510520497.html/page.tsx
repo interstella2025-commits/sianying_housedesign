@@ -10,7 +10,7 @@ import { contact, routes } from "../data";
 export const metadata: Metadata = {
   title: "關於我們",
   description:
-    "翔胤室內設計於 2010 年成立，提供住宅與商業空間設計、空間規劃、工程施工與完工保固服務。",
+    "翔胤設計 X 北歐制作創立於 2010 年，將繁複思維融入簡約生活空間。",
 };
 
 const values = ["LIGHT", "MATERIAL", "FUNCTION", "LIFE", "DETAIL"] as const;
@@ -24,8 +24,8 @@ export default function AboutPage() {
         <section className="about-cinema-hero">
           <div className="about-cinema-media" data-hero-media data-parallax>
             <Image
-              src="/media/303943211-dc645a36a3.jpg"
-              alt="翔胤室內設計住宅客廳作品"
+              src="/images/projects/stone-habitat/sjd-8233_1_orig.png"
+              alt="翔胤室內設計棲於石境完工作品空間"
               fill
               priority
               unoptimized
@@ -34,14 +34,11 @@ export default function AboutPage() {
           </div>
           <div className="about-cinema-shade" />
           <div className="about-cinema-copy">
-            <p className="section-kicker" data-hero-kicker>關於我們</p>
+            <p className="section-kicker" data-hero-kicker>關於我們 / About us</p>
             <h1>
-              <span className="line-mask"><span data-hero-word>住宅與</span></span>
-              <span className="line-mask"><span data-hero-word>商業空間設計</span></span>
+              <span className="line-mask"><span data-hero-word>翔胤室內設計</span></span>
+              <span className="line-mask"><span data-hero-word>成立於 2010 年</span></span>
             </h1>
-            <p data-hero-summary>
-              翔胤室內設計於 2010 年成立，提供空間規劃、工程施工與完工保固服務。
-            </p>
           </div>
           <div className="about-cinema-note" data-float-card>
             <span>Since</span>
@@ -49,21 +46,20 @@ export default function AboutPage() {
             <p>Taipei · Taiwan</p>
           </div>
           <div className="about-cinema-cutout">
-            <span>SIANG YIN</span>
-            <strong>翔胤設計 X 北歐制作</strong>
+            <div className="hero-notch-signature-copy">
+              <span className="hero-notch-signature-kicker">SIANG YIN INTERIOR</span>
+              <strong>住宅與商業空間設計</strong>
+            </div>
           </div>
         </section>
 
-        <section className="about-manifesto content-shell">
-          <div className="manifesto-index" data-reveal>
-            <span>01</span>
-            <p>Design philosophy</p>
-          </div>
-          <div className="manifesto-copy" data-reveal>
-            <p>讓室內空間與生活密不可分</p>
-            <p>
-              我們會先了解居住人數、生活習慣、收納需求與預算，再規劃格局、動線、材質與施工方式。
-            </p>
+        <section className="about-manifesto content-shell" data-reveal>
+          <div className="about-manifesto-stack">
+            <p className="about-manifesto-kicker">Our philosophy</p>
+            <div className="manifesto-copy">
+              <p>讓室內空間與生活密不可分</p>
+              <p>我們從居住需求、動線與收納開始，再處理採光、材質與整體風格。</p>
+            </div>
           </div>
         </section>
 
@@ -80,7 +76,7 @@ export default function AboutPage() {
             <div className="founder-portrait" data-parallax>
               <Image
                 src="/media/grok-image-8edffe_orig-19da4d8d29.png"
-                alt="翔胤室內設計設計總監"
+                alt="翔胤室內設計專案設計師 Chou Su Zung"
                 fill
                 unoptimized
                 sizes="(max-width: 899px) 100vw, 48vw"
@@ -90,14 +86,14 @@ export default function AboutPage() {
               <strong>20+</strong>
               <span>Years of practice</span>
             </div>
-            <p className="founder-vertical-name">DESIGN DIRECTOR</p>
+            <p className="founder-vertical-name">FOUNDER / DESIGNER</p>
           </div>
 
           <div className="founder-copy" data-reveal>
-            <p className="section-kicker">設計師介紹</p>
-            <p className="founder-role">2022 Iron A&apos; Design Award 得獎設計師</p>
-            <h2>設計總監</h2>
-            <p>投入室內設計產業超過 20 年，並於 2010 年在台北創立翔胤室內設計。</p>
+            <p className="section-kicker">Designer profile</p>
+            <p className="founder-role">義大利 A&apos; Design Award 國際認證設計師</p>
+            <h2>Chou<br />Su Zung</h2>
+            <p>21 歲退伍後投入室內設計產業，累積超過 20 年實務經驗，於 2010 年在台北創立翔胤室內設計。</p>
             <Link className="outline-button" href={routes.awards}>
               查看國際獎項
               <ArrowUpRight aria-hidden="true" />
@@ -107,26 +103,23 @@ export default function AboutPage() {
 
         <section className="studio-facts-panel content-shell" data-reveal>
           <article className="studio-fact-wide">
-            <span>服務地區</span>
+            <span>Service area</span>
             <h2>台北 · 新北 · 桃園<br />新竹 · 宜蘭 · 台中</h2>
           </article>
           <article>
-            <span>統一編號</span>
+            <span>Company ID</span>
             <strong>{contact.companyId}</strong>
+            <p>經濟部與財政部登記有案</p>
           </article>
           <article>
-            <span>公司地址</span>
-            <strong>{contact.headquarters}</strong>
-          </article>
-          <article>
-            <span>設計中心</span>
+            <span>Design center</span>
             <strong>{contact.designCenter}</strong>
           </article>
         </section>
 
         <section className="inner-page-cta content-shell" data-reveal>
-          <p>Contact us</p>
-          <h2>有裝修需求？<br />歡迎與我們聯絡。</h2>
+          <p>Contact</p>
+          <h2>歡迎與我們討論<br />你的空間</h2>
           <Link className="primary-button" href="/#contact">
             <span>預約丈量</span>
             <ArrowRight aria-hidden="true" />

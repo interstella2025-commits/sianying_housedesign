@@ -3,20 +3,14 @@
 import Image from "next/image";
 import { ArrowDown, ArrowUpRight, X } from "@phosphor-icons/react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import galleryAssets from "../project-gallery-assets.json";
-import { projects, type Project } from "../data";
+import { galleryProjects, getGalleryThumbnails } from "../lib/project-gallery";
+import { ProjectCoverMedia } from "./ProjectCoverMedia";
+import { ProjectGalleryGrid } from "./ProjectGalleryGrid";
 import { SiteMusicPlayer } from "./SiteMusicProvider";
 
-type PresentationProject = Project & {
-  slug: string;
-  gallery: string[];
-};
+type PresentationProject = (typeof galleryProjects)[number];
 
-const presentationProjects: PresentationProject[] = galleryAssets.map((asset, index) => ({
-  ...projects[index],
-  slug: asset.slug,
-  gallery: asset.images,
-}));
+const presentationProjects = galleryProjects;
 
 export function ProjectPresentation() {
   const [selected, setSelected] = useState<PresentationProject | null>(null);
@@ -85,8 +79,8 @@ export function ProjectPresentation() {
       <section className="featured-projects" id="works">
         <div className="featured-projects-heading content-shell" data-reveal>
           <p className="section-kicker">精選完工作品</p>
-          <h2>住宅設計案例</h2>
-          <p>以下收錄不同格局與需求的完工作品。</p>
+          <h2>住宅設計完工作品</h2>
+          <p>查看格局、採光、收納、材質與完工細節。</p>
         </div>
 
         <div className="featured-stack" data-project-stack>
@@ -94,12 +88,10 @@ export function ProjectPresentation() {
             <article className="featured-stack-card" key={project.slug} data-stack-card>
               <div className="featured-stack-inner content-shell">
                 <div className="featured-stack-media" data-parallax>
-                  <Image
-                    src={project.gallery[0]}
-                    alt={`${project.title}完工作品`}
-                    fill
-                    unoptimized
+                  <ProjectCoverMedia
+                    project={project}
                     sizes="(max-width: 899px) 100vw, 70vw"
+                    showHint={false}
                   />
                   <div className="project-cutout-control">
                     <button type="button" onClick={() => setSelected(project)}>
@@ -110,10 +102,11 @@ export function ProjectPresentation() {
                 </div>
                 <div className="featured-stack-copy">
                   {index === 0 && <SiteMusicPlayer />}
-                  {index !== 0 && <p>{project.english}</p>}
+                  {project.english ? (
+                    <p className="featured-stack-english">{project.english}</p>
+                  ) : null}
                   <h3>{project.title}</h3>
-                  {index === 0 && project.english && <p>{project.english}</p>}
-                  <p>{project.paragraphs.join(" ")}</p>
+                  <p className="featured-stack-description">{project.paragraphs.join(" ")}</p>
                 </div>
               </div>
             </article>
@@ -123,7 +116,7 @@ export function ProjectPresentation() {
 
       <section className="project-archive content-shell">
         <div className="project-archive-heading" data-reveal>
-          <h2>更多完工作品</h2>
+          <h2>更多住宅設計案例</h2>
         </div>
         <div className="project-archive-grid">
           {archive.map((project, index) => (
@@ -135,12 +128,10 @@ export function ProjectPresentation() {
               data-reveal
             >
               <span className="archive-project-media">
-                <Image
-                  src={project.gallery[0]}
-                  alt={`${project.title}完工作品`}
-                  fill
-                  unoptimized
+                <ProjectCoverMedia
+                  project={project}
                   sizes="(max-width: 899px) 100vw, 58vw"
+                  showHint={false}
                 />
               </span>
               <span className="archive-project-meta">
@@ -181,13 +172,12 @@ export function ProjectPresentation() {
             </header>
 
             <div className="project-gallery-hero">
-              <Image
-                src={selected.gallery[0]}
-                alt={`${selected.title}完工作品主要空間`}
-                fill
+              <ProjectCoverMedia
+                project={selected}
                 priority
-                unoptimized
                 sizes="100vw"
+                autoRotate={0}
+                showHint={false}
               />
               <a className="gallery-down" href="#gallery-story">
                 閱讀設計概念
@@ -205,22 +195,13 @@ export function ProjectPresentation() {
               </div>
             </div>
 
-            <div className="project-gallery-images">
-              {selected.gallery.slice(1).map((image, index) => (
-                <figure key={image} className={index === 0 || index === 3 ? "gallery-wide" : ""}>
-                  <Image
-                    src={image}
-                    alt={`${selected.title}完工作品空間 ${index + 2}`}
-                    fill
-                    unoptimized
-                    sizes="(max-width: 899px) 100vw, 50vw"
-                  />
-                </figure>
-              ))}
-            </div>
+            <ProjectGalleryGrid
+              title={selected.title}
+              images={getGalleryThumbnails(selected)}
+            />
 
             <div className="project-gallery-cta">
-              <p>喜歡這個作品的空間語言？</p>
+              <p>想進一步了解這個案例？</p>
               <a className="primary-button" href="#contact" onClick={() => setSelected(null)}>
                 預約丈量
                 <ArrowUpRight aria-hidden="true" />
