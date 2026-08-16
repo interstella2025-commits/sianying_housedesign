@@ -29,13 +29,15 @@ export function MotionDirector() {
       }
 
       const intro = gsap.timeline({ defaults: { ease: "syEaseOut" } });
-      intro
-        .fromTo(
+      if (document.querySelector("[data-hero-kicker]")) {
+        intro.fromTo(
           "[data-hero-kicker]",
           { opacity: 0.62, transform: "translateY(10px)" },
           { opacity: 1, transform: "translateY(0px)", duration: 0.7 },
-        )
-        .fromTo(
+        );
+      }
+      if (document.querySelector("[data-hero-word]")) {
+        intro.fromTo(
           "[data-hero-word]",
           { transform: "translateY(18px)" },
           {
@@ -44,20 +46,26 @@ export function MotionDirector() {
             stagger: 0.07,
           },
           "-=0.46",
-        )
-        .fromTo(
+        );
+      }
+      if (document.querySelector("[data-hero-summary]")) {
+        intro.fromTo(
           "[data-hero-summary]",
           { opacity: 0.72, transform: "translateY(12px)" },
           { opacity: 1, transform: "translateY(0px)", duration: 0.78 },
           "-=0.62",
-        )
-        .fromTo(
+        );
+      }
+      if (document.querySelector("[data-hero-award]")) {
+        intro.fromTo(
           "[data-hero-award]",
           { opacity: 0.72, transform: "translateY(10px)" },
           { opacity: 1, transform: "translateY(0px)", duration: 0.72 },
           "-=0.48",
-        )
-        .fromTo(
+        );
+      }
+      if (document.querySelector("[data-hero-media]")) {
+        intro.fromTo(
           "[data-hero-media]",
           { opacity: 1, clipPath: "inset(5% 0% 0% 0% round 32px)" },
           {
@@ -67,6 +75,7 @@ export function MotionDirector() {
           },
           "-=0.55",
         );
+      }
 
       gsap.utils.toArray<HTMLElement>("[data-reveal]").forEach((element) => {
         gsap.fromTo(

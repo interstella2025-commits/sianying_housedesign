@@ -1,7 +1,6 @@
 "use client";
 
 import { Pause, Play, SpeakerHigh, SpeakerSlash } from "@phosphor-icons/react";
-import { usePathname } from "next/navigation";
 import {
   createContext,
   useCallback,
@@ -94,43 +93,11 @@ export function SiteMusicPlayer() {
 }
 
 export function SiteMusicProvider({ children }: { children: ReactNode }) {
-  const pathname = usePathname();
   const audioRef = useRef<HTMLAudioElement>(null);
-  const startedRef = useRef(false);
   const [playing, setPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [muted, setMuted] = useState(false);
-
-  const tryPlay = useCallback(async () => {
-    const audio = audioRef.current;
-    if (!audio) return;
-
-    audio.volume = siteMusic.defaultVolume;
-    try {
-      await audio.play();
-      startedRef.current = true;
-      setPlaying(true);
-    } catch {
-      setPlaying(false);
-    }
-  }, []);
-
-  useEffect(() => {
-    void tryPlay();
-
-    const resumeOnInteract = () => {
-      void tryPlay();
-    };
-
-    document.addEventListener("pointerdown", resumeOnInteract, { once: true });
-    document.addEventListener("keydown", resumeOnInteract, { once: true });
-
-    return () => {
-      document.removeEventListener("pointerdown", resumeOnInteract);
-      document.removeEventListener("keydown", resumeOnInteract);
-    };
-  }, [tryPlay]);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -160,7 +127,10 @@ export function SiteMusicProvider({ children }: { children: ReactNode }) {
   const togglePlay = useCallback(() => {
     const audio = audioRef.current;
     if (!audio) return;
-    if (audio.paused) void audio.play();
+    if (audio.paused) {
+      audio.volume = siteMusic.defaultVolume;
+      void audio.play().catch(() => setPlaying(false));
+    }
     else audio.pause();
   }, []);
 
@@ -199,18 +169,10 @@ export function SiteMusicProvider({ children }: { children: ReactNode }) {
     setVolume,
   };
 
-  const showFloating = pathname !== "/";
-
   return (
     <SiteMusicContext.Provider value={value}>
-      <audio ref={audioRef} src={siteMusic.src} loop preload="auto" />
+      <audio ref={audioRef} src={siteMusic.src} loop preload="metadata" />
       {children}
-      {showFloating && (
-        <div className="site-music site-music--floating" aria-label="背景音樂">
-          <SiteMusicBar />
-          <p className="site-music__credit">{siteMusic.credit}</p>
-        </div>
-      )}
     </SiteMusicContext.Provider>
   );
 }

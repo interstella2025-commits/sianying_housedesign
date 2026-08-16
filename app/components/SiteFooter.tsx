@@ -51,8 +51,8 @@ export function SiteFooter() {
         <div className="footer-contact">
           <a href="tel:0222888123">{contact.phone}</a>
           <a href={`mailto:${contact.email}`}>{contact.email}</a>
-          <p>{contact.headquarters}</p>
-          <p>{contact.designCenter}</p>
+          <p><span>公司登記</span>{contact.headquarters}</p>
+          <p><span>設計中心</span>{contact.designCenter}</p>
         </div>
 
         <div className="footer-social" aria-label="社群連結">

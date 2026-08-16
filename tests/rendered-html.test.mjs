@@ -1,25 +1,23 @@
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 async function render(pathname = "/") {
-  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
-  workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}-${pathname}`);
-  const { default: worker } = await import(workerUrl.href);
+  const outputName = pathname === "/" ? "index.html" : `${pathname.slice(1)}.html`;
+  const outputUrl = new URL(`../.next/server/app/${outputName}`, import.meta.url);
 
-  return worker.fetch(
-    new Request(`http://localhost${pathname}`, {
-      headers: { accept: "text/html" },
-    }),
-    {
-      ASSETS: {
-        fetch: async () => new Response("Not found", { status: 404 }),
-      },
-    },
-    {
-      waitUntil() {},
-      passThroughOnException() {},
-    },
-  );
+  try {
+    const html = await readFile(outputUrl, "utf8");
+    return new Response(html, {
+      status: 200,
+      headers: { "content-type": "text/html; charset=utf-8" },
+    });
+  } catch (error) {
+    if (error && typeof error === "object" && "code" in error && error.code === "ENOENT") {
+      return new Response("Not found", { status: 404 });
+    }
+    throw error;
+  }
 }
 
 function assertHeadingsHaveNoTerminalPunctuation(html, pathname) {
@@ -30,14 +28,14 @@ function assertHeadingsHaveNoTerminalPunctuation(html, pathname) {
   }
 }
 
-test("server-renders the finished home page", async () => {
+test("statically renders the finished home page", async () => {
   const response = await render();
   assert.equal(response.status, 200);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
   assert.match(html, /<title>翔胤室內設計/);
-  assert.match(html, /把繁複思維/);
+  assert.match(html, /讓空間與生活/);
   assert.match(html, /精選完工作品/);
   assert.match(html, /光域未來/);
   assert.match(html, /project-archive-grid/);

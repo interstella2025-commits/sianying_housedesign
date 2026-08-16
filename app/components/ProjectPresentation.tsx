@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Link from "next/link";
 import { ArrowDown, ArrowUpRight, X } from "@phosphor-icons/react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { galleryProjects, getGalleryThumbnails } from "../lib/project-gallery";
@@ -113,6 +113,14 @@ export function ProjectPresentation() {
           ))}
         </div>
       </section>
+
+      <div className="home-project-cta content-shell" data-reveal>
+        <p>想看更多格局、材質與完工細節？</p>
+        <Link className="outline-button" href="/works">
+          查看完整作品集
+          <ArrowUpRight aria-hidden="true" />
+        </Link>
+      </div>
 
       <section className="project-archive content-shell">
         <div className="project-archive-heading" data-reveal>

@@ -18,16 +18,6 @@ export function ProjectGalleryGrid({
 }: ProjectGalleryGridProps) {
   const [visibleCount, setVisibleCount] = useState(batchSize);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  useEffect(() => {
-    setVisibleCount(batchSize);
-    setLightboxIndex(null);
-  }, [batchSize, images]);
 
   const visibleImages = useMemo(() => images.slice(0, visibleCount), [images, visibleCount]);
   const remaining = images.length - visibleImages.length;
@@ -110,7 +100,7 @@ export function ProjectGalleryGrid({
         )}
       </section>
 
-      {lightboxIndex !== null && mounted
+      {lightboxIndex !== null && typeof document !== "undefined"
         ? createPortal(
             <div
               className="project-image-lightbox"

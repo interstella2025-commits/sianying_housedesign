@@ -50,6 +50,9 @@ export default function Home() {
           </div>
 
           <div className="home-hero-copy">
+            <p className="home-hero-eyebrow" data-hero-kicker>
+              RESIDENTIAL · COMMERCIAL · RENOVATION
+            </p>
             <h1>
               <span className="line-mask">
                 <span data-hero-word>讓空間與生活</span>
@@ -61,19 +64,17 @@ export default function Home() {
             <p data-hero-summary>
               我們從居住需求、動線與收納開始，再處理採光、材質與整體風格。
             </p>
-            <p className="home-hero-award" data-hero-award>
-              2022 義大利 A&apos; Design Award 得獎
-            </p>
-          </div>
-
-          <div
-            className="hero-notch hero-notch-signature"
-            data-block-slot="hero-project-entry"
-          >
-            <div className="hero-notch-signature-copy">
-              <span className="hero-notch-signature-kicker">SIANG YIN INTERIOR</span>
-              <strong data-hero-kicker>翔胤設計 ✖ 北歐制作</strong>
+            <div className="home-hero-actions" data-hero-award>
+              <Link className="primary-button home-hero-primary" href="#contact">
+                預約丈量
+                <ArrowUpRight aria-hidden="true" />
+              </Link>
+              <Link className="home-hero-secondary" href={routes.works}>
+                瀏覽完工作品
+                <ArrowRight aria-hidden="true" />
+              </Link>
             </div>
+            <p className="home-hero-proof">SINCE 2010 · 2022 A&apos; DESIGN AWARD</p>
           </div>
         </section>
 
