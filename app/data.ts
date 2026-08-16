@@ -2,10 +2,10 @@ export const routes = {
   home: "/",
   works: "/works",
   press: "/press",
-  awards: "/22283385552951838917.html",
+  awards: "/awards",
   services: "/services",
-  about: "/38364260442510520497.html",
-  privacy: "/3857731169274022591931574.html",
+  about: "/about",
+  privacy: "/privacy",
 } as const;
 
 export const navItems = [

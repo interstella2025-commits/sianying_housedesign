@@ -45,17 +45,17 @@ test("statically renders the finished home page", async () => {
   assert.doesNotMatch(html, /下一個空間，從一次對話開始。/);
 });
 
-const preservedRoutes = [
+const publicRoutes = [
   "/works",
   "/press",
-  "/22283385552951838917.html",
+  "/awards",
   "/services",
-  "/38364260442510520497.html",
-  "/3857731169274022591931574.html",
+  "/about",
+  "/privacy",
 ];
 
-test("preserves every public legacy route", async () => {
-  for (const pathname of preservedRoutes) {
+test("preserves every public route", async () => {
+  for (const pathname of publicRoutes) {
     const response = await render(pathname);
     assert.equal(response.status, 200, pathname);
     const html = await response.text();

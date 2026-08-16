@@ -12,6 +12,21 @@ const nextConfig: NextConfig = {
         destination: "/services",
         permanent: true,
       },
+      {
+        source: "/22283385552951838917.html",
+        destination: "/awards",
+        permanent: true,
+      },
+      {
+        source: "/38364260442510520497.html",
+        destination: "/about",
+        permanent: true,
+      },
+      {
+        source: "/3857731169274022591931574.html",
+        destination: "/privacy",
+        permanent: true,
+      },
     ];
   },
 };
