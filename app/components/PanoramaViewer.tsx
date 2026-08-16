@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type PanoramaViewerProps = {
   src: string;
+  poster?: string;
   className?: string;
   autoRotate?: number;
   hint?: string;
@@ -12,12 +13,18 @@ type PanoramaViewerProps = {
 
 export function PanoramaViewer({
   src,
+  poster,
   className,
   autoRotate = 0,
   hint = "拖曳環視",
   showHint = true,
 }: PanoramaViewerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(true);
+  }, [src]);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -134,6 +141,11 @@ export function PanoramaViewer({
       };
 
       render();
+      if (mounted) {
+        window.requestAnimationFrame(() => {
+          if (mounted) setLoading(false);
+        });
+      }
 
       return () => {
         container.removeEventListener("pointerdown", onPointerDown);
@@ -152,13 +164,17 @@ export function PanoramaViewer({
       };
     };
 
-    boot().then((dispose) => {
-      if (!mounted) {
-        dispose();
-        return;
-      }
-      teardown = dispose;
-    });
+    boot()
+      .then((dispose) => {
+        if (!mounted) {
+          dispose();
+          return;
+        }
+        teardown = dispose;
+      })
+      .catch(() => {
+        if (mounted) setLoading(false);
+      });
 
     return () => {
       mounted = false;
@@ -168,11 +184,28 @@ export function PanoramaViewer({
 
   return (
     <div
-      className={`panorama-viewer${className ? ` ${className}` : ""}`}
+      className={`panorama-viewer${loading ? " is-loading" : " is-ready"}${className ? ` ${className}` : ""}`}
       ref={containerRef}
+      aria-busy={loading}
       aria-label="360 度環景瀏覽"
       role="img"
     >
+      {poster ? (
+        <img
+          className="panorama-viewer__poster"
+          src={poster}
+          alt=""
+          aria-hidden="true"
+          decoding="async"
+        />
+      ) : null}
+      <div className="panorama-viewer__loading" aria-live="polite">
+        <span className="panorama-viewer__loading-spinner" aria-hidden="true" />
+        <span className="panorama-viewer__loading-copy">
+          <strong>3D 空間載入中</strong>
+          <small>高畫質環景準備中，請稍候</small>
+        </span>
+      </div>
       {showHint && hint ? <span className="panorama-viewer__hint">{hint}</span> : null}
     </div>
   );

@@ -641,7 +641,7 @@ img {
   bottom: -1px;
   padding: 13px 0 0 15px;
   border-radius: 22px 0 0;
-  background: var(--surface-soft);
+  background: var(--paper);
 }
 
 .project-cutout-control::before,
@@ -658,14 +658,14 @@ img {
   top: -24px;
   right: 0;
   border-radius: 0 0 22px;
-  box-shadow: 10px 10px 0 6px var(--surface-soft);
+  box-shadow: 10px 10px 0 6px var(--paper);
 }
 
 .project-cutout-control::after {
   bottom: 0;
   left: -24px;
   border-radius: 0 0 22px;
-  box-shadow: 10px 10px 0 6px var(--surface-soft);
+  box-shadow: 10px 10px 0 6px var(--paper);
 }
 
 .project-cutout-control button {

@@ -24,9 +24,12 @@ export function ProjectCoverMedia({
   showHint = true,
 }: ProjectCoverMediaProps) {
   if (project.panorama) {
+    const poster = project.cover ?? project.gallery[0];
+
     return (
       <PanoramaViewer
         src={project.panorama}
+        poster={poster}
         className={className}
         autoRotate={autoRotate}
         showHint={showHint}
