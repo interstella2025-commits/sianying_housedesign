@@ -520,7 +520,8 @@
   white-space: nowrap;
 }
 
-.service-preview-list > div {
+.service-preview-list > div,
+.service-preview-row {
   grid-template-columns: clamp(72px, 8vw, 96px) minmax(0, 1fr) auto;
   align-items: center;
 }
@@ -2243,7 +2244,8 @@
     line-height: 1.7;
   }
 
-  .service-preview-list > div {
+  .service-preview-list > div,
+  .service-preview-row {
     min-width: 0;
     grid-template-columns: 42px minmax(0, 1fr) 22px;
     gap: 12px;

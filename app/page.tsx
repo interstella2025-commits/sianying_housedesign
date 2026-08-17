@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
+import { SiteLink } from "./components/SiteLink";
 import { ExternalPopupLink } from "./components/ExternalPopupLink";
 import { FilmPlayer } from "./components/FilmPlayer";
 import { HomeHeroScrollLink } from "./components/HomeHeroScrollLink";
@@ -141,14 +142,18 @@ export default function Home() {
           </div>
           <div className="service-preview-list" data-reveal>
             {servicePreviewItems.map((item, index) => (
-              <div key={item.title}>
+              <SiteLink
+                className="service-preview-row"
+                href={`${routes.services}#scope`}
+                key={item.title}
+              >
                 <span className="service-preview-number">{String(index + 1).padStart(2, "0")}</span>
                 <span className="service-preview-label">
                   <small>{item.english}</small>
                   <strong>{item.title}</strong>
                 </span>
                 <ArrowRight aria-hidden="true" />
-              </div>
+              </SiteLink>
             ))}
           </div>
         </section>

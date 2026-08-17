@@ -95,7 +95,7 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        <section className="service-field">
+        <section className="service-field" id="scope">
           <div className="service-field-heading content-shell" data-reveal>
             <p className="section-kicker">服務範圍 / Scope</p>
             <h2>設計與施工<br />服務範圍</h2>

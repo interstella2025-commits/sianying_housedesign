@@ -1,6 +1,7 @@
 "use client";
 
 import type { ComponentProps, MouseEvent } from "react";
+import { isDirectExternalHref, openDirectExternalHref } from "../lib/external-links";
 import { useExternalLinkModal } from "./ExternalLinkModalProvider";
 
 type ExternalPopupLinkProps = ComponentProps<"a"> & {
@@ -31,7 +32,19 @@ export function ExternalPopupLink({
       rel={props.rel ?? "noreferrer"}
       onClick={(event) => {
         onClick?.(event);
-        if (event.defaultPrevented || typeof href !== "string" || !shouldOpenModal(event)) {
+        if (event.defaultPrevented || typeof href !== "string") {
+          return;
+        }
+
+        if (isDirectExternalHref(href)) {
+          if (shouldOpenModal(event)) {
+            event.preventDefault();
+            openDirectExternalHref(href);
+          }
+          return;
+        }
+
+        if (!shouldOpenModal(event)) {
           return;
         }
 

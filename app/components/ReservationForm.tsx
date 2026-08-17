@@ -3,11 +3,10 @@
 import { ArrowUpRight, Check } from "@phosphor-icons/react";
 import { FormEvent, useState } from "react";
 import { contact } from "../data";
-import { useExternalLinkModal } from "./ExternalLinkModalProvider";
+import { openDirectExternalHref } from "../lib/external-links";
 
 export function ReservationForm() {
   const [copied, setCopied] = useState(false);
-  const { openExternalLink } = useExternalLinkModal();
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -33,7 +32,7 @@ export function ReservationForm() {
       setCopied(false);
     }
 
-    openExternalLink(contact.lineUrl, "LINE 線上諮詢");
+    openDirectExternalHref(contact.lineUrl);
   }
 
   return (
@@ -78,7 +77,7 @@ export function ReservationForm() {
       </button>
       {copied ? (
         <p className="form-helper" aria-live="polite">
-          預約內容已複製，請在彈出視窗中的 LINE 對話貼上並送出。
+          預約內容已複製，請在 LINE 對話貼上並送出。
         </p>
       ) : null}
     </form>

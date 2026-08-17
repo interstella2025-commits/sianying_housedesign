@@ -1245,13 +1245,28 @@ img {
   display: grid;
 }
 
-.service-preview-list > div {
+.service-preview-list > div,
+.service-preview-row {
   display: grid;
   grid-template-columns: 58px 1fr auto;
   align-items: center;
   gap: 18px;
   border-bottom: 1px solid var(--line);
   padding: 26px 4px;
+}
+
+.service-preview-row {
+  color: inherit;
+  text-decoration: none;
+  transition: background-color 180ms var(--ease-out);
+}
+
+.service-preview-row:hover {
+  background: rgb(156 122 74 / 0.05);
+}
+
+.service-preview-row:active {
+  background: rgb(156 122 74 / 0.08);
 }
 
 .service-preview-list span {
@@ -2347,6 +2362,7 @@ img {
 
 .service-field {
   padding-block: clamp(110px, 14vw, 200px);
+  scroll-margin-top: calc(var(--header-height) + 24px);
 }
 
 .service-field-heading {

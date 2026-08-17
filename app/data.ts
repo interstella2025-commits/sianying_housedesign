@@ -254,5 +254,5 @@ export const contact = {
   youtube: "https://www.youtube.com/@Wanna_Ju",
   featuredVideoId: "EXDQRrQ3f0M",
   featuredVideoPoster: "/images/projects/serenity-within/sjd-0060_orig.jpg",
-  lineUrl: "http://line.me/ti/p/mhHUoVQz_Z",
+  lineUrl: "https://line.me/ti/p/mhHUoVQz_Z",
 } as const;
