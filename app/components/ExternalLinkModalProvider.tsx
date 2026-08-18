@@ -14,10 +14,11 @@ import {
 type ExternalLinkState = {
   url: string;
   title: string;
+  embedSrc?: string;
 } | null;
 
 type ExternalLinkModalContextValue = {
-  openExternalLink: (url: string, title?: string) => void;
+  openExternalLink: (url: string, title?: string, embedSrc?: string) => void;
   closeExternalLink: () => void;
 };
 
@@ -53,7 +54,7 @@ export function ExternalLinkModalProvider({ children }: { children: ReactNode })
     }, 280);
   }, []);
 
-  const openExternalLink = useCallback((url: string, title?: string) => {
+  const openExternalLink = useCallback((url: string, title?: string, embedSrc?: string) => {
     if (closeTimerRef.current !== null) {
       window.clearTimeout(closeTimerRef.current);
       closeTimerRef.current = null;
@@ -63,6 +64,7 @@ export function ExternalLinkModalProvider({ children }: { children: ReactNode })
     setState({
       url,
       title: title?.trim() || getLinkTitle(url),
+      embedSrc,
     });
   }, []);
 
@@ -133,8 +135,8 @@ export function ExternalLinkModalProvider({ children }: { children: ReactNode })
             <p className="external-link-note">您仍停留在翔胤室內設計網站，關閉視窗即可回到原頁面。</p>
             <div className="external-link-frame-wrap">
               <iframe
-                key={state.url}
-                src={state.url}
+                key={state.embedSrc ?? state.url}
+                src={state.embedSrc ?? state.url}
                 title={state.title}
                 className="external-link-frame"
                 referrerPolicy="no-referrer-when-downgrade"

@@ -12,6 +12,7 @@ type ProjectCoverMediaProps = {
   className?: string;
   imageIndex?: number;
   showHint?: boolean;
+  preferStaticImage?: boolean;
 };
 
 export function ProjectCoverMedia({
@@ -22,8 +23,9 @@ export function ProjectCoverMedia({
   className,
   imageIndex = 0,
   showHint = true,
+  preferStaticImage = false,
 }: ProjectCoverMediaProps) {
-  if (project.panorama) {
+  if (project.panorama && !preferStaticImage) {
     const poster = project.cover ?? project.gallery[0];
 
     return (

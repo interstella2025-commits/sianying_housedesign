@@ -44,6 +44,15 @@ body.menu-open {
   overflow: hidden;
 }
 
+body.menu-open .site-header {
+  z-index: 141;
+}
+
+body.menu-open .header-inner {
+  position: relative;
+  z-index: 142;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -338,31 +347,36 @@ img {
 
 .mobile-menu {
   position: fixed;
-  z-index: -1;
+  z-index: 140;
   inset: 0;
   display: flex;
   flex-direction: column;
-  padding: var(--header-height) 22px 28px;
+  padding: var(--header-height) 22px max(28px, env(safe-area-inset-bottom));
   background: var(--paper);
   opacity: 0;
   pointer-events: none;
+  overscroll-behavior: contain;
   transform: translateY(-2%);
   transition:
     opacity 240ms var(--ease-out),
-    transform 240ms var(--ease-out);
+    transform 240ms var(--ease-out),
+    visibility 240ms var(--ease-out);
+  visibility: hidden;
 }
 
 .mobile-menu[data-open="true"] {
-  z-index: 29;
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0);
+  visibility: visible;
 }
 
 .mobile-menu nav {
   display: grid;
   align-content: start;
   margin: 0;
+  min-height: 0;
+  overflow: auto;
 }
 
 .mobile-menu nav a {
@@ -1588,6 +1602,16 @@ img {
 .footer-contact p {
   margin: 4px 0 0;
   color: #a8a8a1;
+}
+
+.footer-address-link {
+  color: inherit;
+  text-decoration: none;
+  transition: color 180ms var(--ease-out);
+}
+
+.footer-address-link:hover {
+  color: var(--surface);
 }
 
 .footer-social {

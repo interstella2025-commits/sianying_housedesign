@@ -647,8 +647,8 @@
   box-sizing: border-box;
   flex-shrink: 0;
   overflow: hidden;
-  align-items: flex-end;
-  text-align: right;
+  align-items: flex-start;
+  text-align: left;
   justify-content: center;
 }
 
@@ -738,6 +738,47 @@
   color: var(--surface);
 }
 
+.site-footer,
+.home-footer-frame .site-footer {
+  background: #585853;
+  color: #f7f7f4;
+}
+
+.footer-lead {
+  border-bottom-color: rgb(255 255 255 / 0.14);
+}
+
+.footer-contact-link {
+  border-color: rgb(255 255 255 / 0.28);
+}
+
+.footer-brand p,
+.footer-contact p {
+  color: rgb(247 247 244 / 0.76);
+}
+
+.footer-contact p span {
+  color: rgb(247 247 244 / 0.52);
+}
+
+.footer-bottom {
+  border-top-color: rgb(255 255 255 / 0.14);
+  color: rgb(247 247 244 / 0.58);
+}
+
+.footer-privacy-link {
+  color: rgb(247 247 244 / 0.58);
+}
+
+.footer-privacy-link:hover,
+.footer-address-link:hover {
+  color: #f7f7f4;
+}
+
+.footer-social a {
+  border-color: rgb(255 255 255 / 0.22);
+}
+
 .values-marquee-track {
   padding: 10px 0 12px;
 }
@@ -772,6 +813,12 @@
   --section-space: clamp(48px, 6vw, 76px);
   --section-space-lg: clamp(56px, 7vw, 88px);
   --section-space-xl: clamp(64px, 8vw, 100px);
+  --brand-gold: #b79c6d;
+}
+
+.home-page .featured-stack-copy h3,
+.home-page .archive-project-meta strong {
+  color: var(--brand-gold);
 }
 
 .featured-projects {
@@ -1817,7 +1864,7 @@
 
   body.menu-open .header-inner {
     position: relative;
-    z-index: 31;
+    z-index: 142;
   }
 
   .site-header-integrated .header-inner {
@@ -1865,12 +1912,11 @@
   }
 
   .mobile-menu {
-    inset: 0;
     padding: var(--header-height) var(--mobile-gutter) max(24px, env(safe-area-inset-bottom));
   }
 
-  .site-header-integrated .mobile-menu {
-    padding-top: calc(10px + 54px);
+  .mobile-menu-integrated {
+    padding-top: calc(10px + 54px + 12px);
   }
 
   .mobile-menu nav {
@@ -2678,13 +2724,13 @@
     min-height: 118px;
     max-width: 118px;
     max-height: 118px;
-    padding: 14px 10px;
+    padding: 14px 12px 14px 16px;
     border-radius: 50%;
     aspect-ratio: 1 / 1;
     box-sizing: border-box;
     overflow: hidden;
-    align-items: flex-end;
-    text-align: right;
+    align-items: flex-start;
+    text-align: left;
   }
 
   .about-cinema-note span {

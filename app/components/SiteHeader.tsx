@@ -2,6 +2,7 @@
 
 import { ArrowUpRight, List, X } from "@phosphor-icons/react";
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { navItems } from "../data";
 import { BrandMark } from "./BrandMark";
 import { ExternalPopupLink } from "./ExternalPopupLink";
@@ -13,11 +14,68 @@ type SiteHeaderProps = {
 
 export function SiteHeader({ integrated = false }: SiteHeaderProps) {
   const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     document.body.classList.toggle("menu-open", open);
     return () => document.body.classList.remove("menu-open");
   }, [open]);
+
+  const mobileMenu = (
+    <div
+      className={`mobile-menu${integrated ? " mobile-menu-integrated" : ""}`}
+      id="mobile-menu"
+      data-open={open}
+      aria-hidden={!open}
+    >
+      <nav aria-label="手機導覽">
+        {navItems.map((item, index) =>
+          item.external ? (
+            <ExternalPopupLink
+              key={item.label}
+              href={item.href}
+              tabIndex={open ? 0 : -1}
+              onClick={() => setOpen(false)}
+              style={{ "--menu-index": index } as React.CSSProperties}
+            >
+              <span>{item.label}</span>
+              <ArrowUpRight aria-hidden="true" />
+            </ExternalPopupLink>
+          ) : (
+            <SiteLink
+              key={item.label}
+              href={item.href}
+              tabIndex={open ? 0 : -1}
+              onClick={() => setOpen(false)}
+              style={{ "--menu-index": index } as React.CSSProperties}
+            >
+              <span>{item.label}</span>
+            </SiteLink>
+          ),
+        )}
+        <SiteLink
+          href="/#contact"
+          scroll={false}
+          tabIndex={open ? 0 : -1}
+          onClick={() => setOpen(false)}
+          style={{ "--menu-index": navItems.length } as React.CSSProperties}
+        >
+          <span>預約丈量</span>
+          <ArrowUpRight aria-hidden="true" />
+        </SiteLink>
+      </nav>
+      <div className="mobile-menu-foot">
+        <a href="tel:0222888123" tabIndex={open ? 0 : -1}>
+          02-2288-8123
+        </a>
+        <span>新北市五股區西雲路 189 號 1 樓</span>
+      </div>
+    </div>
+  );
 
   return (
     <header className={`site-header${integrated ? " site-header-integrated" : ""}`}>
@@ -61,49 +119,7 @@ export function SiteHeader({ integrated = false }: SiteHeaderProps) {
         </button>
       </div>
 
-      <div className="mobile-menu" id="mobile-menu" data-open={open} aria-hidden={!open}>
-        <nav aria-label="手機導覽">
-          {navItems.map((item, index) =>
-            item.external ? (
-              <ExternalPopupLink
-                key={item.label}
-                href={item.href}
-                tabIndex={open ? 0 : -1}
-                style={{ "--menu-index": index } as React.CSSProperties}
-              >
-                <span>{item.label}</span>
-                <ArrowUpRight aria-hidden="true" />
-              </ExternalPopupLink>
-            ) : (
-              <SiteLink
-                key={item.label}
-                href={item.href}
-                tabIndex={open ? 0 : -1}
-                onClick={() => setOpen(false)}
-                style={{ "--menu-index": index } as React.CSSProperties}
-              >
-                <span>{item.label}</span>
-              </SiteLink>
-            ),
-          )}
-          <SiteLink
-            href="/#contact"
-            scroll={false}
-            tabIndex={open ? 0 : -1}
-            onClick={() => setOpen(false)}
-            style={{ "--menu-index": navItems.length } as React.CSSProperties}
-          >
-            <span>預約丈量</span>
-            <ArrowUpRight aria-hidden="true" />
-          </SiteLink>
-        </nav>
-        <div className="mobile-menu-foot">
-          <a href="tel:0222888123" tabIndex={open ? 0 : -1}>
-            02-2288-8123
-          </a>
-          <span>新北市五股區西雲路 189 號 1 樓</span>
-        </div>
-      </div>
+      {mounted ? createPortal(mobileMenu, document.body) : null}
     </header>
   );
 }

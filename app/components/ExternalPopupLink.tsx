@@ -6,6 +6,7 @@ import { useExternalLinkModal } from "./ExternalLinkModalProvider";
 
 type ExternalPopupLinkProps = ComponentProps<"a"> & {
   popupTitle?: string;
+  embedSrc?: string;
 };
 
 function shouldOpenModal(event: MouseEvent<HTMLAnchorElement>) {
@@ -22,6 +23,7 @@ export function ExternalPopupLink({
   href,
   onClick,
   popupTitle,
+  embedSrc,
   ...props
 }: ExternalPopupLinkProps) {
   const { openExternalLink } = useExternalLinkModal();
@@ -49,7 +51,7 @@ export function ExternalPopupLink({
         }
 
         event.preventDefault();
-        openExternalLink(href, popupTitle);
+        openExternalLink(href, popupTitle, embedSrc);
       }}
       {...props}
     />

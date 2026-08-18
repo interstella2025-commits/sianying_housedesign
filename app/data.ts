@@ -249,6 +249,9 @@ export const contact = {
   companyId: "42720348",
   headquarters: "新北市蘆洲區中山一路 114-1 號 10 樓",
   designCenter: "新北市五股區西雲路 189 號 1 樓",
+  designCenterMapUrl: "https://maps.app.goo.gl/JzYePnLogpdygDYk7",
+  designCenterMapEmbedUrl:
+    "https://maps.google.com/maps?q=%E6%96%B0%E5%8C%97%E5%B8%82%E4%BA%94%E8%82%A1%E5%8D%80%E8%A5%BF%E9%9B%B2%E8%B7%AF189%E8%99%9F1%E6%A8%93&output=embed",
   facebook: "https://www.facebook.com/Wanna.Ju.design/",
   instagram: "https://www.instagram.com/su_zung/",
   youtube: "https://www.youtube.com/@Wanna_Ju",

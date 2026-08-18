@@ -92,6 +92,7 @@ export function ProjectPresentation() {
                     project={project}
                     sizes="(max-width: 899px) 100vw, 70vw"
                     showHint={false}
+                    preferStaticImage
                   />
                   <div className="project-cutout-control">
                     <button type="button" onClick={() => setSelected(project)}>

@@ -50,8 +50,17 @@ export function SiteFooter() {
         <div className="footer-contact">
           <a href="tel:0222888123">{contact.phone}</a>
           <a href={`mailto:${contact.email}`}>{contact.email}</a>
-          <p><span>公司登記</span>{contact.headquarters}</p>
-          <p><span>設計中心</span>{contact.designCenter}</p>
+          <p>
+            <span>設計中心</span>
+            <ExternalPopupLink
+              className="footer-address-link"
+              href={contact.designCenterMapUrl}
+              embedSrc={contact.designCenterMapEmbedUrl}
+              popupTitle="設計中心 Google 地圖"
+            >
+              {contact.designCenter}
+            </ExternalPopupLink>
+          </p>
         </div>
 
         <div className="footer-social" aria-label="社群連結">
