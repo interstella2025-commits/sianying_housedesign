@@ -1,9 +1,10 @@
 .senjin-clone {
-  --ink: #1f1f1f;
+  --ink: #1d1d1d;
   --ink-deep: #111111;
-  --paper: #e3d9d1;
-  --paper-soft: #c9beb5;
-  --line: rgba(227, 217, 209, 0.32);
+  --paper: #d9d5cf;
+  --paper-soft: #aaa6a1;
+  --line: rgba(217, 213, 207, 0.3);
+  --portfolio-gutter: clamp(24px, 7.5vw, 144px);
   --scrim: rgba(0, 0, 0, 0.66);
 
   min-width: 320px;
@@ -49,6 +50,33 @@
 .senjin-clone .site-container {
   width: min(1220px, calc(100% - 56px));
   margin-inline: auto;
+}
+
+.senjin-clone .portfolio-column {
+  width: min(584px, calc(100% - (var(--portfolio-gutter) * 2)));
+  margin-left: var(--portfolio-gutter);
+}
+
+.senjin-clone .portfolio-section-title {
+  position: relative;
+  width: fit-content;
+  margin: 0;
+  padding-bottom: 0.8rem;
+  color: var(--paper);
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: clamp(1rem, 1.35vw, 1.25rem);
+  font-weight: 300;
+  letter-spacing: 0.015em;
+}
+
+.senjin-clone .portfolio-section-title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 54px;
+  height: 1px;
+  background: color-mix(in srgb, var(--paper) 76%, transparent);
 }
 
 .senjin-clone .section-anchor {

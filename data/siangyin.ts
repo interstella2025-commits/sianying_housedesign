@@ -4,9 +4,9 @@ export const assetRoot =
 export const navigation = [
   { label: "首頁", english: "TOP", href: "#top" },
   { label: "關於翔胤", english: "ABOUT", href: "#about" },
-  { label: "精選作品", english: "WORKS", href: "#works" },
-  { label: "得獎紀錄", english: "AWARDS", href: "#awards" },
-  { label: "聯絡我們", english: "CONTACT", href: "#contact" },
+  { label: "作品", english: "WORKS", href: "#works" },
+  { label: "消息", english: "BLOG", href: "#news" },
+  { label: "聯絡我們", english: "CONTACT US", href: "#contact" },
 ] as const;
 
 export const company = {
@@ -33,16 +33,20 @@ export const company = {
 
 export const editorialStories = [
   {
-    title: "2022 A’ Design Award 國際設計大獎",
+    title: "翔胤室內設計榮獲 2021–2022 A’ Design Award 國際設計大獎",
     english: "INTERNATIONAL AWARD",
     image: `${assetRoot}/editorial/award-certificate.png`,
+    date: "2022.04.15",
+    category: "AWARD",
     href: "https://competition.adesignaward.com/design.php?ID=136768",
     alt: "翔胤室內設計 A' Design Award 得獎證書",
   },
   {
-    title: "100室內設計｜設計師專訪",
+    title: "翔胤室內設計作品再獲國際肯定｜100室內設計師專訪",
     english: "MEDIA FEATURE",
     image: `${assetRoot}/editorial/award-trophy.png`,
+    date: "2022.04.15",
+    category: "PRESS",
     href: "https://www.100.com.tw/5193",
     alt: "翔胤室內設計 A' Design Award 獎座",
   },
