@@ -7,17 +7,17 @@ import { Reveal } from "./reveal";
 export function EditorialStories() {
   return (
     <section id="news" aria-labelledby="news-title" className="section-anchor pb-24">
-      <div className="portfolio-column">
+      <div className="portfolio-column editorial-column">
         <Reveal>
           <h2 id="news-title" className="portfolio-section-title">
             News
           </h2>
         </Reveal>
 
-        <div className="mt-8 grid gap-8 sm:grid-cols-2 sm:gap-10">
+        <div className="editorial-grid">
           {editorialStories.map((story, index) => (
             <Reveal key={story.href} delay={100 + index * 100}>
-              <article>
+              <article className="editorial-story">
                 <a
                   href={story.href}
                   target="_blank"
@@ -25,7 +25,7 @@ export function EditorialStories() {
                   aria-label={`${story.title}（在新分頁開啟）`}
                   className="group block"
                 >
-                  <div className="relative aspect-square overflow-hidden bg-[#151515]">
+                  <div className="editorial-media relative overflow-hidden bg-[#151515]">
                     <Image
                       src={story.image}
                       alt={story.alt}
@@ -34,11 +34,11 @@ export function EditorialStories() {
                       className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02] motion-reduce:transition-none"
                     />
                   </div>
-                  <p className="mt-3 flex justify-between gap-3 font-[family-name:var(--font-montserrat)] text-[0.62rem] tracking-[0.16em] text-[var(--paper-soft)]">
+                  <p className="editorial-meta flex justify-between gap-3 font-[family-name:var(--font-montserrat)] text-[0.62rem] tracking-[0.16em] text-[var(--paper-soft)]">
                     <span>{story.date}</span>
                     <span>{story.category}</span>
                   </p>
-                  <h3 className="mt-2 text-[0.76rem] leading-[1.85] font-light tracking-[0.06em] text-[var(--paper)] group-hover:underline group-hover:underline-offset-4">
+                  <h3 className="editorial-story-title font-light tracking-[0.06em] text-[var(--paper)] group-hover:underline group-hover:underline-offset-4">
                     {story.title}
                   </h3>
                 </a>

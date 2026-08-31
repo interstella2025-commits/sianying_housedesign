@@ -45,7 +45,7 @@ export function SiteShell({ children }: SiteShellProps) {
 
       <div id="content" className="relative bg-[#1d1d1d]">
         <header
-          className={`sticky top-0 z-40 h-[10rem] transition-colors duration-500 sm:h-[12rem] ${
+          className={`portfolio-content-header sticky top-0 z-40 h-[9.625rem] transition-colors duration-500 sm:h-[10.8125rem] ${
             isCompact ? "bg-[#1d1d1d]/84 backdrop-blur-sm" : "bg-[#1d1d1d]"
           }`}
         >

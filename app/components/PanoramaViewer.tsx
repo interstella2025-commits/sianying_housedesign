@@ -11,6 +11,7 @@ type PanoramaViewerProps = {
   hint?: string;
   showHint?: boolean;
   ariaLabel?: string;
+  posterPriority?: boolean;
 };
 
 export function PanoramaViewer({
@@ -21,6 +22,7 @@ export function PanoramaViewer({
   hint = "拖曳環視",
   showHint = true,
   ariaLabel = "360 度環景瀏覽",
+  posterPriority = false,
 }: PanoramaViewerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [readySrc, setReadySrc] = useState<string | null>(null);
@@ -200,6 +202,7 @@ export function PanoramaViewer({
           alt=""
           aria-hidden="true"
           fill
+          loading={posterPriority ? "eager" : "lazy"}
           sizes="100vw"
         />
       ) : null}

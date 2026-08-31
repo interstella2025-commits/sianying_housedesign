@@ -18,7 +18,7 @@ export function SelectedWorks() {
           </h2>
         </Reveal>
 
-        <div className="mt-8 space-y-12 sm:space-y-14">
+        <div className="works-list">
           {projects.map((project) => (
             <Reveal key={project.number}>
               <figure className="group m-0 min-w-0">

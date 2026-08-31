@@ -35,6 +35,7 @@ export function ProjectCoverMedia({
         className={className}
         autoRotate={autoRotate}
         showHint={showHint}
+        posterPriority={priority}
       />
     );
   }
