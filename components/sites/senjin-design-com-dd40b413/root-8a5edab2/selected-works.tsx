@@ -16,7 +16,7 @@ export function SelectedWorks() {
       <div className="portfolio-column">
         <Reveal>
           <h2 id="works-heading" className="portfolio-section-title">
-            New Projects
+            <Link href="/new/projects/new">New Projects</Link>
           </h2>
         </Reveal>
 

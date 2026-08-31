@@ -101,3 +101,58 @@ test("renders the complete redesigned portfolio at /new", async () => {
   assert.doesNotMatch(html, /href=["']#["']/);
   assertHeadingsHaveNoTerminalPunctuation(html, "/new");
 });
+
+const newArchitectureRoutes = [
+  ["/new/about", "Design Team"],
+  ["/new/blog", "消息文章"],
+  ["/new/contact", "Connection"],
+  ["/new/projects/new", "最新設計"],
+  ["/new/projects/all", "全部作品"],
+  ["/new/projects/residential", "住宅空間"],
+  ["/new/projects/commercial", "商業與特殊空間"],
+  ["/new/projects/panorama", "3D 全景作品"],
+];
+
+test("renders every page in the redesigned site architecture", async () => {
+  for (const [pathname, marker] of newArchitectureRoutes) {
+    const response = await render(pathname);
+    assert.equal(response.status, 200, pathname);
+
+    const html = await response.text();
+    assert.match(html, new RegExp(marker), pathname);
+    assert.match(html, /site-menu-project-list/, pathname);
+    assert.equal((html.match(/<h1\b/g) ?? []).length, 1, pathname);
+    assertHeadingsHaveNoTerminalPunctuation(html, pathname);
+  }
+});
+
+const newProjectSlugs = [
+  "light-future",
+  "realm-of-light",
+  "platinum-stone",
+  "serenity-within",
+  "golden-residence",
+  "gathered-light",
+  "moonlit-bank",
+  "mountain-retreat",
+  "lakeside-hues",
+  "second-order-space",
+  "stone-habitat",
+  "layered-light",
+];
+
+test("statically renders every redesigned project detail page", async () => {
+  for (const slug of newProjectSlugs) {
+    const pathname = `/new/projects/${slug}`;
+    const response = await render(pathname);
+    assert.equal(response.status, 200, pathname);
+
+    const html = await response.text();
+    assert.match(html, /INFORMATION/, pathname);
+    assert.match(html, /Back To Index/, pathname);
+    assert.match(html, /project-gallery-images/, pathname);
+    assert.match(html, /project-detail-pagination/, pathname);
+    assert.equal((html.match(/<h1\b/g) ?? []).length, 1, pathname);
+    assertHeadingsHaveNoTerminalPunctuation(html, pathname);
+  }
+});

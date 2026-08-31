@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import { editorialStories } from "@/data/siangyin";
 
@@ -10,7 +11,7 @@ export function EditorialStories() {
       <div className="portfolio-column editorial-column">
         <Reveal>
           <h2 id="news-title" className="portfolio-section-title">
-            News
+            <Link href="/new/blog">News</Link>
           </h2>
         </Reveal>
 

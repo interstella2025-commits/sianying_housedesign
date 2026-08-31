@@ -2,11 +2,19 @@ export const assetRoot =
   "/sites/senjin-design-com-dd40b413/root-8a5edab2";
 
 export const navigation = [
-  { label: "首頁", english: "TOP", href: "#top" },
-  { label: "關於翔胤", english: "ABOUT", href: "#about" },
-  { label: "作品", english: "WORKS", href: "#works" },
-  { label: "消息", english: "BLOG", href: "#news" },
-  { label: "聯絡我們", english: "CONTACT US", href: "#contact" },
+  { label: "首頁", english: "TOP", href: "/new" },
+  { label: "關於翔胤", english: "ABOUT", href: "/new/about" },
+  { label: "作品集", english: "WORKS", href: "/new/projects/new" },
+  { label: "消息", english: "BLOG", href: "/new/blog" },
+  { label: "聯絡我們", english: "CONTACT US", href: "/new/contact" },
+] as const;
+
+export const projectNavigation = [
+  { label: "最新設計", english: "New Designs", href: "/new/projects/new" },
+  { label: "全部作品", english: "All Projects", href: "/new/projects/all" },
+  { label: "住宅空間", english: "Residential", href: "/new/projects/residential" },
+  { label: "商業空間", english: "Commercial", href: "/new/projects/commercial" },
+  { label: "3D 全景", english: "Panorama", href: "/new/projects/panorama" },
 ] as const;
 
 export const company = {
