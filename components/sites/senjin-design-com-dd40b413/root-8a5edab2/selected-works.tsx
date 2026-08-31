@@ -22,7 +22,7 @@ export function SelectedWorks() {
           {projects.map((project) => (
             <Reveal key={project.number}>
               <figure className="group m-0 min-w-0">
-                <div className="relative aspect-[4/3] overflow-hidden bg-[#151515]">
+                <div className="relative aspect-square overflow-hidden bg-[#151515]">
                   <PortfolioProjectMedia
                     title={project.title}
                     description={project.description}
