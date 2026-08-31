@@ -256,6 +256,361 @@
   backdrop-filter: blur(5px);
 }
 
+.senjin-clone .portfolio-project-card {
+  position: relative;
+}
+
+.senjin-clone .project-card-media-link {
+  position: absolute;
+  z-index: 4;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  padding: 0.75rem;
+}
+
+.senjin-clone .project-card-media-link.is-panorama {
+  inset: 0 auto auto 0;
+  padding: 0.75rem;
+}
+
+.senjin-clone .project-card-media-link span {
+  display: inline-flex;
+  min-height: 2rem;
+  align-items: center;
+  padding: 0.55rem 0.65rem;
+  border: 1px solid rgb(255 255 255 / 0.4);
+  background: rgb(17 17 17 / 0.58);
+  color: rgb(255 255 255 / 0.9);
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 0.52rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  backdrop-filter: blur(5px);
+  transition:
+    border-color 220ms ease,
+    background-color 220ms ease,
+    color 220ms ease;
+}
+
+.senjin-clone .project-card-media-link:hover span,
+.senjin-clone .project-card-media-link:focus-visible span {
+  border-color: var(--paper);
+  background: var(--paper);
+  color: var(--ink-deep);
+}
+
+.senjin-clone .project-card-caption-link {
+  display: block;
+  transition: opacity 220ms ease;
+}
+
+.senjin-clone .project-card-caption-link:hover,
+.senjin-clone .project-card-caption-link:focus-visible {
+  opacity: 0.64;
+}
+
+.senjin-clone .project-detail-page {
+  min-height: 100svh;
+  background: var(--ink);
+}
+
+.senjin-clone .project-detail-header {
+  position: sticky;
+  z-index: 50;
+  top: 0;
+  display: flex;
+  width: min(1220px, calc(100% - 80px));
+  min-height: 88px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-inline: auto;
+  border-bottom: 1px solid var(--line);
+  background: rgb(29 29 29 / 0.9);
+  backdrop-filter: blur(12px);
+}
+
+.senjin-clone .project-detail-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+}
+
+.senjin-clone .project-detail-brand-mark {
+  position: relative;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 auto;
+}
+
+.senjin-clone .project-detail-brand > span:last-child {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.senjin-clone .project-detail-brand small {
+  color: var(--paper-soft);
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 0.47rem;
+  letter-spacing: 0.13em;
+}
+
+.senjin-clone .project-detail-back-link {
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  transition: opacity 220ms ease;
+}
+
+.senjin-clone .project-detail-back-link:hover,
+.senjin-clone .project-detail-back-link:focus-visible {
+  opacity: 0.58;
+}
+
+.senjin-clone .project-detail-main {
+  width: min(1220px, calc(100% - 80px));
+  margin-inline: auto;
+}
+
+.senjin-clone .project-detail-hero {
+  display: grid;
+  grid-template-columns: minmax(230px, 0.48fr) minmax(0, 1.52fr);
+  gap: clamp(40px, 5.5vw, 84px);
+  align-items: end;
+  padding: clamp(72px, 8vw, 122px) 0 clamp(96px, 10vw, 150px);
+}
+
+.senjin-clone .project-detail-copy {
+  padding-bottom: 0.2rem;
+}
+
+.senjin-clone .project-detail-number {
+  margin: 0 0 2.3rem;
+  color: var(--paper-soft);
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 0.58rem;
+  letter-spacing: 0.18em;
+}
+
+.senjin-clone .project-detail-copy h1 {
+  margin: 0;
+  font-size: clamp(2rem, 3.4vw, 3.4rem);
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+}
+
+.senjin-clone .project-detail-english {
+  margin: 0.75rem 0 0;
+  color: var(--paper-soft);
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  line-height: 1.7;
+  text-transform: uppercase;
+}
+
+.senjin-clone .project-detail-description {
+  display: grid;
+  gap: 1rem;
+  margin-top: clamp(2rem, 4vw, 3.5rem);
+  color: var(--paper-soft);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  line-height: 2;
+}
+
+.senjin-clone .project-detail-description p {
+  margin: 0;
+}
+
+.senjin-clone .project-detail-media-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem 1.4rem;
+  margin-top: 2.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+  color: var(--paper-soft);
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 0.52rem;
+  letter-spacing: 0.16em;
+}
+
+.senjin-clone .project-detail-media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--ink-deep);
+}
+
+.senjin-clone .project-detail-media > img {
+  object-fit: cover;
+}
+
+.senjin-clone .project-detail-panorama {
+  position: absolute;
+  inset: 0;
+  touch-action: pan-y;
+}
+
+.senjin-clone .project-detail-panorama .panorama-viewer__hint,
+.senjin-clone .project-detail-media > .panorama-viewer__hint {
+  right: 1rem;
+  bottom: 1rem;
+  border: 1px solid rgb(255 255 255 / 0.42);
+  border-radius: 0;
+  background: rgb(17 17 17 / 0.58);
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 0.56rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  backdrop-filter: blur(5px);
+}
+
+.senjin-clone .project-detail-gallery {
+  padding-bottom: clamp(100px, 12vw, 170px);
+}
+
+.senjin-clone .project-detail-gallery .project-gallery-images-block {
+  width: 100%;
+}
+
+.senjin-clone .project-detail-gallery .project-gallery-images-heading {
+  margin-bottom: 2rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.senjin-clone .project-detail-gallery .project-gallery-images-heading p,
+.senjin-clone .project-detail-gallery .project-gallery-images-heading span {
+  color: var(--paper-soft);
+  font-size: 0.64rem;
+  font-weight: 300;
+  letter-spacing: 0.14em;
+}
+
+.senjin-clone .project-detail-gallery .project-gallery-images {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(18px, 2.8vw, 40px);
+}
+
+.senjin-clone .project-detail-gallery .project-gallery-images figure {
+  min-height: 0;
+  margin: 0;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 0;
+  background: var(--ink-deep);
+}
+
+.senjin-clone .project-detail-gallery .project-gallery-thumb {
+  border-radius: 0;
+}
+
+.senjin-clone .project-detail-gallery .project-gallery-thumb img {
+  object-fit: cover;
+  transition: transform 700ms ease;
+}
+
+.senjin-clone .project-detail-gallery .project-gallery-thumb:hover img {
+  transform: scale(1.018);
+}
+
+.senjin-clone .project-detail-gallery .project-gallery-load-more {
+  margin-top: 3.5rem;
+  padding: 0.9rem 1.4rem;
+  border: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+  color: var(--paper);
+  font-size: 0.68rem;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  transition:
+    background-color 220ms ease,
+    border-color 220ms ease,
+    color 220ms ease;
+}
+
+.senjin-clone .project-detail-gallery .project-gallery-load-more:hover,
+.senjin-clone .project-detail-gallery .project-gallery-load-more:focus-visible {
+  border-color: var(--paper);
+  background: var(--paper);
+  color: var(--ink-deep);
+}
+
+.senjin-clone .project-detail-pagination {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  min-height: 200px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.senjin-clone .project-detail-pager-link {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 2.5rem;
+  transition: background-color 240ms ease;
+}
+
+.senjin-clone .project-detail-pager-link--next {
+  align-items: flex-end;
+  border-left: 1px solid var(--line);
+  text-align: right;
+}
+
+.senjin-clone .project-detail-pager-link:hover,
+.senjin-clone .project-detail-pager-link:focus-visible {
+  background: rgb(217 213 207 / 0.055);
+}
+
+.senjin-clone .project-detail-pager-direction,
+.senjin-clone .project-detail-pager-link small {
+  color: var(--paper-soft);
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 0.52rem;
+  font-weight: 300;
+  letter-spacing: 0.15em;
+}
+
+.senjin-clone .project-detail-pager-link strong {
+  margin-top: 0.55rem;
+  font-size: 1.15rem;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+}
+
+.senjin-clone .project-detail-footer-actions {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  padding: 4rem 0 5rem;
+  color: var(--paper-soft);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+}
+
+.senjin-clone .project-detail-footer-actions a {
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 0.4rem;
+  transition:
+    border-color 220ms ease,
+    color 220ms ease;
+}
+
+.senjin-clone .project-detail-footer-actions a:hover,
+.senjin-clone .project-detail-footer-actions a:focus-visible {
+  border-color: var(--paper);
+  color: var(--paper);
+}
+
 .senjin-clone .section-anchor {
   scroll-margin-top: 10rem;
 }
@@ -409,6 +764,80 @@
 
   .senjin-clone .works-list {
     gap: 39px;
+  }
+
+  .senjin-clone .project-detail-header,
+  .senjin-clone .project-detail-main {
+    width: calc(100% - 40px);
+  }
+
+  .senjin-clone .project-detail-header {
+    min-height: 72px;
+  }
+
+  .senjin-clone .project-detail-brand > span:last-child {
+    display: none;
+  }
+
+  .senjin-clone .project-detail-brand-mark {
+    width: 34px;
+    height: 34px;
+  }
+
+  .senjin-clone .project-detail-back-link {
+    font-size: 0.62rem;
+  }
+
+  .senjin-clone .project-detail-gallery .project-gallery-images {
+    gap: 8px;
+  }
+
+  .senjin-clone .project-detail-pagination {
+    grid-template-columns: 1fr;
+  }
+
+  .senjin-clone .project-detail-pagination > span {
+    display: none;
+  }
+
+  .senjin-clone .project-detail-pager-link {
+    min-height: 150px;
+    padding: 1.6rem 0.4rem;
+  }
+
+  .senjin-clone .project-detail-pager-link--next {
+    border-top: 1px solid var(--line);
+    border-left: 0;
+  }
+
+  .senjin-clone .project-detail-footer-actions {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 899px) {
+  .senjin-clone .project-detail-hero {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding: 4rem 0 6.5rem;
+  }
+
+  .senjin-clone .project-detail-copy {
+    max-width: 42rem;
+  }
+
+  .senjin-clone .project-detail-number {
+    margin-bottom: 1.5rem;
+  }
+
+  .senjin-clone .project-detail-description {
+    margin-top: 2rem;
+  }
+
+  .senjin-clone .project-detail-media {
+    aspect-ratio: 4 / 3;
   }
 }
 
