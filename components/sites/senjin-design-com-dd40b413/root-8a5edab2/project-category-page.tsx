@@ -67,7 +67,7 @@ export function ProjectCategoryPage({ category }: { category: ProjectCategorySlu
 
         <section className="new-project-index-grid" aria-label={config.subtitle}>
           {projects.map((project, index) => (
-            <ProjectIndexCard key={project.slug} project={project} priority={index === 0} />
+            <ProjectIndexCard key={project.slug} project={project} priority={index < 2} />
           ))}
         </section>
       </div>
@@ -95,7 +95,7 @@ export function NewProjectsOverview() {
                 <ProjectIndexCard
                   key={project.slug}
                   project={project}
-                  priority={section.slug === "residential" && index === 0}
+                  priority={section.slug === "residential" && index < 2}
                 />
               ))}
             </div>
