@@ -1,0 +1,163 @@
+.senjin-clone {
+  --ink: #1f1f1f;
+  --ink-deep: #111111;
+  --paper: #e3d9d1;
+  --paper-soft: #c9beb5;
+  --line: rgba(227, 217, 209, 0.32);
+  --scrim: rgba(0, 0, 0, 0.66);
+
+  min-width: 320px;
+  min-height: 100vh;
+  overflow-x: clip;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-noto-sans-tc), "Noto Sans TC", sans-serif;
+  font-weight: 300;
+  line-height: normal;
+  text-rendering: optimizeLegibility;
+}
+
+.senjin-clone,
+.senjin-clone *,
+.senjin-clone *::before,
+.senjin-clone *::after {
+  box-sizing: border-box;
+}
+
+.senjin-clone button,
+.senjin-clone a {
+  color: inherit;
+}
+
+.senjin-clone button {
+  font: inherit;
+}
+
+.senjin-clone a {
+  text-decoration: none;
+}
+
+.senjin-clone img {
+  display: block;
+}
+
+.senjin-clone ::selection {
+  background: var(--paper);
+  color: var(--ink-deep);
+}
+
+.senjin-clone .site-container {
+  width: min(1220px, calc(100% - 56px));
+  margin-inline: auto;
+}
+
+.senjin-clone .section-anchor {
+  scroll-margin-top: 88px;
+}
+
+.senjin-clone .eyebrow {
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+}
+
+.senjin-clone .section-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.8rem;
+  margin: 0;
+  font-size: clamp(1.35rem, 2vw, 1.55rem);
+  font-weight: 300;
+  letter-spacing: 0.06em;
+}
+
+.senjin-clone .section-title::after {
+  content: "";
+  display: block;
+  flex-basis: 100%;
+  width: 42px;
+  max-width: 42px;
+  height: 1px;
+  margin-top: 0.25rem;
+  background: var(--paper);
+}
+
+.senjin-clone .section-title > span {
+  color: var(--paper-soft);
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.17em;
+}
+
+.senjin-clone .reveal {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 800ms ease var(--reveal-delay, 0ms),
+    transform 800ms cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms);
+}
+
+.senjin-clone .reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (scripting: enabled) {
+  .senjin-clone .reveal:not(.is-visible) {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+}
+
+.senjin-clone .skip-link {
+  position: fixed;
+  z-index: 1000;
+  top: 1rem;
+  left: 1rem;
+  padding: 0.75rem 1rem;
+  transform: translateY(-150%);
+  background: var(--paper);
+  color: var(--ink-deep);
+  transition: transform 160ms ease;
+}
+
+.senjin-clone .skip-link:focus {
+  transform: translateY(0);
+}
+
+.senjin-clone :focus-visible {
+  outline: 1px solid var(--paper);
+  outline-offset: 5px;
+}
+
+@media (min-width: 640px) {
+  .senjin-clone .site-container {
+    width: min(1220px, calc(100% - 80px));
+  }
+}
+
+@media (min-width: 1440px) {
+  .senjin-clone .site-container {
+    width: 1220px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .senjin-clone,
+  .senjin-clone *,
+  .senjin-clone *::before,
+  .senjin-clone *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+
+  .senjin-clone .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
