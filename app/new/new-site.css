@@ -42,6 +42,26 @@
   display: block;
 }
 
+.senjin-clone .hero-camera-move {
+  transform-origin: center;
+  will-change: transform;
+  animation: hero-camera-move 28s var(--ease-in-out) infinite alternate both;
+}
+
+@keyframes hero-camera-move {
+  0% {
+    transform: translate3d(-1.25%, -0.35%, 0) scale(1.08);
+  }
+
+  45% {
+    transform: translate3d(1.5%, 0.4%, 0) scale(1.13);
+  }
+
+  100% {
+    transform: translate3d(-0.25%, -0.8%, 0) scale(1.17);
+  }
+}
+
 .senjin-clone ::selection {
   background: var(--paper);
   color: var(--ink-deep);
@@ -178,6 +198,11 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .senjin-clone .hero-camera-move {
+    animation: none !important;
+    transform: scale(1.02);
+  }
+
   .senjin-clone,
   .senjin-clone *,
   .senjin-clone *::before,

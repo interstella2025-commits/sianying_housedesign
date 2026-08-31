@@ -124,7 +124,7 @@ export function Hero() {
         fill
         priority
         sizes="100vw"
-        className="object-cover object-center"
+        className="hero-camera-move object-cover object-center"
       />
       <div aria-hidden="true" className="absolute inset-0 bg-black/30" />
       <div
