@@ -7,6 +7,7 @@ import {
   YoutubeLogo,
 } from "@phosphor-icons/react";
 import Image from "next/image";
+import type { MouseEventHandler } from "react";
 import { useEffect, useRef } from "react";
 
 import { assetRoot, company, navigation } from "@/data/siangyin";
@@ -31,7 +32,12 @@ const socialLinks = [
   { label: "LINE", href: company.lineUrl, Icon: ChatCircleDots },
 ] as const;
 
-export function Hero() {
+type HeroProps = {
+  isMenuOpen: boolean;
+  onOpenMenu: MouseEventHandler<HTMLButtonElement>;
+};
+
+export function Hero({ isMenuOpen, onOpenMenu }: HeroProps) {
   const heroRef = useRef<HTMLElement>(null);
   const hasHandledDownwardIntent = useRef(false);
   const touchStartY = useRef<number | null>(null);
@@ -118,6 +124,20 @@ export function Hero() {
       <h1 id="hero-title" className="sr-only">
         翔胤室內設計｜讓室內空間與生活密不可分
       </h1>
+      <button
+        type="button"
+        onClick={onOpenMenu}
+        aria-expanded={isMenuOpen}
+        aria-controls="site-navigation-dialog"
+        aria-label="開啟導覽選單"
+        className="hero-mobile-menu-trigger"
+      >
+        <span aria-hidden="true">
+          <span />
+          <span />
+          <span />
+        </span>
+      </button>
       <Image
         src={`${assetRoot}/hero.jpg`}
         alt="翔胤室內設計打造的明亮現代住宅空間"

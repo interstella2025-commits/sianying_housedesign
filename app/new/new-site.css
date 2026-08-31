@@ -693,6 +693,10 @@
   outline-offset: 5px;
 }
 
+.senjin-clone .hero-mobile-menu-trigger {
+  display: none;
+}
+
 @media (min-width: 640px) {
   .senjin-clone .section-anchor {
     scroll-margin-top: 12rem;
@@ -704,6 +708,42 @@
 }
 
 @media (max-width: 639px) {
+  .senjin-clone .hero-mobile-menu-trigger {
+    position: absolute;
+    z-index: 30;
+    top: 22px;
+    right: 18px;
+    display: flex;
+    width: 56px;
+    height: 56px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    background: rgb(20 20 20 / 18%);
+    color: #fff;
+    backdrop-filter: blur(7px);
+  }
+
+  .senjin-clone .hero-mobile-menu-trigger > span {
+    display: flex;
+    width: 38px;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+  }
+
+  .senjin-clone .hero-mobile-menu-trigger > span > span {
+    display: block;
+    width: 38px;
+    height: 1px;
+    background: currentColor;
+  }
+
+  .senjin-clone .hero-mobile-menu-trigger > span > span:nth-child(2) {
+    width: 30px;
+  }
+
   .senjin-clone .hero-overlay-panel {
     top: auto;
     right: 20px;

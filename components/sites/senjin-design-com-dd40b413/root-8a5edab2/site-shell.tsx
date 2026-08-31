@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import type { ReactNode } from "react";
+import type { MouseEvent, ReactNode } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import { assetRoot } from "@/data/siangyin";
@@ -14,8 +14,11 @@ type SiteShellProps = { children: ReactNode };
 export function SiteShell({ children }: SiteShellProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCompact, setIsCompact] = useState(false);
-  const menuTriggerRef = useRef<HTMLButtonElement>(null);
-  const openMenu = useCallback(() => setIsMenuOpen(true), []);
+  const activeMenuTriggerRef = useRef<HTMLButtonElement>(null);
+  const openMenu = useCallback((event: MouseEvent<HTMLButtonElement>) => {
+    activeMenuTriggerRef.current = event.currentTarget;
+    setIsMenuOpen(true);
+  }, []);
   const closeMenu = useCallback(() => setIsMenuOpen(false), []);
 
   useEffect(() => {
@@ -41,7 +44,7 @@ export function SiteShell({ children }: SiteShellProps) {
         跳至主要內容
       </a>
 
-      <Hero />
+      <Hero isMenuOpen={isMenuOpen} onOpenMenu={openMenu} />
 
       <div id="content" className="relative bg-[#1d1d1d]">
         <header
@@ -66,7 +69,6 @@ export function SiteShell({ children }: SiteShellProps) {
           </a>
 
           <button
-            ref={menuTriggerRef}
             type="button"
             onClick={openMenu}
             aria-expanded={isMenuOpen}
@@ -90,7 +92,7 @@ export function SiteShell({ children }: SiteShellProps) {
       <FullscreenMenu
         isOpen={isMenuOpen}
         onClose={closeMenu}
-        triggerRef={menuTriggerRef}
+        triggerRef={activeMenuTriggerRef}
       />
     </>
   );
