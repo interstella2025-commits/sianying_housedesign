@@ -178,7 +178,7 @@ export function Hero() {
                 alt=""
                 fill
                 sizes="84px"
-                className="object-contain brightness-0 invert"
+                className="object-contain"
               />
             </span>
             <p className="hero-brand-name m-0 font-light">

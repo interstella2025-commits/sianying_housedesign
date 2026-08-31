@@ -61,7 +61,7 @@ export function SiteShell({ children }: SiteShellProps) {
               alt=""
               fill
               sizes="48px"
-              className="object-contain brightness-0 invert"
+              className="object-contain"
             />
           </a>
 
