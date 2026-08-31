@@ -97,6 +97,7 @@ test("renders the complete redesigned portfolio at /new", async () => {
   }
 
   assert.equal((html.match(/PROJECT <!-- -->\d{2}/g) ?? []).length, 12);
+  assert.equal((html.match(/data-panorama="true"/g) ?? []).length, 9);
   assert.doesNotMatch(html, /href=["']#["']/);
   assertHeadingsHaveNoTerminalPunctuation(html, "/new");
 });

@@ -1,8 +1,12 @@
-import Image from "next/image";
-
+import { galleryProjects } from "@/app/lib/project-gallery";
 import { projects } from "@/data/siangyin";
 
+import { PortfolioProjectMedia } from "./portfolio-project-media";
 import { Reveal } from "./reveal";
+
+const panoramasByProjectNumber = new Map(
+  galleryProjects.map((project) => [project.number, project.panorama]),
+);
 
 export function SelectedWorks() {
   return (
@@ -19,12 +23,11 @@ export function SelectedWorks() {
             <Reveal key={project.number}>
               <figure className="group m-0 min-w-0">
                 <div className="relative aspect-[4/3] overflow-hidden bg-[#151515]">
-                  <Image
-                    src={project.image}
-                    alt={`翔胤室內設計作品「${project.title}」：${project.description}`}
-                    fill
-                    sizes="(min-width: 760px) 584px, calc(100vw - 48px)"
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.015] motion-reduce:transition-none"
+                  <PortfolioProjectMedia
+                    title={project.title}
+                    description={project.description}
+                    image={project.image}
+                    panorama={panoramasByProjectNumber.get(project.number)}
                   />
                 </div>
 

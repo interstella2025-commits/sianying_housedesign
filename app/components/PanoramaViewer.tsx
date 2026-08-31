@@ -10,6 +10,7 @@ type PanoramaViewerProps = {
   autoRotate?: number;
   hint?: string;
   showHint?: boolean;
+  ariaLabel?: string;
 };
 
 export function PanoramaViewer({
@@ -19,6 +20,7 @@ export function PanoramaViewer({
   autoRotate = 0,
   hint = "拖曳環視",
   showHint = true,
+  ariaLabel = "360 度環景瀏覽",
 }: PanoramaViewerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [readySrc, setReadySrc] = useState<string | null>(null);
@@ -36,6 +38,9 @@ export function PanoramaViewer({
 
     const MAX_FOV = 95;
     const DEFAULT_FOV = MAX_FOV;
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    );
 
     const pointer = {
       active: false,
@@ -120,7 +125,7 @@ export function PanoramaViewer({
 
       const render = () => {
         if (!mounted || !renderer) return;
-        if (autoRotate && !pointer.active) {
+        if (autoRotate && !pointer.active && !prefersReducedMotion.matches) {
           pointer.lon += autoRotate;
         }
 
@@ -185,7 +190,7 @@ export function PanoramaViewer({
       className={`panorama-viewer${loading ? " is-loading" : " is-ready"}${className ? ` ${className}` : ""}`}
       ref={containerRef}
       aria-busy={loading}
-      aria-label="360 度環景瀏覽"
+      aria-label={ariaLabel}
       role="img"
     >
       {poster ? (
