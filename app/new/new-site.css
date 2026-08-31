@@ -45,7 +45,7 @@
 .senjin-clone .hero-camera-move {
   transform-origin: center;
   will-change: transform;
-  animation: hero-camera-move 28s var(--ease-in-out) infinite alternate both;
+  animation: hero-camera-move 12s linear infinite alternate both;
 }
 
 .senjin-clone .hero-overlay-panel {
