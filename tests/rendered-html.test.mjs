@@ -46,6 +46,7 @@ test("statically renders the finished home page", async () => {
 });
 
 const publicRoutes = [
+  "/new",
   "/works",
   "/press",
   "/awards",
@@ -63,4 +64,39 @@ test("preserves every public route", async () => {
     assertHeadingsHaveNoTerminalPunctuation(html, pathname);
     assert.doesNotMatch(html, /下一個空間，從一次對話開始。/, pathname);
   }
+});
+
+test("renders the complete redesigned portfolio at /new", async () => {
+  const response = await render("/new");
+  assert.equal(response.status, 200);
+
+  const html = await response.text();
+  assert.match(html, /<title>新版空間作品集/);
+  assert.match(html, /翔胤室內設計｜讓室內空間與生活密不可分/);
+  assert.match(html, /News/);
+  assert.match(html, /New Projects/);
+  assert.match(html, /CONNECTION/);
+
+  const projectTitles = [
+    "光域未來",
+    "御光境",
+    "鉑金石韻",
+    "心如境",
+    "金鈺閤",
+    "拾光",
+    "佐岸伴月",
+    "濢山雅舍",
+    "湖畔衫色",
+    "貳次空間",
+    "棲於石境",
+    "疊層光序",
+  ];
+
+  for (const title of projectTitles) {
+    assert.match(html, new RegExp(title), title);
+  }
+
+  assert.equal((html.match(/PROJECT <!-- -->\d{2}/g) ?? []).length, 12);
+  assert.doesNotMatch(html, /href=["']#["']/);
+  assertHeadingsHaveNoTerminalPunctuation(html, "/new");
 });

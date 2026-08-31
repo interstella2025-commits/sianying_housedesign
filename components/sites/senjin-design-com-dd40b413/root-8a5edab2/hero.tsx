@@ -112,9 +112,12 @@ export function Hero() {
     <section
       ref={heroRef}
       id="top"
-      aria-label="翔胤室內設計首頁"
+      aria-labelledby="hero-title"
       className="relative h-[100svh] min-h-[35rem] overflow-hidden bg-[#151515]"
     >
+      <h1 id="hero-title" className="sr-only">
+        翔胤室內設計｜讓室內空間與生活密不可分
+      </h1>
       <Image
         src={`${assetRoot}/hero.jpg`}
         alt="翔胤室內設計打造的明亮現代住宅空間"
@@ -127,6 +130,11 @@ export function Hero() {
       <div
         aria-hidden="true"
         className="absolute inset-0 bg-[linear-gradient(90deg,transparent_48%,rgba(0,0,0,0.08)_64%,rgba(0,0,0,0.72)_100%)]"
+      />
+      <span
+        id="about"
+        aria-hidden="true"
+        className="section-anchor absolute bottom-0 left-0 size-px"
       />
 
       <div className="absolute top-[clamp(3rem,7.5vh,5.25rem)] right-[clamp(2.5rem,5.25vw,8rem)] bottom-[clamp(6rem,15vh,9rem)] z-10 hidden w-[11.6rem] flex-col justify-between md:flex">
@@ -162,7 +170,7 @@ export function Hero() {
           </div>
         </div>
 
-        <div id="about" className="section-anchor text-white/86">
+        <div className="text-white/86">
           <div className="mb-6 flex items-center gap-3">
             <span className="relative size-[5.25rem] shrink-0">
               <Image

@@ -80,7 +80,7 @@
 }
 
 .senjin-clone .section-anchor {
-  scroll-margin-top: 88px;
+  scroll-margin-top: 10rem;
 }
 
 .senjin-clone .eyebrow {
@@ -162,6 +162,10 @@
 }
 
 @media (min-width: 640px) {
+  .senjin-clone .section-anchor {
+    scroll-margin-top: 12rem;
+  }
+
   .senjin-clone .site-container {
     width: min(1220px, calc(100% - 80px));
   }

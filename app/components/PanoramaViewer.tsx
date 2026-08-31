@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 type PanoramaViewerProps = {
@@ -20,11 +21,8 @@ export function PanoramaViewer({
   showHint = true,
 }: PanoramaViewerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    setLoading(true);
-  }, [src]);
+  const [readySrc, setReadySrc] = useState<string | null>(null);
+  const loading = readySrc !== src;
 
   useEffect(() => {
     const container = containerRef.current;
@@ -143,7 +141,7 @@ export function PanoramaViewer({
       render();
       if (mounted) {
         window.requestAnimationFrame(() => {
-          if (mounted) setLoading(false);
+          if (mounted) setReadySrc(src);
         });
       }
 
@@ -173,7 +171,7 @@ export function PanoramaViewer({
         teardown = dispose;
       })
       .catch(() => {
-        if (mounted) setLoading(false);
+        if (mounted) setReadySrc(src);
       });
 
     return () => {
@@ -191,12 +189,13 @@ export function PanoramaViewer({
       role="img"
     >
       {poster ? (
-        <img
+        <Image
           className="panorama-viewer__poster"
           src={poster}
           alt=""
           aria-hidden="true"
-          decoding="async"
+          fill
+          sizes="100vw"
         />
       ) : null}
       <div className="panorama-viewer__loading" aria-live="polite">

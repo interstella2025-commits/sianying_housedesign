@@ -1,7 +1,7 @@
 "use client";
 
 import { ArrowUpRight, List, X } from "@phosphor-icons/react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 import { navItems } from "../data";
 import { BrandMark } from "./BrandMark";
@@ -12,13 +12,15 @@ type SiteHeaderProps = {
   integrated?: boolean;
 };
 
+const subscribeToClient = () => () => {};
+
 export function SiteHeader({ integrated = false }: SiteHeaderProps) {
   const [open, setOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const mounted = useSyncExternalStore(
+    subscribeToClient,
+    () => true,
+    () => false,
+  );
 
   useEffect(() => {
     document.body.classList.toggle("menu-open", open);
