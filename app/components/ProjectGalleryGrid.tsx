@@ -81,7 +81,7 @@ export function ProjectGalleryGrid({
                   alt={`${title}完工作品空間 ${index + 2}`}
                   fill
                   priority={index === 0}
-                  loading={index === 0 ? undefined : index < 8 ? "eager" : "lazy"}
+                  loading={index === 0 ? undefined : "lazy"}
                   unoptimized
                   sizes="(max-width: 899px) 50vw, 25vw"
                 />
