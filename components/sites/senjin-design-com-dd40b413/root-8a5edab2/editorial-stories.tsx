@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { ExternalPopupLink } from "@/app/components/ExternalPopupLink";
 import { editorialStories } from "@/data/siangyin";
 
 import { Reveal } from "./reveal";
@@ -19,11 +20,11 @@ export function EditorialStories() {
           {editorialStories.map((story, index) => (
             <Reveal key={story.href} delay={100 + index * 100}>
               <article className="editorial-story">
-                <a
+                <ExternalPopupLink
                   href={story.href}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  aria-label={`${story.title}（在新分頁開啟）`}
+                  popupTitle={story.title}
+                  aria-haspopup="dialog"
+                  aria-label={`${story.title}（開啟彈出視窗）`}
                   className="group block"
                 >
                   <div className="editorial-media relative overflow-hidden bg-[#151515]">
@@ -42,7 +43,7 @@ export function EditorialStories() {
                   <h3 className="editorial-story-title font-light tracking-[0.06em] text-[var(--paper)] group-hover:underline group-hover:underline-offset-4">
                     {story.title}
                   </h3>
-                </a>
+                </ExternalPopupLink>
               </article>
             </Reveal>
           ))}

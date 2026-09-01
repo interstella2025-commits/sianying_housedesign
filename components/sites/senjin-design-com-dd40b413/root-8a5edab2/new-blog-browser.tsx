@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useMemo, useState } from "react";
 
+import { ExternalPopupLink } from "@/app/components/ExternalPopupLink";
 import { editorialStories } from "@/data/siangyin";
 
 type StoryCategory = "ALL" | "AWARD" | "PRESS";
@@ -48,9 +49,22 @@ export function NewBlogBrowser() {
           <article key={story.href}>
             <header>
               <h2>{story.category === "AWARD" ? "國際獎項" : "媒體報導"}</h2>
-              <a href={story.href} target="_blank" rel="noreferrer">MORE</a>
+              <ExternalPopupLink
+                href={story.href}
+                popupTitle={story.title}
+                aria-haspopup="dialog"
+                aria-label={`閱讀「${story.title}」`}
+              >
+                MORE
+              </ExternalPopupLink>
             </header>
-            <a href={story.href} target="_blank" rel="noreferrer" className="new-blog-media">
+            <ExternalPopupLink
+              href={story.href}
+              popupTitle={story.title}
+              aria-haspopup="dialog"
+              aria-label={`閱讀「${story.title}」`}
+              className="new-blog-media"
+            >
               <Image
                 src={story.image}
                 alt={story.alt}
@@ -58,10 +72,16 @@ export function NewBlogBrowser() {
                 priority={index === 0}
                 sizes="(max-width: 760px) 100vw, 42vw"
               />
-            </a>
+            </ExternalPopupLink>
             <time>{story.date}</time>
             <h3>
-              <a href={story.href} target="_blank" rel="noreferrer">{story.title}</a>
+              <ExternalPopupLink
+                href={story.href}
+                popupTitle={story.title}
+                aria-haspopup="dialog"
+              >
+                {story.title}
+              </ExternalPopupLink>
             </h3>
           </article>
         )) : (
