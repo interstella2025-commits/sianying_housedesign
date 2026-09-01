@@ -165,9 +165,18 @@ export function Hero({ isMenuOpen, onOpenMenu }: HeroProps) {
                 <li key={item.href}>
                   <a
                     href={item.href}
-                    className="font-[family-name:var(--font-montserrat)] tracking-[0.02em] text-white/84 transition-[opacity,transform] duration-300 hover:translate-x-1 hover:opacity-55 motion-reduce:transition-none"
+                    aria-label={`${item.english}｜${item.heroLabel}`}
+                    className="hero-nav-link font-[family-name:var(--font-montserrat)] tracking-[0.02em] text-white/84"
                   >
-                    {item.english}
+                    <span className="hero-nav-label hero-nav-label--english">
+                      {item.english}
+                    </span>
+                    <span
+                      aria-hidden="true"
+                      className="hero-nav-label hero-nav-label--chinese font-[family-name:var(--font-noto-sans-tc)]"
+                    >
+                      {item.heroLabel}
+                    </span>
                   </a>
                 </li>
               ))}
