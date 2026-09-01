@@ -61,7 +61,7 @@ export function ContactFooter() {
             {company.headquarters}
           </a>
           <span aria-hidden="true">｜</span>
-          <a href={`tel:${company.phone.replaceAll("-", "")}`}>{company.phone}</a>
+          <a href={`tel:${company.phone.replace(/\D/g, "")}`}>{company.phone}</a>
           <span aria-hidden="true">｜</span>
           <a href={`mailto:${company.email}`}>{company.email}</a>
         </address>

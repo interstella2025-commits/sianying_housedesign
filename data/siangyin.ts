@@ -41,7 +41,7 @@ export const company = {
   philosophy: "讓室內空間與生活密不可分",
   about:
     "翔胤室內設計成立於 2010 年，由擁有二十年以上實務經驗的設計團隊，從格局、動線、材質與工程細節出發，讓美感回到每一天的生活。",
-  phone: "02-2288-8123",
+  phone: "0926 160 880",
   line: "0926-160-880",
   email: "c.lon@yahoo.com.tw",
   companyId: "42720348",

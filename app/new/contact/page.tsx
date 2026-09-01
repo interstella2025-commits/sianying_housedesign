@@ -30,7 +30,7 @@ export default function NewContactPage() {
 
         <address className="new-contact-address">
           <a href={company.map} target="_blank" rel="noreferrer">{company.headquarters}</a>
-          <a href={`tel:${company.phone.replaceAll("-", "")}`}>Tel：{company.phone}</a>
+          <a href={`tel:${company.phone.replace(/\D/g, "")}`}>Tel：{company.phone}</a>
           <a href={`mailto:${company.email}`}>{company.email}</a>
         </address>
       </div>

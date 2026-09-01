@@ -192,7 +192,7 @@ export const processItems = [
   {
     number: "01",
     title: "來電或線上諮詢",
-    text: "服務專線 02 2288 8123，LINE ID 0926 160 880。",
+    text: "服務專線與 LINE ID：0926 160 880。",
   },
   {
     number: "02",
@@ -243,7 +243,7 @@ export const siteMusic = {
 } as const;
 
 export const contact = {
-  phone: "02-2288-8123",
+  phone: "0926 160 880",
   line: "0926-160-880",
   email: "c.lon@yahoo.com.tw",
   companyId: "42720348",

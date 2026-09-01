@@ -71,8 +71,8 @@ export function SiteHeader({ integrated = false }: SiteHeaderProps) {
         </SiteLink>
       </nav>
       <div className="mobile-menu-foot">
-        <a href="tel:0222888123" tabIndex={open ? 0 : -1}>
-          02-2288-8123
+        <a href="tel:0926160880" tabIndex={open ? 0 : -1}>
+          0926 160 880
         </a>
         <span>新北市五股區西雲路189號</span>
       </div>

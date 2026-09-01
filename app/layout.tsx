@@ -46,7 +46,7 @@ const organizationSchema = {
   name: "翔胤室內設計有限公司",
   alternateName: "翔胤設計 X 北歐制作",
   url: siteUrl,
-  telephone: "+886-2-2288-8123",
+  telephone: "+886-926-160-880",
   foundingDate: "2010",
   address: {
     "@type": "PostalAddress",

@@ -185,7 +185,7 @@ export default function Home() {
             </h2>
             <p>送出表單後，我們會與您聯絡並安排丈量。</p>
             <div className="contact-direct">
-              <a href="tel:0222888123">{contact.phone}</a>
+              <a href="tel:0926160880">{contact.phone}</a>
               <ExternalPopupLink href={contact.lineUrl}>
                 LINE {contact.line}
               </ExternalPopupLink>

@@ -48,7 +48,7 @@ export function SiteFooter() {
         </nav>
 
         <div className="footer-contact">
-          <a href="tel:0222888123">{contact.phone}</a>
+          <a href="tel:0926160880">{contact.phone}</a>
           <a href={`mailto:${contact.email}`}>{contact.email}</a>
           <p>
             <span>設計中心</span>
