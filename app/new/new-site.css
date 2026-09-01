@@ -1747,7 +1747,8 @@
 .senjin-clone .project-editorial-panorama {
   position: relative;
   width: min(1360px, calc(100% - 160px));
-  min-height: 170px;
+  height: clamp(420px, 32vw, 560px);
+  min-height: 0;
   margin: 0 auto 16px;
   overflow: hidden;
   background: #cfc4b8;
@@ -3401,8 +3402,9 @@
 
   .senjin-clone .project-editorial-panorama {
     width: calc(100% - 80px);
+    height: clamp(200px, 40vw, 440px);
     min-height: 0;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: auto;
   }
 
   .senjin-clone .new-page-shell.is-light .project-detail-gallery {
