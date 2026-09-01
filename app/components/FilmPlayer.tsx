@@ -37,7 +37,6 @@ export function FilmPlayer({ videoId, poster, title }: FilmPlayerProps) {
         src={poster}
         alt={`${title}影片預覽`}
         fill
-        unoptimized
         sizes="(max-width: 899px) 100vw, 62vw"
       />
       <span className="play-button" aria-hidden="true">

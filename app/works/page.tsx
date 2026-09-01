@@ -7,6 +7,7 @@ import { WorksArchive } from "../components/WorksArchive";
 export const metadata: Metadata = {
   title: "完工作品集",
   description: "翔胤室內設計完工作品集，閱讀住宅空間中的光線、材質、動線與生活細節。",
+  alternates: { canonical: "/works" },
 };
 
 export default function WorksPage() {

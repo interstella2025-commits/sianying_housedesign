@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   title: "國際獎項",
   description:
     "翔胤室內設計作品《鉑金石韻》榮獲義大利 A' Design Award 國際設計獎。",
+  alternates: { canonical: "/awards" },
 };
 
 const awardPageUrl = "https://competition.adesignaward.com/design.php?ID=136768";
@@ -52,7 +53,6 @@ export default function AwardsPage() {
               alt="A' Design Award 頒獎典禮現場"
               fill
               priority
-              unoptimized
               sizes="100vw"
             />
           </div>
@@ -120,7 +120,7 @@ export default function AwardsPage() {
                 className={`award-exhibit award-exhibit-${index + 1}${image.narrow ? " award-exhibit-compact" : ""}${image.contain ? " award-exhibit-document" : ""}`}
               >
                 <div className="award-exhibit-media" data-parallax>
-                  <Image src={image.src} alt={image.alt} fill unoptimized sizes="(max-width: 899px) 100vw, 58vw" />
+                  <Image src={image.src} alt={image.alt} fill sizes="(max-width: 899px) 100vw, 58vw" />
                 </div>
                 <figcaption><span>{image.caption}</span><strong>{String(index + 1).padStart(2, "0")}</strong></figcaption>
               </figure>

@@ -8,6 +8,7 @@ import { contact } from "../data";
 export const metadata: Metadata = {
   title: "隱私權政策",
   description: "翔胤室內設計官方網站隱私權保護政策。",
+  alternates: { canonical: "/privacy" },
 };
 
 const privacySections = [

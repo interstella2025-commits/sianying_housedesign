@@ -51,7 +51,6 @@ export function ProjectCoverMedia({
       alt={`${project.title}完工作品`}
       fill
       priority={priority}
-      unoptimized
       sizes={sizes}
     />
   );

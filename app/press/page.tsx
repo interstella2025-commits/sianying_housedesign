@@ -10,6 +10,7 @@ import { SiteHeader } from "../components/SiteHeader";
 export const metadata: Metadata = {
   title: "媒體採訪",
   description: "翔胤室內設計媒體專訪、設計觀點、作品報導與外部媒體收錄。",
+  alternates: { canonical: "/press" },
 };
 
 const oneHundredUrl = "https://www.100.com.tw/5193";
@@ -36,7 +37,6 @@ export default function PressPage() {
               alt="翔胤室內設計御光境完工作品空間"
               fill
               priority
-              unoptimized
               sizes="(max-width: 899px) 100vw, 62vw"
             />
           </div>
@@ -67,7 +67,6 @@ export default function PressPage() {
               src="/images/projects/second-order-space/sjd-9831_orig.png"
               alt="翔胤室內設計住宅作品"
               fill
-              unoptimized
               sizes="(max-width: 899px) 100vw, 52vw"
             />
           </div>

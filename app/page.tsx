@@ -31,6 +31,7 @@ export const metadata: Metadata = {
   title: "翔胤室內設計｜住宅、商業空間與舊屋翻修",
   description:
     "翔胤室內設計完工作品集。從光、材質與動線出發，提供住宅、商業空間、舊屋翻修與毛胚屋規劃服務。",
+  alternates: { canonical: "/" },
 };
 
 export default function Home() {
@@ -46,7 +47,6 @@ export default function Home() {
               alt="翔胤室內設計打造的現代住宅客廳"
               fill
               priority
-              unoptimized
               sizes="100vw"
             />
           </div>

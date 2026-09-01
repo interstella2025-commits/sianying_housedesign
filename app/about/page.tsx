@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   title: "關於我們",
   description:
     "翔胤設計 X 北歐制作創立於 2010 年，將繁複思維融入簡約生活空間。",
+  alternates: { canonical: "/about" },
 };
 
 const values = ["LIGHT", "MATERIAL", "FUNCTION", "LIFE", "DETAIL"] as const;
@@ -28,7 +29,6 @@ export default function AboutPage() {
               alt="翔胤室內設計棲於石境完工作品空間"
               fill
               priority
-              unoptimized
               sizes="100vw"
             />
           </div>
@@ -78,7 +78,6 @@ export default function AboutPage() {
                 src="/media/grok-image-8edffe_orig-19da4d8d29.png"
                 alt="翔胤室內設計專案設計師 Chou Su Zung"
                 fill
-                unoptimized
                 sizes="(max-width: 899px) 100vw, 48vw"
               />
             </div>

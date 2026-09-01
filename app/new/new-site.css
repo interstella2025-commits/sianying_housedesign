@@ -2679,4 +2679,11 @@
   .senjin-clone .new-contact-identity {
     min-height: 430px;
   }
+
+  .senjin-clone .new-contact-identity address a {
+    display: inline-flex;
+    width: fit-content;
+    min-height: 44px;
+    align-items: center;
+  }
 }

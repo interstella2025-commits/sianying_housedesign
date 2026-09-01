@@ -8,7 +8,6 @@ export function BrandMark() {
         alt=""
         width={72}
         height={72}
-        unoptimized
         priority
       />
     </span>

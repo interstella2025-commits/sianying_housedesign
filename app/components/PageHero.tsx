@@ -30,7 +30,6 @@ export function PageHero({ kicker, title, summary, image, imageAlt }: PageHeroPr
           alt={imageAlt}
           fill
           priority
-          unoptimized
           sizes="(max-width: 899px) 100vw, 66vw"
         />
       </div>

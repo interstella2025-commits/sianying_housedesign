@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   title: "室內設計與裝修收費",
   description:
     "翔胤室內設計工作流程、設計製圖費、工程監管費與完整施工服務內容。",
+  alternates: { canonical: "/services" },
 };
 
 const feeItems = [
@@ -53,7 +54,6 @@ export default function ServicesPage() {
               alt="翔胤室內設計規劃的餐廚空間"
               fill
               priority
-              unoptimized
               sizes="(max-width: 899px) 100vw, 62vw"
             />
             <div className="service-hero-counter" data-float-card>

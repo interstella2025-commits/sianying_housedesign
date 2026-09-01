@@ -96,7 +96,6 @@ export function WorksArchive() {
               src={workProjects[3].gallery[10]}
               alt={`${workProjects[3].title}完工作品細節`}
               fill
-              unoptimized
               sizes="(max-width: 899px) 42vw, 20vw"
             />
           </div>
