@@ -74,7 +74,7 @@ export function SiteHeader({ integrated = false }: SiteHeaderProps) {
         <a href="tel:0222888123" tabIndex={open ? 0 : -1}>
           02-2288-8123
         </a>
-        <span>新北市五股區西雲路 189 號 1 樓</span>
+        <span>新北市五股區西雲路189號</span>
       </div>
     </div>
   );

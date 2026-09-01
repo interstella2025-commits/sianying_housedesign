@@ -50,8 +50,8 @@ const organizationSchema = {
   foundingDate: "2010",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "中山一路 114-1 號 10 樓",
-    addressLocality: "蘆洲區",
+    streetAddress: "西雲路189號",
+    addressLocality: "五股區",
     addressRegion: "新北市",
     addressCountry: "TW",
   },
