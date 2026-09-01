@@ -1790,7 +1790,7 @@
   width: min(100%, 1370px);
   grid-template-columns: repeat(3, minmax(0, 1fr));
   column-gap: 10px;
-  row-gap: 122px;
+  row-gap: 28px;
 }
 
 .senjin-clone .new-page-shell.is-light .project-detail-gallery .project-gallery-images figure {
@@ -3412,7 +3412,7 @@
   }
 
   .senjin-clone .new-page-shell.is-light .project-detail-gallery .project-gallery-images {
-    row-gap: 85px;
+    row-gap: 20px;
   }
 }
 
@@ -3523,7 +3523,7 @@
 
   .senjin-clone .new-page-shell.is-light .project-detail-gallery .project-gallery-images {
     column-gap: 10px;
-    row-gap: 48px;
+    row-gap: 12px;
   }
 
   .senjin-clone .site-menu-project-list {
