@@ -50,9 +50,16 @@ export default function NewAboutPage() {
             <span>｜設計</span>
           </header>
           <div>
-            <h2>Chou Su Zung</h2>
+            <h2>主持設計師 Chou Su Zung</h2>
             <p>21 歲退伍後投入室內設計產業，累積超過二十年實務經驗，於 2010 年創立翔胤室內設計。</p>
             <p>以生活需求作為設計起點，讓格局、光線、材質與工程細節形成一致且可長久使用的空間。</p>
+            <h3>Our Design Philosophy｜設計理念</h3>
+            <strong>誠實於生活</strong>
+            <p>{company.philosophy}。每個決定都從日常動線、收納與居住習慣開始。</p>
+            <strong>誠實於材質</strong>
+            <p>保留材料真實的質地與尺度，讓木、石、金屬與光線自然形成空間層次。</p>
+            <strong>誠實於細節</strong>
+            <p>從設計到工程現場持續校準，讓圖面、工法與完成後的生活維持一致。</p>
           </div>
         </section>
 

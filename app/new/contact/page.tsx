@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function NewContactPage() {
   return (
-    <InnerPageShell tone="dark">
+    <InnerPageShell tone="dark" showFooter={false}>
       <div className="new-contact-page">
         <section className="new-contact-identity">
           <h1>Connection</h1>
@@ -21,18 +21,19 @@ export default function NewContactPage() {
             <p>Design Consulting</p>
             <p>{company.philosophy}</p>
           </div>
-          <address>
-            <a href={company.map} target="_blank" rel="noreferrer">{company.headquarters}</a>
-            <a href={`tel:${company.phone.replaceAll("-", "")}`}>Tel：{company.phone}</a>
-            <span>{company.designCenter}</span>
-            <a href={`mailto:${company.email}`}>{company.email}</a>
-          </address>
         </section>
 
         <section className="new-contact-form-section">
           <h2>Contact</h2>
           <NewContactForm />
         </section>
+
+        <address className="new-contact-address">
+          <a href={company.map} target="_blank" rel="noreferrer">{company.headquarters}</a>
+          <a href={`tel:${company.phone.replaceAll("-", "")}`}>Tel：{company.phone}</a>
+          <span>{company.designCenter}</span>
+          <a href={`mailto:${company.email}`}>{company.email}</a>
+        </address>
       </div>
     </InnerPageShell>
   );

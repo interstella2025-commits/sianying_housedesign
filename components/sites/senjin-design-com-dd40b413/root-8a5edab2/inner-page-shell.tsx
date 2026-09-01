@@ -12,11 +12,13 @@ import { FullscreenMenu } from "./fullscreen-menu";
 type InnerPageShellProps = {
   children: ReactNode;
   tone?: "light" | "dark";
+  showFooter?: boolean;
 };
 
 export function InnerPageShell({
   children,
   tone = "light",
+  showFooter = true,
 }: InnerPageShellProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const triggerRef = useRef<HTMLButtonElement>(null);
@@ -62,16 +64,18 @@ export function InnerPageShell({
         {children}
       </main>
 
-      <footer className="new-inner-footer">
-        <div className="new-inner-footer-links">
-          <Link href="/new">TOP</Link>
-          <Link href="/new/contact">CONTACT</Link>
-          <a href={company.facebook} target="_blank" rel="noreferrer">FACEBOOK</a>
-          <a href={company.instagram} target="_blank" rel="noreferrer">INSTAGRAM</a>
-          <a href={company.youtube} target="_blank" rel="noreferrer">YOUTUBE</a>
-        </div>
-        <p>© 2026 {company.englishName} · {company.companyId}</p>
-      </footer>
+      {showFooter ? (
+        <footer className="new-inner-footer">
+          <div className="new-inner-footer-links">
+            <Link href="/new">TOP</Link>
+            <Link href="/new/contact">CONTACT</Link>
+            <a href={company.facebook} target="_blank" rel="noreferrer">FACEBOOK</a>
+            <a href={company.instagram} target="_blank" rel="noreferrer">INSTAGRAM</a>
+            <a href={company.youtube} target="_blank" rel="noreferrer">YOUTUBE</a>
+          </div>
+          <p>© 2026 {company.englishName} · {company.companyId}</p>
+        </footer>
+      ) : null}
 
       <FullscreenMenu
         isOpen={isMenuOpen}

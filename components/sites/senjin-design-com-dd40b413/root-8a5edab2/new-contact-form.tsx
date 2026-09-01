@@ -55,7 +55,7 @@ export function NewContactForm() {
     <form onSubmit={handleSubmit}>
       {inputFields.map((field) => (
         <label key={field.name}>
-          <span>{field.label}{field.required ? " *" : ""}</span>
+          <span>{field.label}</span>
           <input
             name={field.name}
             type={field.type}
@@ -67,31 +67,35 @@ export function NewContactForm() {
           />
         </label>
       ))}
-      <label>
-        <span>詢問類型｜Project Type</span>
-        <select name="projectType" defaultValue="住宅空間">
-          <option>住宅空間</option>
-          <option>商業空間</option>
-          <option>舊屋翻新</option>
-          <option>新成屋</option>
-          <option>預售屋客變</option>
-          <option>其他</option>
-        </select>
-      </label>
-      <label>
-        <span>詢問｜Message</span>
-        <textarea name="message" rows={7} maxLength={1200} />
-      </label>
+      <div className="new-contact-message-field">
+        <div className="new-contact-message-heading">
+          <label htmlFor="new-contact-message">詢問｜Message</label>
+          <select name="projectType" defaultValue="住宅空間" aria-label="詢問類型">
+            <option>住宅空間</option>
+            <option>商業空間</option>
+            <option>舊屋翻新</option>
+            <option>新成屋</option>
+            <option>預售屋客變</option>
+            <option>其他</option>
+          </select>
+        </div>
+        <textarea
+          id="new-contact-message"
+          name="message"
+          rows={7}
+          maxLength={1200}
+        />
+      </div>
       <button type="submit">
-        {status === "copied" ? <Check aria-hidden="true" /> : <ArrowUpRight aria-hidden="true" />}
         <span>{status === "copied" ? "已複製，前往 LINE 貼上" : "前往 LINE 送出"}</span>
+        {status === "copied" ? <Check aria-hidden="true" /> : <ArrowUpRight aria-hidden="true" />}
       </button>
       <p className="new-contact-form-status" aria-live="polite">
         {status === "copied"
           ? "諮詢內容已複製，請在新開啟的 LINE 對話貼上並送出。"
           : status === "manual"
             ? "瀏覽器未允許自動複製；LINE 已開啟，請手動輸入內容，或直接來電與我們聯繫。"
-            : "送出後會開啟翔胤設計的 LINE，表單內容也會自動複製。"}
+            : ""}
       </p>
     </form>
   );

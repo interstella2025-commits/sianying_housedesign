@@ -59,9 +59,9 @@ export function ProjectCategoryPage({ category }: { category: ProjectCategorySlu
       <div className="new-project-index-page">
         <header className="new-project-index-intro">
           <h1>{config.title}</h1>
-          <p>{config.subtitle}</p>
+          <h2>{config.subtitle}</h2>
           <span>{config.english}</span>
-          <small>{config.description}</small>
+          <p>{config.description}</p>
         </header>
 
         <section className="new-project-index-grid" aria-label={config.subtitle}>
