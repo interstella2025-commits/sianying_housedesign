@@ -8,7 +8,7 @@ import {
 } from "@phosphor-icons/react";
 import Image from "next/image";
 import type { MouseEventHandler } from "react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { assetRoot, company, navigation } from "@/data/siangyin";
 
@@ -32,6 +32,16 @@ const socialLinks = [
   { label: "LINE", href: company.lineUrl, Icon: ChatCircleDots },
 ] as const;
 
+const defaultHeroMessage = company.philosophy;
+
+const heroMessages = {
+  TOP: defaultHeroMessage,
+  ABOUT: "二十多年經驗，讓設計回到日常",
+  WORKS: "從光、材質與動線，寫下每一個家的故事",
+  BLOG: "記錄作品、獎項與設計觀察",
+  "CONTACT US": "從一場對話，開始想像理想空間",
+} as const;
+
 type HeroProps = {
   isMenuOpen: boolean;
   onOpenMenu: MouseEventHandler<HTMLButtonElement>;
@@ -41,6 +51,45 @@ export function Hero({ isMenuOpen, onOpenMenu }: HeroProps) {
   const heroRef = useRef<HTMLElement>(null);
   const hasHandledDownwardIntent = useRef(false);
   const touchStartY = useRef<number | null>(null);
+  const currentHeroMessage = useRef<string>(defaultHeroMessage);
+  const [heroMessage, setHeroMessage] = useState<string>(defaultHeroMessage);
+  const [typedHeroMessage, setTypedHeroMessage] = useState("");
+
+  const updateHeroMessage = (message: string) => {
+    if (currentHeroMessage.current === message) return;
+
+    currentHeroMessage.current = message;
+    setTypedHeroMessage("");
+    setHeroMessage(message);
+  };
+
+  useEffect(() => {
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    if (reduceMotion) {
+      const reducedMotionTimer = window.setTimeout(
+        () => setTypedHeroMessage(heroMessage),
+        0,
+      );
+      return () => window.clearTimeout(reducedMotionTimer);
+    }
+
+    let characterIndex = 0;
+    let timer = window.setTimeout(typeNextCharacter, 0);
+
+    function typeNextCharacter() {
+      characterIndex += 1;
+      setTypedHeroMessage(heroMessage.slice(0, characterIndex));
+
+      if (characterIndex < heroMessage.length) {
+        timer = window.setTimeout(typeNextCharacter, 32);
+      }
+    }
+
+    return () => window.clearTimeout(timer);
+  }, [heroMessage]);
 
   useEffect(() => {
     const moveToContent = () => {
@@ -157,6 +206,15 @@ export function Hero({ isMenuOpen, onOpenMenu }: HeroProps) {
         className="section-anchor absolute bottom-0 left-0 size-px"
       />
 
+      <div className="hero-typewriter" aria-hidden="true">
+        <p className="hero-typewriter-kicker">SIANG YIN / INTERIOR DESIGN</p>
+        <p className="hero-typewriter-line">
+          <span className="hero-typewriter-animated">{typedHeroMessage}</span>
+          <span className="hero-typewriter-cursor" />
+          <span className="hero-typewriter-static">{defaultHeroMessage}</span>
+        </p>
+      </div>
+
       <div className="hero-overlay-panel">
         <div className="hero-overlay-primary">
           <nav aria-label="首屏導覽" className="hero-overlay-nav">
@@ -167,6 +225,12 @@ export function Hero({ isMenuOpen, onOpenMenu }: HeroProps) {
                     href={item.href}
                     aria-label={`${item.english}｜${item.heroLabel}`}
                     className="hero-nav-link font-[family-name:var(--font-montserrat)] tracking-[0.02em] text-white/84"
+                    onMouseEnter={() =>
+                      updateHeroMessage(heroMessages[item.english])
+                    }
+                    onMouseLeave={() => updateHeroMessage(defaultHeroMessage)}
+                    onFocus={() => updateHeroMessage(heroMessages[item.english])}
+                    onBlur={() => updateHeroMessage(defaultHeroMessage)}
                   >
                     <span className="hero-nav-label hero-nav-label--english">
                       {item.english}
