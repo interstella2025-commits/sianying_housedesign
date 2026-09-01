@@ -1672,12 +1672,12 @@
   position: relative;
   display: grid;
   width: min(1370px, calc(100% - 80px));
-  min-height: 393px;
+  min-height: 280px;
   grid-template-columns: 1.75fr 0.9fr 0.95fr;
   gap: 32px;
   align-items: start;
   margin-inline: auto;
-  padding: 58px 0 48px;
+  padding: 44px 0 36px;
 }
 
 .senjin-clone .project-editorial-title p {
@@ -3361,8 +3361,8 @@
   .senjin-clone .project-editorial-intro {
     display: block;
     width: calc(100% - 80px);
-    min-height: 607px;
-    padding: 50px 0 120px;
+    min-height: 0;
+    padding: 50px 0 100px;
   }
 
   .senjin-clone .project-editorial-title p {
@@ -3485,8 +3485,8 @@
   }
 
   .senjin-clone .project-editorial-intro {
-    min-height: 931px;
-    padding-top: 65px;
+    min-height: 0;
+    padding-top: 50px;
   }
 
   .senjin-clone .project-editorial-title p {
