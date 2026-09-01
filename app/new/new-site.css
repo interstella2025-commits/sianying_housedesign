@@ -1192,6 +1192,15 @@
     visibility 220ms;
 }
 
+.senjin-clone .site-menu-project-list::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -52px;
+  width: 52px;
+  content: "";
+}
+
 .senjin-clone .site-menu-works-item:hover .site-menu-project-list,
 .senjin-clone .site-menu-works-item:focus-within .site-menu-project-list {
   visibility: visible;
@@ -3440,6 +3449,10 @@
     pointer-events: auto;
     transform: none;
   }
+
+  .senjin-clone .site-menu-project-list::before {
+    display: none;
+  }
 }
 
 @media (min-width: 761px) and (max-width: 1100px) {
@@ -3491,6 +3504,11 @@
     width: 300px;
     padding: 0 14px;
     transform: translateX(12px);
+  }
+
+  .senjin-clone .site-menu-project-list::before {
+    left: -17px;
+    width: 17px;
   }
 
   .senjin-clone .site-menu-project-list a {
