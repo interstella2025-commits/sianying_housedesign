@@ -119,8 +119,8 @@
   bottom: 114px;
   left: 50%;
   display: grid;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   transform: translateX(-50%);
   place-items: center;
   color: rgb(255 255 255 / 0.86);
@@ -967,19 +967,14 @@
     transform: scale(1.02);
   }
 
-  .senjin-clone,
-  .senjin-clone *,
-  .senjin-clone *::before,
-  .senjin-clone *::after {
+  .senjin-clone {
     scroll-behavior: auto !important;
-    transition-duration: 0.01ms !important;
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
   }
 
   .senjin-clone .reveal {
     opacity: 1;
     transform: none;
+    transition: none;
   }
 }
 
@@ -1217,7 +1212,17 @@
   background: #e8dfd4;
   color: #262320;
   --inner-line: rgb(38 35 32 / 0.55);
-  --inner-soft: rgb(38 35 32 / 0.63);
+  --inner-soft: rgb(38 35 32 / 0.74);
+}
+
+.senjin-clone .new-page-shell.is-light :focus-visible {
+  outline-color: #262320;
+}
+
+.senjin-clone input,
+.senjin-clone select,
+.senjin-clone textarea {
+  caret-color: currentcolor;
 }
 
 .senjin-clone .new-page-shell.is-dark {
@@ -1582,8 +1587,8 @@
 
 .senjin-clone .project-editorial-arrow {
   display: grid;
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   place-items: center;
   border: 1px solid currentcolor;
   border-radius: 50%;
@@ -1999,13 +2004,16 @@
 }
 
 .senjin-clone .new-blog-page {
-  display: grid;
   width: min(1360px, calc(100% - 80px));
   min-height: calc(100svh - 112px);
-  grid-template-columns: 280px minmax(0, 1fr);
-  gap: 76px;
   margin-inline: auto;
   padding: 60px 0 140px;
+}
+
+.senjin-clone .new-blog-browser {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  gap: 76px;
 }
 
 .senjin-clone .new-blog-sidebar h1,
@@ -2032,7 +2040,7 @@
 
 .senjin-clone .new-blog-sidebar input {
   width: 100%;
-  height: 42px;
+  height: 44px;
   border: 0;
   border-bottom: 1px solid currentcolor;
   background: transparent;
@@ -2040,12 +2048,13 @@
   outline: 0;
 }
 
-.senjin-clone .new-blog-sidebar label b {
+.senjin-clone .new-blog-sidebar label > svg {
   position: absolute;
   bottom: 10px;
   left: 0;
-  font-size: 1.1rem;
-  font-weight: 300;
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
 }
 
 .senjin-clone .new-blog-sidebar > div {
@@ -2061,10 +2070,22 @@
   letter-spacing: 0.08em;
 }
 
-.senjin-clone .new-blog-sidebar > div p {
-  margin: 0.65rem 0;
+.senjin-clone .new-blog-filter {
+  display: block;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
   color: var(--inner-soft);
+  cursor: pointer;
   font-size: 0.68rem;
+  text-align: left;
+}
+
+.senjin-clone .new-blog-filter[aria-pressed="true"] {
+  color: currentcolor;
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
 }
 
 .senjin-clone .new-blog-sidebar ul {
@@ -2077,9 +2098,23 @@
 }
 
 .senjin-clone .new-blog-sidebar li {
-  padding: 0.45rem 0.6rem;
   border: 1px dashed var(--inner-line);
   font-size: 0.58rem;
+}
+
+.senjin-clone .new-blog-sidebar li button {
+  min-height: 44px;
+  padding: 0.45rem 0.6rem;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+}
+
+.senjin-clone .new-blog-sidebar li button[aria-pressed="true"] {
+  background: #262320;
+  color: #e8dfd4;
 }
 
 .senjin-clone .new-blog-grid {
@@ -2148,6 +2183,28 @@
   font-weight: 300;
   letter-spacing: 0.05em;
   line-height: 1.7;
+}
+
+.senjin-clone .new-blog-empty {
+  grid-column: 1 / -1;
+  min-height: 320px;
+  padding-top: 4rem;
+  border-top: 1px solid var(--inner-line);
+  color: var(--inner-soft);
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+}
+
+.senjin-clone .new-blog-empty button {
+  min-height: 44px;
+  margin-top: 1.5rem;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid currentcolor;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
 }
 
 .senjin-clone .new-contact-page {
@@ -2238,7 +2295,7 @@
 
 .senjin-clone .new-contact-form-section input,
 .senjin-clone .new-contact-form-section select {
-  height: 38px;
+  height: 44px;
 }
 
 .senjin-clone .new-contact-form-section textarea {
@@ -2253,6 +2310,10 @@
 }
 
 .senjin-clone .new-contact-form-section button {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 0.55rem;
   width: fit-content;
   margin-top: 1.2rem;
   padding: 0.75rem 0;
@@ -2262,6 +2323,20 @@
   color: inherit;
   font-family: Georgia, "Times New Roman", serif;
   cursor: pointer;
+}
+
+.senjin-clone .new-contact-form-section button svg {
+  width: 16px;
+  height: 16px;
+}
+
+.senjin-clone .new-contact-form-status {
+  min-height: 2.8em;
+  margin: 0;
+  color: rgb(222 217 209 / 0.78);
+  font-size: 0.64rem;
+  letter-spacing: 0.04em;
+  line-height: 1.7;
 }
 
 @media (max-width: 900px) {
@@ -2280,8 +2355,8 @@
   }
 
   .senjin-clone .new-inner-brand > span {
-    width: 42px;
-    height: 42px;
+    width: 44px;
+    height: 44px;
   }
 
   .senjin-clone .new-inner-brand small {
@@ -2375,7 +2450,7 @@
     gap: 55px;
   }
 
-  .senjin-clone .new-blog-page {
+  .senjin-clone .new-blog-browser {
     grid-template-columns: 220px minmax(0, 1fr);
     gap: 42px;
   }
@@ -2450,6 +2525,24 @@
   .senjin-clone .site-menu-footer {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .senjin-clone .site-menu-footer a,
+  .senjin-clone .new-inner-footer a {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+  }
+
+  .senjin-clone .hero-social-links {
+    gap: 0;
+  }
+
+  .senjin-clone .hero-social-links a {
+    display: grid;
+    width: 44px;
+    height: 44px;
+    place-items: center;
   }
 
   .senjin-clone .new-project-index-page,
@@ -2567,8 +2660,11 @@
   }
 
   .senjin-clone .new-blog-page {
-    grid-template-columns: 1fr;
     padding-top: 45px;
+  }
+
+  .senjin-clone .new-blog-browser {
+    grid-template-columns: 1fr;
   }
 
   .senjin-clone .new-blog-sidebar label {

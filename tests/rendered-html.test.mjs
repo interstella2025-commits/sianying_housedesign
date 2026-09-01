@@ -120,7 +120,7 @@ test("renders every page in the redesigned site architecture", async () => {
 
     const html = await response.text();
     assert.match(html, new RegExp(marker), pathname);
-    assert.match(html, /site-menu-project-list/, pathname);
+    assert.match(html, /aria-controls="site-navigation-dialog"/, pathname);
     assert.equal((html.match(/<h1\b/g) ?? []).length, 1, pathname);
     assertHeadingsHaveNoTerminalPunctuation(html, pathname);
   }

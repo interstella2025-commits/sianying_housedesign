@@ -25,7 +25,6 @@ export default function NewAboutPage() {
                 alt="翔胤室內設計專案設計師 Chou Su Zung"
                 fill
                 priority
-                unoptimized
                 sizes="(max-width: 760px) 70vw, 24vw"
               />
             </div>
@@ -63,7 +62,6 @@ export default function NewAboutPage() {
               src="/media/adesignaward-certificate-136768.png"
               alt="翔胤室內設計 A' Design Award 得獎證書"
               fill
-              unoptimized
               sizes="(max-width: 760px) 100vw, 42vw"
             />
           </div>

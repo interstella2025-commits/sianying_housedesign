@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { CaretLeft, CaretRight, X } from "@phosphor-icons/react";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
 type ProjectGalleryGridProps = {
@@ -18,6 +18,9 @@ export function ProjectGalleryGrid({
 }: ProjectGalleryGridProps) {
   const [visibleCount, setVisibleCount] = useState(batchSize);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const lightboxRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const triggerRef = useRef<HTMLButtonElement | null>(null);
 
   const visibleImages = useMemo(() => images.slice(0, visibleCount), [images, visibleCount]);
   const remaining = images.length - visibleImages.length;
@@ -38,24 +41,66 @@ export function ProjectGalleryGrid({
     });
   }, [images.length]);
 
+  const isLightboxOpen = lightboxIndex !== null;
+
   useEffect(() => {
-    if (lightboxIndex === null) return;
+    if (!isLightboxOpen) return;
 
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
+    const focusFrame = window.requestAnimationFrame(() => {
+      closeButtonRef.current?.focus({ preventScroll: true });
+    });
+
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") closeLightbox();
-      if (event.key === "ArrowLeft") showPrevious();
-      if (event.key === "ArrowRight") showNext();
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closeLightbox();
+        return;
+      }
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        showPrevious();
+        return;
+      }
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        showNext();
+        return;
+      }
+      if (event.key !== "Tab") return;
+
+      const focusable = Array.from(
+        lightboxRef.current?.querySelectorAll<HTMLElement>(
+          "button:not([disabled]), a[href], [tabindex]:not([tabindex='-1'])",
+        ) ?? [],
+      );
+      const first = focusable[0];
+      const last = focusable.at(-1);
+
+      if (!first || !last) {
+        event.preventDefault();
+      } else if (!lightboxRef.current?.contains(document.activeElement)) {
+        event.preventDefault();
+        first.focus();
+      } else if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
     };
 
     window.addEventListener("keydown", onKeyDown);
     return () => {
+      window.cancelAnimationFrame(focusFrame);
       window.removeEventListener("keydown", onKeyDown);
       document.body.style.overflow = previousOverflow;
+      triggerRef.current?.focus({ preventScroll: true });
     };
-  }, [closeLightbox, lightboxIndex, showNext, showPrevious]);
+  }, [closeLightbox, isLightboxOpen, showNext, showPrevious]);
 
   if (!images.length) return null;
 
@@ -74,7 +119,10 @@ export function ProjectGalleryGrid({
                 type="button"
                 className="project-gallery-thumb"
                 aria-label={`放大查看 ${title} 照片 ${index + 2}`}
-                onClick={() => setLightboxIndex(index)}
+                onClick={(event) => {
+                  triggerRef.current = event.currentTarget;
+                  setLightboxIndex(index);
+                }}
               >
                 <Image
                   src={image}
@@ -82,7 +130,6 @@ export function ProjectGalleryGrid({
                   fill
                   priority={index === 0}
                   loading={index === 0 ? undefined : "lazy"}
-                  unoptimized
                   sizes="(max-width: 899px) 50vw, 25vw"
                 />
               </button>
@@ -104,6 +151,7 @@ export function ProjectGalleryGrid({
       {lightboxIndex !== null && typeof document !== "undefined"
         ? createPortal(
             <div
+              ref={lightboxRef}
               className="project-image-lightbox"
               onMouseDown={(event) => {
                 if (event.target === event.currentTarget) closeLightbox();
@@ -111,6 +159,8 @@ export function ProjectGalleryGrid({
             >
               <div className="project-image-lightbox__panel" role="dialog" aria-modal="true" aria-label="放大照片">
                 <button
+                  ref={closeButtonRef}
+                  autoFocus
                   type="button"
                   className="project-image-lightbox__close"
                   aria-label="關閉放大照片"
@@ -146,7 +196,6 @@ export function ProjectGalleryGrid({
                     alt={`${title}完工作品空間 ${lightboxIndex + 2}`}
                     fill
                     priority
-                    unoptimized
                     sizes="100vw"
                   />
                 </div>

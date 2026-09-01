@@ -36,6 +36,11 @@ export function FullscreenMenu({
   const pathname = usePathname();
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const onCloseRef = useRef(onClose);
+
+  useEffect(() => {
+    onCloseRef.current = onClose;
+  }, [onClose]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -44,20 +49,27 @@ export function FullscreenMenu({
     const previousPaddingRight = document.body.style.paddingRight;
     const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
     const triggerElement = triggerRef.current;
+    const backgroundElements = Array.from(
+      dialogRef.current?.parentElement?.children ?? [],
+    ).filter((element): element is HTMLElement => element instanceof HTMLElement && element !== dialogRef.current);
+    const previousInertStates = backgroundElements.map((element) => element.hasAttribute("inert"));
 
+    backgroundElements.forEach((element) => element.setAttribute("inert", ""));
     document.body.style.overflow = "hidden";
     if (scrollbarWidth > 0) {
       document.body.style.paddingRight = `${scrollbarWidth}px`;
     }
 
-    const focusTimer = window.setTimeout(() => {
+    const focusCloseButton = () => {
       closeButtonRef.current?.focus({ preventScroll: true });
-    }, 50);
+    };
+    const focusFrame = window.requestAnimationFrame(focusCloseButton);
+    const focusTimer = window.setTimeout(focusCloseButton, 300);
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         event.preventDefault();
-        onClose();
+        onCloseRef.current();
         return;
       }
 
@@ -74,7 +86,10 @@ export function FullscreenMenu({
         return;
       }
 
-      if (event.shiftKey && document.activeElement === firstItem) {
+      if (!dialogRef.current?.contains(document.activeElement)) {
+        event.preventDefault();
+        firstItem.focus();
+      } else if (event.shiftKey && document.activeElement === firstItem) {
         event.preventDefault();
         lastItem.focus();
       } else if (!event.shiftKey && document.activeElement === lastItem) {
@@ -85,17 +100,23 @@ export function FullscreenMenu({
 
     document.addEventListener("keydown", handleKeyDown);
     return () => {
+      window.cancelAnimationFrame(focusFrame);
       window.clearTimeout(focusTimer);
       document.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = previousOverflow;
       document.body.style.paddingRight = previousPaddingRight;
+      backgroundElements.forEach((element, index) => {
+        if (!previousInertStates[index]) element.removeAttribute("inert");
+      });
       triggerElement?.focus();
     };
-  }, [isOpen, onClose, triggerRef]);
+  }, [isOpen, triggerRef]);
 
   const closeFromBackdrop = (event: MouseEvent<HTMLDivElement>) => {
     if (event.target === event.currentTarget) onClose();
   };
+
+  if (!isOpen) return null;
 
   return (
     <div
@@ -104,10 +125,8 @@ export function FullscreenMenu({
       role="dialog"
       aria-modal="true"
       aria-labelledby="site-navigation-title"
-      aria-hidden={!isOpen}
-      inert={!isOpen}
       onMouseDown={closeFromBackdrop}
-      className={`site-menu-dialog${isOpen ? " is-open" : ""}`}
+      className="site-menu-dialog is-open"
     >
       <div className="site-menu-backdrop" aria-hidden="true" />
       <div className="site-menu-frame">
@@ -135,6 +154,7 @@ export function FullscreenMenu({
 
           <button
             ref={closeButtonRef}
+            autoFocus
             type="button"
             onClick={onClose}
             className="site-menu-close"

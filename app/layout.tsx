@@ -3,8 +3,10 @@ import { AppProviders } from "./components/AppProviders";
 import "./globals.css";
 import "./site-custom.css";
 
+const siteUrl = "https://sianying-housedesign.vercel.app";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.siangyin.com"),
+  metadataBase: new URL(siteUrl),
   title: {
     default: "翔胤室內設計",
     template: "%s｜翔胤室內設計",
@@ -43,7 +45,7 @@ const organizationSchema = {
   "@type": "InteriorDesign",
   name: "翔胤室內設計有限公司",
   alternateName: "翔胤設計 X 北歐制作",
-  url: "https://www.siangyin.com/",
+  url: siteUrl,
   telephone: "+886-2-2288-8123",
   foundingDate: "2010",
   address: {

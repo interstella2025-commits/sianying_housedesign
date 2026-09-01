@@ -1,7 +1,7 @@
 [
     {
         "slug":  "light-future",
-        "panorama":  "/images/projects/light-future/panorama.png",
+        "panorama":  "/images/projects/light-future/panorama.webp",
         "images":  [
                        "/images/projects/light-future/sjd-3196_orig.png",
                        "/images/projects/light-future/sjd-3198_orig.png",
@@ -113,7 +113,7 @@
     },
     {
         "slug":  "platinum-stone",
-        "panorama":  "/images/projects/platinum-stone/panorama.png",
+        "panorama":  "/images/projects/platinum-stone/panorama.webp",
         "cover":  "/images/projects/platinum-stone/sjd-16722_2_orig.png",
         "images":  [
                        "/images/projects/platinum-stone/sjd-16623_2_orig.png",
@@ -146,7 +146,7 @@
     },
     {
         "slug":  "serenity-within",
-        "panorama":  "/images/projects/serenity-within/panorama.png",
+        "panorama":  "/images/projects/serenity-within/panorama.webp",
         "images":  [
                        "/images/projects/serenity-within/sjd-0001_orig.jpg",
                        "/images/projects/serenity-within/sjd-0003_orig.jpg",
@@ -225,7 +225,7 @@
     },
     {
         "slug":  "gathered-light",
-        "panorama":  "/images/projects/gathered-light/panorama.png",
+        "panorama":  "/images/projects/gathered-light/panorama.webp",
         "cover":  "/images/projects/gathered-light/dsc-9808_orig.png",
         "images":  [
                        "/images/projects/gathered-light/1dsc-9891_orig.png",
@@ -257,7 +257,7 @@
     },
     {
         "slug":  "moonlit-bank",
-        "panorama":  "/images/projects/moonlit-bank/panorama.png",
+        "panorama":  "/images/projects/moonlit-bank/panorama.webp",
         "cover":  "/images/projects/moonlit-bank/dsc-3659_orig.png",
         "images":  [
                        "/images/projects/moonlit-bank/dsc-324342_orig.png",
@@ -287,7 +287,7 @@
     },
     {
         "slug":  "mountain-retreat",
-        "panorama":  "/images/projects/mountain-retreat/panorama.png",
+        "panorama":  "/images/projects/mountain-retreat/panorama.webp",
         "cover":  "/images/projects/mountain-retreat/sjd-5632_orig.png",
         "images":  [
                        "/images/projects/mountain-retreat/sjd-5510_orig.png",
@@ -341,7 +341,7 @@
     },
     {
         "slug":  "second-order-space",
-        "panorama":  "/images/projects/second-order-space/panorama.png",
+        "panorama":  "/images/projects/second-order-space/panorama.webp",
         "cover":  "/images/projects/second-order-space/sjd-9896_orig.png",
         "images":  [
                        "/images/projects/second-order-space/sjd-9795_orig.png",
@@ -364,7 +364,7 @@
     },
     {
         "slug":  "stone-habitat",
-        "panorama":  "/images/projects/stone-habitat/panorama.png",
+        "panorama":  "/images/projects/stone-habitat/panorama.webp",
         "cover":  "/images/projects/stone-habitat/sjd-8233_1_orig.png",
         "images":  [
                        "/images/projects/stone-habitat/sjd-8110_1_orig.png",
@@ -394,7 +394,7 @@
     },
     {
         "slug":  "layered-light",
-        "panorama":  "/images/projects/layered-light/panorama.png",
+        "panorama":  "/images/projects/layered-light/panorama.webp",
         "cover":  "/images/projects/layered-light/sjd-7334_1_orig.png",
         "images":  [
                        "/images/projects/layered-light/sjd-7274_1_orig.png",

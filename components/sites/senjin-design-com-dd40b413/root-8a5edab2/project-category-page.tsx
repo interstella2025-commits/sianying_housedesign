@@ -34,7 +34,6 @@ function ProjectIndexCard({
           alt={`${project.title}室內設計完工作品`}
           fill
           priority={priority}
-          unoptimized
           sizes="(max-width: 760px) 100vw, 50vw"
         />
         {project.panorama ? <span>360° PANORAMA</span> : null}
