@@ -8,10 +8,11 @@ import { assetRoot } from "@/data/siangyin";
 
 import { FullscreenMenu } from "./fullscreen-menu";
 import { Hero } from "./hero";
+import type { SianyingPageSettings } from "@/lib/puck/page-settings";
 
-type SiteShellProps = { children: ReactNode };
+type SiteShellProps = { children: ReactNode; heroSettings?: SianyingPageSettings | null };
 
-export function SiteShell({ children }: SiteShellProps) {
+export function SiteShell({ children, heroSettings }: SiteShellProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCompact, setIsCompact] = useState(false);
   const activeMenuTriggerRef = useRef<HTMLButtonElement>(null);
@@ -44,7 +45,7 @@ export function SiteShell({ children }: SiteShellProps) {
         跳至主要內容
       </a>
 
-      <Hero isMenuOpen={isMenuOpen} onOpenMenu={openMenu} />
+      <Hero isMenuOpen={isMenuOpen} onOpenMenu={openMenu} settings={heroSettings} />
 
       <div id="content" className="relative bg-[#1d1d1d]">
         <header

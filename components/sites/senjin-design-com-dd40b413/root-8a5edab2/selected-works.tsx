@@ -1,16 +1,12 @@
 import Link from "next/link";
 
-import { galleryProjects } from "@/app/lib/project-gallery";
-import { projects } from "@/data/siangyin";
+import { getStoredProjects } from "@/lib/cms/projects-store";
 
 import { PortfolioProjectMedia } from "./portfolio-project-media";
 import { Reveal } from "./reveal";
 
-const galleryByProjectNumber = new Map(
-  galleryProjects.map((project) => [project.number, project]),
-);
-
-export function SelectedWorks() {
+export async function SelectedWorks() {
+  const projects = await getStoredProjects();
   return (
     <section id="works" className="section-anchor pb-28" aria-labelledby="works-heading">
       <div className="portfolio-column">
@@ -22,10 +18,7 @@ export function SelectedWorks() {
 
         <div className="works-list">
           {projects.map((project) => {
-            const galleryProject = galleryByProjectNumber.get(project.number);
-            if (!galleryProject) return null;
-
-            const detailHref = `/new/projects/${galleryProject.slug}`;
+            const detailHref = `/new/projects/${project.slug}`;
 
             return (
               <Reveal key={project.number}>
@@ -33,14 +26,14 @@ export function SelectedWorks() {
                   <div className="relative aspect-square overflow-hidden bg-[#151515]">
                     <PortfolioProjectMedia
                       title={project.title}
-                      description={project.description}
-                      image={project.image}
-                      panorama={galleryProject.panorama}
+                      description={project.paragraphs[0] ?? ""}
+                      image={project.cover}
+                      panorama={project.panorama}
                     />
                     <Link
                       href={detailHref}
                       className={`project-card-media-link${
-                        galleryProject.panorama ? " is-panorama" : ""
+                        project.panorama ? " is-panorama" : ""
                       }`}
                       aria-label={`查看${project.title}完整作品與更多照片`}
                     >
@@ -66,7 +59,7 @@ export function SelectedWorks() {
                         {project.english}
                       </p>
                       <p className="mt-2 max-w-[34rem] text-[0.66rem] leading-[1.8] tracking-[0.04em] text-[var(--paper-soft)]">
-                        {project.description}
+                        {project.paragraphs[0]}
                       </p>
                     </figcaption>
                   </Link>

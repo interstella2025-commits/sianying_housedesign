@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-import { galleryProjects } from "@/app/lib/project-gallery";
+import { getStoredProjects } from "@/lib/cms/projects-store";
 
 const siteUrl = "https://sianying-housedesign.vercel.app";
 
@@ -22,11 +22,12 @@ const staticRoutes = [
   "/new/projects/panorama",
 ] as const;
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
+  const projects = await getStoredProjects();
   const routes = [
     ...staticRoutes,
-    ...galleryProjects.map((project) => `/new/projects/${project.slug}` as const),
+    ...projects.map((project) => `/new/projects/${project.slug}` as const),
   ];
 
   return routes.map((route) => ({

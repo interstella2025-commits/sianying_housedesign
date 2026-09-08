@@ -5,6 +5,8 @@ import Link from "next/link";
 import { processItems } from "@/app/data";
 import { InnerPageShell } from "@/components/sites/senjin-design-com-dd40b413/root-8a5edab2/inner-page-shell";
 import { company } from "@/data/siangyin";
+import { getPageSettings } from "@/lib/cms/pages";
+import { PageSupplements } from "@/components/cms/page-supplements";
 
 export const metadata: Metadata = {
   title: "關於翔胤｜翔胤室內設計",
@@ -12,17 +14,18 @@ export const metadata: Metadata = {
   alternates: { canonical: "/new/about" },
 };
 
-export default function NewAboutPage() {
+export default async function NewAboutPage() {
+  const settings = await getPageSettings("/new/about");
   return (
     <InnerPageShell tone="dark">
       <div className="new-about-page">
         <section id="designer" className="new-about-team">
-          <h1>Design Team</h1>
+          <h1>{settings?.title || "Design Team"}</h1>
           <div className="new-about-team-grid">
             <div className="new-about-portrait">
               <Image
-                src="/media/grok-image-8edffe_orig-19da4d8d29.png"
-                alt="翔胤室內設計專案設計師 Chou Su Zung"
+                src={settings?.image || "/media/grok-image-8edffe_orig-19da4d8d29.png"}
+                alt={settings?.imageAlt || "翔胤室內設計專案設計師 Chou Su Zung"}
                 fill
                 priority
                 sizes="(max-width: 760px) 70vw, 24vw"
@@ -36,13 +39,15 @@ export default function NewAboutPage() {
                 <a href="#service">→ 服務流程</a>
               </nav>
               <div>
-                <p>{company.about}</p>
+                <p>{settings?.description || company.about}</p>
                 <p>{company.philosophy}。設計從居住需求、動線與收納開始，再處理採光、材質與整體風格。</p>
                 <p className="new-about-history">2010 台北成立 翔胤室內設計<br />20+ 年室內設計與工程實務<br />服務台北、新北、桃園、新竹、宜蘭與台中</p>
               </div>
             </div>
           </div>
         </section>
+
+        <PageSupplements settings={settings} />
 
         <section className="new-about-designer-profile">
           <header>
@@ -106,7 +111,7 @@ export default function NewAboutPage() {
         </section>
 
         <div className="new-about-contact-link">
-          <Link href="/new/contact">與翔胤討論你的空間 →</Link>
+          <Link href={settings?.ctaHref || "/new/contact"}>{settings?.ctaLabel || "與翔胤討論你的空間"} →</Link>
         </div>
       </div>
     </InnerPageShell>

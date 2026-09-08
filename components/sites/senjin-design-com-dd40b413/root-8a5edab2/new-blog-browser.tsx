@@ -26,7 +26,7 @@ export function NewBlogBrowser() {
   return (
     <div className="new-blog-browser">
       <aside className="new-blog-sidebar">
-        <h1>消息</h1>
+        <h2 className="new-blog-sidebar-title">消息</h2>
         <p>Blog</p>
         <div className="new-blog-categories">
           <h2>文章分類｜</h2>

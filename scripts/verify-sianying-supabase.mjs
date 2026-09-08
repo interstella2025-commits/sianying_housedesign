@@ -32,17 +32,39 @@ if (signInError || !sessionData.user) {
 }
 assert.equal(sessionData.user.app_metadata?.tenant_id, tenantId);
 
-const ownTable = await tenant
-  .from("sianying_inquiries")
-  .select("id", { count: "exact", head: true });
-assert.equal(ownTable.error, null, ownTable.error?.message);
+const ownTables = [
+  "sianying_inquiries",
+  "sianying_cms_documents",
+  "sianying_bk_projects",
+  "sianying_bk_vendors",
+  "sianying_bk_project_incomes",
+  "sianying_bk_project_expenses",
+  "sianying_bk_expense_payments",
+];
+
+const ownCounts = {};
+for (const table of ownTables) {
+  const result = await tenant.from(table).select("*", { count: "exact", head: true });
+  assert.equal(result.error, null, `${table}: ${result.error?.message}`);
+  ownCounts[table] = result.count ?? 0;
+}
 
 const anonTable = await anonymous
   .from("sianying_inquiries")
   .select("id", { count: "exact", head: true });
 assert.ok(anonTable.error || anonTable.count === 0, "匿名帳號不應讀取翔胤詢問資料");
 
-for (const foreignTable of ["cms_documents", "yanyi_cms_documents"]) {
+for (const foreignTable of [
+  "cms_documents",
+  "bk_projects",
+  "bk_vendors",
+  "bk_project_incomes",
+  "bk_project_expenses",
+  "bk_expense_payments",
+  "yanyi_cms_documents",
+  "yanyi_bk_projects",
+  "yanyi_bk_vendors",
+]) {
   const result = await tenant.from(foreignTable).select("*", { count: "exact", head: true });
   assert.ok(result.error || result.count === 0, `翔胤帳號不應讀取 ${foreignTable}`);
 }
@@ -59,7 +81,7 @@ process.stdout.write(
   `${JSON.stringify({
     ok: true,
     tenantId,
-    ownInquiryCount: ownTable.count ?? 0,
+    ownCounts,
     isolation: "verified",
   })}\n`,
 );

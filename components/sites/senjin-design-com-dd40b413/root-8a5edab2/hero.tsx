@@ -11,6 +11,7 @@ import type { MouseEventHandler } from "react";
 import { useEffect, useRef, useState } from "react";
 
 import { assetRoot, company, navigation } from "@/data/siangyin";
+import type { SianyingPageSettings } from "@/lib/puck/page-settings";
 
 const downwardKeys = new Set(["ArrowDown", "PageDown", " ", "Spacebar"]);
 
@@ -45,14 +46,16 @@ const heroMessages = {
 type HeroProps = {
   isMenuOpen: boolean;
   onOpenMenu: MouseEventHandler<HTMLButtonElement>;
+  settings?: SianyingPageSettings | null;
 };
 
-export function Hero({ isMenuOpen, onOpenMenu }: HeroProps) {
+export function Hero({ isMenuOpen, onOpenMenu, settings }: HeroProps) {
   const heroRef = useRef<HTMLElement>(null);
   const hasHandledDownwardIntent = useRef(false);
   const touchStartY = useRef<number | null>(null);
-  const currentHeroMessage = useRef<string>(defaultHeroMessage);
-  const [heroMessage, setHeroMessage] = useState<string>(defaultHeroMessage);
+  const configuredMessage = settings?.description || defaultHeroMessage;
+  const currentHeroMessage = useRef<string>(configuredMessage);
+  const [heroMessage, setHeroMessage] = useState<string>(configuredMessage);
   const [typedHeroMessage, setTypedHeroMessage] = useState("");
 
   const updateHeroMessage = (message: string) => {
@@ -171,7 +174,7 @@ export function Hero({ isMenuOpen, onOpenMenu }: HeroProps) {
       className="relative h-[100svh] min-h-[35rem] overflow-hidden bg-[#151515]"
     >
       <h1 id="hero-title" className="sr-only">
-        翔胤室內設計｜讓室內空間與生活密不可分
+        {`${settings?.title || "翔胤室內設計"}｜${configuredMessage}`}
       </h1>
       <button
         type="button"
@@ -188,8 +191,8 @@ export function Hero({ isMenuOpen, onOpenMenu }: HeroProps) {
         </span>
       </button>
       <Image
-        src={`${assetRoot}/hero.jpg`}
-        alt="翔胤室內設計打造的明亮現代住宅空間"
+        src={settings?.image || `${assetRoot}/hero.jpg`}
+        alt={settings?.imageAlt || "翔胤室內設計打造的明亮現代住宅空間"}
         fill
         priority
         sizes="100vw"
@@ -207,11 +210,11 @@ export function Hero({ isMenuOpen, onOpenMenu }: HeroProps) {
       />
 
       <div className="hero-typewriter" aria-hidden="true">
-        <p className="hero-typewriter-kicker">SIANG YIN / INTERIOR DESIGN</p>
+        <p className="hero-typewriter-kicker">{settings?.eyebrow || "SIANG YIN / INTERIOR DESIGN"}</p>
         <p className="hero-typewriter-line">
           <span className="hero-typewriter-animated">{typedHeroMessage}</span>
           <span className="hero-typewriter-cursor" />
-          <span className="hero-typewriter-static">{defaultHeroMessage}</span>
+          <span className="hero-typewriter-static">{configuredMessage}</span>
         </p>
       </div>
 
@@ -228,9 +231,9 @@ export function Hero({ isMenuOpen, onOpenMenu }: HeroProps) {
                     onMouseEnter={() =>
                       updateHeroMessage(heroMessages[item.english])
                     }
-                    onMouseLeave={() => updateHeroMessage(defaultHeroMessage)}
+                    onMouseLeave={() => updateHeroMessage(configuredMessage)}
                     onFocus={() => updateHeroMessage(heroMessages[item.english])}
-                    onBlur={() => updateHeroMessage(defaultHeroMessage)}
+                    onBlur={() => updateHeroMessage(configuredMessage)}
                   >
                     <span className="hero-nav-label hero-nav-label--english">
                       {item.english}
@@ -275,13 +278,13 @@ export function Hero({ isMenuOpen, onOpenMenu }: HeroProps) {
               />
             </span>
             <p className="hero-brand-name m-0 font-light">
-              翔胤<br />設計
+              {(settings?.title || "翔胤設計").replace("室內", "").split("設計")[0]}<br />設計
             </p>
           </div>
           <div className="hero-brand-lines">
-            {["SIANG YIN", "Design Consulting", company.philosophy].map((line) => (
+            {["SIANG YIN", settings?.subtitle || "Design Consulting", configuredMessage].map((line, index) => (
               <p
-                key={line}
+                key={`${line}-${index}`}
                 className="m-0 border-b border-white/52 font-[family-name:var(--font-montserrat)] tracking-[0.03em]"
               >
                 {line}

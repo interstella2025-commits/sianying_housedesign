@@ -13,6 +13,8 @@ export type GalleryProject = Project & {
   gallery: string[];
   panorama?: string;
   cover?: string;
+  category?: "residential" | "commercial";
+  published?: boolean;
 };
 
 const assets = galleryAssets as GalleryAsset[];

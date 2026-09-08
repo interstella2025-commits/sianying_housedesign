@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import { InnerPageShell } from "@/components/sites/senjin-design-com-dd40b413/root-8a5edab2/inner-page-shell";
 import { NewContactForm } from "@/components/sites/senjin-design-com-dd40b413/root-8a5edab2/new-contact-form";
 import { company } from "@/data/siangyin";
+import { getPageSettings } from "@/lib/cms/pages";
+import { PageSupplements } from "@/components/cms/page-supplements";
 
 export const metadata: Metadata = {
   title: "聯絡我們｜翔胤室內設計",
@@ -10,21 +12,22 @@ export const metadata: Metadata = {
   alternates: { canonical: "/new/contact" },
 };
 
-export default function NewContactPage() {
+export default async function NewContactPage() {
+  const settings = await getPageSettings("/new/contact");
   return (
     <InnerPageShell tone="dark" showFooter={false}>
       <div className="new-contact-page">
         <section className="new-contact-identity">
-          <h1>Connection</h1>
+          <h1>{settings?.eyebrow || "Connection"}</h1>
           <div>
             <p>SIANG YIN</p>
             <p>Design Consulting</p>
-            <p>{company.philosophy}</p>
+            <p>{settings?.description || company.philosophy}</p>
           </div>
         </section>
 
         <section className="new-contact-form-section">
-          <h2>Contact</h2>
+          <h2>{settings?.title || "Contact"}</h2>
           <NewContactForm />
         </section>
 
@@ -33,6 +36,7 @@ export default function NewContactPage() {
           <a href={`tel:${company.phone.replace(/\D/g, "")}`}>Tel：{company.phone}</a>
           <a href={`mailto:${company.email}`}>{company.email}</a>
         </address>
+        <PageSupplements settings={settings} />
       </div>
     </InnerPageShell>
   );

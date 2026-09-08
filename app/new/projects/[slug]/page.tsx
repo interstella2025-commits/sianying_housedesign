@@ -3,14 +3,11 @@ import { notFound } from "next/navigation";
 
 import { galleryProjects } from "@/app/lib/project-gallery";
 import { ProjectDetailPage } from "@/components/sites/senjin-design-com-dd40b413/root-8a5edab2/project-detail-page";
+import { getStoredProjects } from "@/lib/cms/projects-store";
 
 type ProjectPageProps = {
   params: Promise<{ slug: string }>;
 };
-
-function getProject(slug: string) {
-  return galleryProjects.find((project) => project.slug === slug);
-}
 
 export function generateStaticParams() {
   return galleryProjects.map((project) => ({ slug: project.slug }));
@@ -18,7 +15,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const project = getProject(slug);
+  const project = (await getStoredProjects()).find((item) => item.slug === slug);
 
   if (!project) return {};
 
@@ -42,17 +39,18 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const { slug } = await params;
-  const projectIndex = galleryProjects.findIndex((project) => project.slug === slug);
+  const projects = await getStoredProjects();
+  const projectIndex = projects.findIndex((project) => project.slug === slug);
 
   if (projectIndex < 0) notFound();
 
-  const project = galleryProjects[projectIndex];
+  const project = projects[projectIndex];
 
   return (
     <ProjectDetailPage
       project={project}
-      previousProject={galleryProjects[projectIndex - 1]}
-      nextProject={galleryProjects[projectIndex + 1]}
+      previousProject={projects[projectIndex - 1]}
+      nextProject={projects[projectIndex + 1]}
     />
   );
 }

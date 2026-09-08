@@ -18,6 +18,32 @@
   text-rendering: optimizeLegibility;
 }
 
+.cms-page-sections {
+  width: min(100% - (var(--portfolio-gutter) * 2), 88rem);
+  margin: 0 auto;
+  padding: 2rem 0 6rem;
+}
+
+.cms-page-section {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(18rem, .7fr);
+  gap: clamp(2rem, 5vw, 6rem);
+  align-items: center;
+  padding: clamp(2rem, 5vw, 5rem) 0;
+  border-top: 1px solid currentColor;
+}
+
+.cms-page-section:nth-child(even) .cms-page-section-media { order: 2; }
+.cms-page-section-media img { width: 100%; max-height: 40rem; object-fit: cover; display: block; }
+.cms-page-section-copy h2 { margin: 0 0 1.25rem; font: 400 clamp(1.8rem, 3vw, 3.5rem)/1.2 var(--font-cormorant), serif; }
+.cms-page-section-copy p { white-space: pre-line; line-height: 1.9; }
+.cms-page-section-copy a { display: inline-block; margin-top: 1.5rem; border-bottom: 1px solid; }
+
+@media (max-width: 760px) {
+  .cms-page-section { grid-template-columns: 1fr; }
+  .cms-page-section:nth-child(even) .cms-page-section-media { order: 0; }
+}
+
 .senjin-clone,
 .senjin-clone *,
 .senjin-clone *::before,
@@ -2159,13 +2185,15 @@
 }
 
 .senjin-clone .new-blog-sidebar h1,
+.senjin-clone .new-blog-sidebar-title,
 .senjin-clone .new-blog-sidebar > p {
   margin: 0;
   font-family: Georgia, "Times New Roman", serif;
   font-weight: 400;
 }
 
-.senjin-clone .new-blog-sidebar h1 {
+.senjin-clone .new-blog-sidebar h1,
+.senjin-clone .new-blog-sidebar-title {
   font-size: 1.55rem;
 }
 
@@ -2513,7 +2541,8 @@
   gap: 100px;
 }
 
-.senjin-clone .new-blog-sidebar h1 {
+  .senjin-clone .new-blog-sidebar h1,
+  .senjin-clone .new-blog-sidebar-title {
   font-size: 30px;
   line-height: 50px;
 }

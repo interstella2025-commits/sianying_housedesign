@@ -49,43 +49,36 @@ const commercialProjectNumbers = new Set(["06", "11"]);
 
 export function getProjectsForCategory(
   slug: ProjectCategorySlug,
+  sourceProjects: GalleryProject[] = galleryProjects,
 ): GalleryProject[] {
-  if (slug === "all") return galleryProjects;
+  if (slug === "all") return sourceProjects;
   if (slug === "panorama") {
-    return galleryProjects.filter((project) => Boolean(project.panorama));
+    return sourceProjects.filter((project) => Boolean(project.panorama));
   }
   if (slug === "commercial") {
-    return galleryProjects.filter((project) =>
-      commercialProjectNumbers.has(project.number),
+    return sourceProjects.filter((project) =>
+      project.category === "commercial" || commercialProjectNumbers.has(project.number),
     );
   }
 
-  return galleryProjects.filter(
-    (project) => !commercialProjectNumbers.has(project.number),
+  return sourceProjects.filter(
+    (project) => project.category === "residential" || (
+      !project.category && !commercialProjectNumbers.has(project.number)
+    ),
   );
 }
 
 export function getProjectCategory(project: GalleryProject): ProjectCategory {
-  return commercialProjectNumbers.has(project.number)
+  return project.category === "commercial" || commercialProjectNumbers.has(project.number)
     ? projectCategories.commercial
     : projectCategories.residential;
 }
 
-export const newProjectSections = [
-  {
-    ...projectCategories.residential,
-    projects: getProjectsForCategory("residential").slice(0, 2),
-  },
-  {
-    ...projectCategories.commercial,
-    projects: getProjectsForCategory("commercial").slice(0, 2),
-  },
-  {
-    ...projectCategories.panorama,
-    projects: getProjectsForCategory("panorama").slice(0, 2),
-  },
-  {
-    ...projectCategories.all,
-    projects: galleryProjects.slice(-2),
-  },
-] as const;
+export function getNewProjectSections(sourceProjects: GalleryProject[] = galleryProjects) {
+  return [
+    { ...projectCategories.residential, projects: getProjectsForCategory("residential", sourceProjects).slice(0, 2) },
+    { ...projectCategories.commercial, projects: getProjectsForCategory("commercial", sourceProjects).slice(0, 2) },
+    { ...projectCategories.panorama, projects: getProjectsForCategory("panorama", sourceProjects).slice(0, 2) },
+    { ...projectCategories.all, projects: sourceProjects.slice(0, 2) },
+  ] as const;
+}
