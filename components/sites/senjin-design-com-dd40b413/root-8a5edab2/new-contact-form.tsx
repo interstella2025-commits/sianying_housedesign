@@ -2,10 +2,11 @@
 
 import { ArrowUpRight, Check } from "@phosphor-icons/react";
 import type { FormEvent } from "react";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { openDirectExternalHref } from "@/app/lib/external-links";
 import { company } from "@/data/siangyin";
+import { saveInquiry } from "@/lib/inquiries/client";
 
 const inputFields = [
   { name: "name", label: "姓名｜Name", type: "text", autoComplete: "name", required: true, maxLength: 80 },
@@ -18,38 +19,92 @@ const inputFields = [
 
 export function NewContactForm() {
   const submittingRef = useRef(false);
-  const [status, setStatus] = useState<"idle" | "copied" | "manual">("idle");
+  const startedAtRef = useRef(0);
+  const [status, setStatus] = useState<
+    "idle" | "submitting" | "saved" | "saved-manual" | "line-only" | "manual"
+  >("idle");
+
+  useEffect(() => {
+    startedAtRef.current = Date.now();
+  }, []);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (submittingRef.current) return;
 
     submittingRef.current = true;
+    setStatus("submitting");
     const data = new FormData(event.currentTarget);
-    const value = (name: string) => String(data.get(name) ?? "").trim() || "未填寫";
+    const value = (name: string) => String(data.get(name) ?? "").trim();
+    const displayValue = (name: string) => value(name) || "未填寫";
     const message = [
       "翔胤室內設計諮詢",
-      `姓名：${value("name")}`,
-      `電話：${value("phone")}`,
-      `信箱：${value("email")}`,
-      `屋齡：${value("houseAge")}`,
-      `地區：${value("location")}`,
-      `預算：${value("budget")}`,
-      `詢問類型：${value("projectType")}`,
-      `需求說明：${value("message")}`,
+      `姓名：${displayValue("name")}`,
+      `電話：${displayValue("phone")}`,
+      `信箱：${displayValue("email")}`,
+      `屋齡：${displayValue("houseAge")}`,
+      `地區：${displayValue("location")}`,
+      `預算：${displayValue("budget")}`,
+      `詢問類型：${displayValue("projectType")}`,
+      `需求說明：${displayValue("message")}`,
     ].join("\n");
 
     openDirectExternalHref(company.lineUrl);
 
     try {
-      await navigator.clipboard.writeText(message);
-      setStatus("copied");
-    } catch {
-      setStatus("manual");
+      const [saved, copied] = await Promise.all([
+        saveInquiry({
+          formType: "consultation",
+          name: value("name"),
+          phone: value("phone"),
+          email: value("email"),
+          houseAge: value("houseAge"),
+          location: value("location"),
+          budget: value("budget"),
+          projectType: value("projectType"),
+          message: value("message"),
+          sourcePath: window.location.pathname,
+          submittedAt: startedAtRef.current,
+          website: value("website"),
+        }).then(
+          () => true,
+          () => false,
+        ),
+        navigator.clipboard.writeText(message).then(
+          () => true,
+          () => false,
+        ),
+      ]);
+
+      if (saved && copied) setStatus("saved");
+      else if (saved) setStatus("saved-manual");
+      else if (copied) setStatus("line-only");
+      else setStatus("manual");
     } finally {
       submittingRef.current = false;
+      startedAtRef.current = Date.now();
     }
   }
+
+  const buttonText =
+    status === "submitting"
+      ? "正在儲存…"
+      : status === "saved" || status === "line-only"
+        ? "已複製，前往 LINE 貼上"
+        : status === "saved-manual"
+          ? "資料已送出"
+          : "前往 LINE 送出";
+
+  const statusText =
+    status === "saved"
+      ? "諮詢資料已安全儲存，內容也已複製，請在新開啟的 LINE 對話貼上並送出。"
+      : status === "saved-manual"
+        ? "諮詢資料已安全儲存；LINE 已開啟，請手動輸入需要補充的內容。"
+        : status === "line-only"
+          ? "LINE 內容已複製，但資料庫暫時無法儲存；請在 LINE 對話貼上並送出。"
+          : status === "manual"
+            ? "LINE 已開啟，但內容未能自動複製且資料庫暫時無法儲存，請手動輸入或直接來電。"
+            : "";
 
   return (
     <form onSubmit={handleSubmit}>
@@ -67,6 +122,10 @@ export function NewContactForm() {
           />
         </label>
       ))}
+      <label className="inquiry-honeypot" aria-hidden="true">
+        <span>網站</span>
+        <input name="website" tabIndex={-1} autoComplete="off" />
+      </label>
       <div className="new-contact-message-field">
         <div className="new-contact-message-heading">
           <label htmlFor="new-contact-message">詢問｜Message</label>
@@ -86,16 +145,16 @@ export function NewContactForm() {
           maxLength={1200}
         />
       </div>
-      <button type="submit">
-        <span>{status === "copied" ? "已複製，前往 LINE 貼上" : "前往 LINE 送出"}</span>
-        {status === "copied" ? <Check aria-hidden="true" /> : <ArrowUpRight aria-hidden="true" />}
+      <button type="submit" disabled={status === "submitting"}>
+        <span>{buttonText}</span>
+        {status === "saved" || status === "line-only" ? (
+          <Check aria-hidden="true" />
+        ) : (
+          <ArrowUpRight aria-hidden="true" />
+        )}
       </button>
       <p className="new-contact-form-status" aria-live="polite">
-        {status === "copied"
-          ? "諮詢內容已複製，請在新開啟的 LINE 對話貼上並送出。"
-          : status === "manual"
-            ? "瀏覽器未允許自動複製；LINE 已開啟，請手動輸入內容，或直接來電與我們聯繫。"
-            : ""}
+        {statusText}
       </p>
     </form>
   );

@@ -15,15 +15,19 @@
     "test": "npm run build && node --test tests/rendered-html.test.mjs",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
     "sync:galleries": "node scripts/sync-project-galleries.mjs",
-    "db:generate": "drizzle-kit generate"
+    "db:generate": "drizzle-kit generate",
+    "tenant:provision": "node scripts/provision-supabase-tenant.mjs",
+    "tenant:verify": "node scripts/verify-sianying-supabase.mjs"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",
+    "@supabase/supabase-js": "^2.116.0",
     "drizzle-orm": "0.45.2",
     "gsap": "^3.15.0",
     "next": "16.2.6",
     "react": "19.2.6",
     "react-dom": "19.2.6",
+    "server-only": "^0.0.1",
     "three": "^0.185.1"
   },
   "devDependencies": {
