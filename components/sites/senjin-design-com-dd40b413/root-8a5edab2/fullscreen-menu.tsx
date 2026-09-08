@@ -132,10 +132,10 @@ export function FullscreenMenu({
       <div className="site-menu-frame">
         <div className="site-menu-header">
           <Link
-            href="/new"
+            href="/"
             onClick={onClose}
             className="site-menu-brand"
-            aria-label="翔胤室內設計新版首頁"
+            aria-label="翔胤室內設計首頁"
           >
             <span className="site-menu-brand-mark">
               <Image

@@ -12,7 +12,6 @@ const staticRoutes = [
   "/press",
   "/privacy",
   "/works",
-  "/new",
   "/new/about",
   "/new/blog",
   "/new/contact",
@@ -34,6 +33,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${siteUrl}${route}`,
     lastModified: now,
     changeFrequency: route === "/new/blog" ? "monthly" : "yearly",
-    priority: route === "/new" ? 1 : route.startsWith("/new/projects/") ? 0.8 : 0.6,
+    priority: route === "" ? 1 : route.startsWith("/new/projects/") ? 0.8 : 0.6,
   }));
 }

@@ -28,25 +28,24 @@ function assertHeadingsHaveNoTerminalPunctuation(html, pathname) {
   }
 }
 
-test("statically renders the finished home page", async () => {
+test("statically renders the promoted portfolio at the site root", async () => {
   const response = await render();
   assert.equal(response.status, 200);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
   assert.match(html, /<title>翔胤室內設計/);
-  assert.match(html, /讓空間與生活/);
-  assert.match(html, /精選完工作品/);
+  assert.match(html, /翔胤室內設計｜讓室內空間與生活密不可分/);
+  assert.match(html, /News/);
+  assert.match(html, /New Projects/);
+  assert.match(html, /CONNECTION/);
   assert.match(html, /光域未來/);
-  assert.match(html, /project-archive-grid/);
-  assert.match(html, /線上預約丈量/);
   assert.doesNotMatch(html, /codex-preview|SkeletonPreview|Your site is taking shape/);
   assertHeadingsHaveNoTerminalPunctuation(html, "/");
   assert.doesNotMatch(html, /下一個空間，從一次對話開始。/);
 });
 
 const publicRoutes = [
-  "/new",
   "/works",
   "/press",
   "/awards",
@@ -66,12 +65,12 @@ test("preserves every public route", async () => {
   }
 });
 
-test("renders the complete redesigned portfolio at /new", async () => {
-  const response = await render("/new");
+test("renders the complete redesigned portfolio at /", async () => {
+  const response = await render("/");
   assert.equal(response.status, 200);
 
   const html = await response.text();
-  assert.match(html, /<title>新版空間作品集/);
+  assert.match(html, /<title>翔胤室內設計/);
   assert.match(html, /翔胤室內設計｜讓室內空間與生活密不可分/);
   assert.match(html, /News/);
   assert.match(html, /New Projects/);
@@ -99,7 +98,14 @@ test("renders the complete redesigned portfolio at /new", async () => {
   assert.equal((html.match(/PROJECT <!-- -->\d{2}/g) ?? []).length, 12);
   assert.equal((html.match(/data-panorama="true"/g) ?? []).length, 9);
   assert.doesNotMatch(html, /href=["']#["']/);
-  assertHeadingsHaveNoTerminalPunctuation(html, "/new");
+  assertHeadingsHaveNoTerminalPunctuation(html, "/");
+});
+
+test("redirects the former /new homepage to /", async () => {
+  const response = await render("/new");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /NEXT_REDIRECT;replace;\/;307;/);
 });
 
 const newArchitectureRoutes = [

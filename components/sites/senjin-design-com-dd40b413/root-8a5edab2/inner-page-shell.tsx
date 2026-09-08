@@ -32,7 +32,7 @@ export function InnerPageShell({
       </a>
 
       <header className="new-inner-header">
-        <Link href="/new" className="new-inner-brand" aria-label="返回翔胤室內設計新版首頁">
+        <Link href="/" className="new-inner-brand" aria-label="返回翔胤室內設計首頁">
           <span>
             <Image
               src={`${assetRoot}/brand/logo.png`}
@@ -67,7 +67,7 @@ export function InnerPageShell({
       {showFooter ? (
         <footer className="new-inner-footer">
           <div className="new-inner-footer-links">
-            <Link href="/new">TOP</Link>
+            <Link href="/">TOP</Link>
             <Link href="/new/contact">CONTACT</Link>
             <a href={company.facebook} target="_blank" rel="noreferrer">FACEBOOK</a>
             <a href={company.instagram} target="_blank" rel="noreferrer">INSTAGRAM</a>

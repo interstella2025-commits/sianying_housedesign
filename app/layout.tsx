@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { AppProviders } from "./components/AppProviders";
 import "./globals.css";
+import "./new/new-site.css";
 import "./site-custom.css";
 
 const siteUrl = "https://sianying-housedesign.vercel.app";

@@ -2,7 +2,7 @@ export const assetRoot =
   "/sites/senjin-design-com-dd40b413/root-8a5edab2";
 
 export const navigation = [
-  { label: "首頁", heroLabel: "首頁", english: "TOP", href: "/new" },
+  { label: "首頁", heroLabel: "首頁", english: "TOP", href: "/" },
   {
     label: "關於翔胤",
     heroLabel: "關於我們",
