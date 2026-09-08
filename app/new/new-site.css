@@ -2632,7 +2632,7 @@
 }
 
 .senjin-clone .new-contact-identity > div {
-  width: min(100%, 210px);
+  width: min(100%, 320px);
   margin-top: 0;
 }
 
@@ -2650,6 +2650,52 @@
 
 .senjin-clone .new-contact-identity > div p:last-child {
   font-size: 14px;
+}
+
+.senjin-clone .new-contact-feature-image {
+  position: relative;
+  width: min(100%, 540px);
+  margin: 48px 0 0;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #181818;
+}
+
+.senjin-clone .new-contact-feature-image::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 52%, rgb(0 0 0 / 0.62));
+  content: "";
+  pointer-events: none;
+}
+
+.senjin-clone .new-contact-feature-image img {
+  object-fit: cover;
+  filter: saturate(0.7) brightness(0.8);
+}
+
+.senjin-clone .new-contact-feature-image figcaption {
+  position: absolute;
+  z-index: 1;
+  right: 22px;
+  bottom: 18px;
+  left: 22px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  color: #f1e9e2;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.senjin-clone .new-contact-feature-image figcaption span {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+}
+
+.senjin-clone .new-contact-feature-image figcaption strong {
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
 }
 
 .senjin-clone .new-contact-address {
@@ -2727,8 +2773,8 @@
 
 .senjin-clone .new-contact-message-heading {
   display: flex;
-  height: 40px;
-  align-items: flex-start;
+  min-height: 42px;
+  align-items: center;
 }
 
 .senjin-clone .new-contact-message-heading > label {
@@ -2741,18 +2787,29 @@
 }
 
 .senjin-clone .new-contact-message-heading select {
-  width: 125px;
-  height: 24px;
+  width: 164px;
+  height: 36px;
   margin-left: 16px;
-  margin-top: 4px;
-  padding: 0 8px 0 38px;
-  border: 0;
+  margin-top: 0;
+  padding: 0 38px 1px 18px;
+  border: 1px solid rgb(227 217 209 / 0.58);
   border-radius: 999px;
-  background: #e3d9d1;
+  appearance: none;
+  background-color: #e3d9d1;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.25 6 6.25l5-5' fill='none' stroke='%23222' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-position: right 15px center;
+  background-repeat: no-repeat;
+  background-size: 12px 8px;
   color: #222;
   font-family: "Times New Roman", Times, serif;
   font-size: 16px;
-  line-height: 24px;
+  line-height: normal;
+  cursor: pointer;
+}
+
+.senjin-clone .new-contact-message-heading select:focus-visible {
+  outline: 2px solid #e3d9d1;
+  outline-offset: 3px;
 }
 
 .senjin-clone .new-contact-form-section textarea {
@@ -3214,6 +3271,10 @@
 
   .senjin-clone .new-contact-identity h1 {
     font-size: 30px;
+  }
+
+  .senjin-clone .new-contact-feature-image {
+    display: none;
   }
 
   .senjin-clone .new-contact-form-section {
