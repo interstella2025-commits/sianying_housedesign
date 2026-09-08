@@ -22,14 +22,21 @@ export default async function NewAboutPage() {
         <section id="designer" className="new-about-team">
           <h1>{settings?.title || "Design Team"}</h1>
           <div className="new-about-team-grid">
-            <div className="new-about-portrait">
-              <Image
-                src={settings?.image || "/media/grok-image-8edffe_orig-19da4d8d29.png"}
-                alt={settings?.imageAlt || "翔胤室內設計專案設計師 Chou Su Zung"}
-                fill
-                priority
-                sizes="(max-width: 760px) 70vw, 24vw"
-              />
+            <div className="new-about-portrait-column">
+              <div className="new-about-portrait">
+                <Image
+                  src={settings?.image || "/media/grok-image-8edffe_orig-19da4d8d29.png"}
+                  alt={settings?.imageAlt || "翔胤室內設計專案設計師 Chou Su Zung"}
+                  fill
+                  priority
+                  sizes="(max-width: 760px) 82vw, (max-width: 1100px) 42vw, 30vw"
+                />
+              </div>
+              <p className="new-about-history">
+                2010 台北成立 翔胤室內設計<br />
+                20+ 年室內設計與工程實務<br />
+                服務台北、新北、桃園、新竹、宜蘭與台中
+              </p>
             </div>
 
             <div className="new-about-team-copy">
@@ -41,7 +48,6 @@ export default async function NewAboutPage() {
               <div>
                 <p>{settings?.description || company.about}</p>
                 <p>{company.philosophy}。設計從居住需求、動線與收納開始，再處理採光、材質與整體風格。</p>
-                <p className="new-about-history">2010 台北成立 翔胤室內設計<br />20+ 年室內設計與工程實務<br />服務台北、新北、桃園、新竹、宜蘭與台中</p>
               </div>
             </div>
           </div>
@@ -54,10 +60,12 @@ export default async function NewAboutPage() {
             <p>Designer</p>
             <span>｜設計</span>
           </header>
-          <div>
+          <div className="new-about-designer-intro">
             <h2>主持設計師 Chou Su Zung</h2>
             <p>21 歲退伍後投入室內設計產業，累積超過二十年實務經驗，於 2010 年創立翔胤室內設計。</p>
             <p>以生活需求作為設計起點，讓格局、光線、材質與工程細節形成一致且可長久使用的空間。</p>
+          </div>
+          <div className="new-about-designer-philosophy">
             <h3>Our Design Philosophy｜設計理念</h3>
             <strong>誠實於生活</strong>
             <p>{company.philosophy}。每個決定都從日常動線、收納與居住習慣開始。</p>
