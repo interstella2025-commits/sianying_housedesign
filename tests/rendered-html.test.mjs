@@ -132,6 +132,26 @@ test("renders every page in the redesigned site architecture", async () => {
   }
 });
 
+test("keeps the public panorama gallery while removing its standalone Puck editor", async () => {
+  const publicResponse = await render("/new/projects/panorama");
+  assert.equal(publicResponse.status, 200);
+  assert.match(await publicResponse.text(), /3D 全景作品/);
+
+  const editablePagesSource = await readFile(
+    new URL("../lib/puck/editable-pages.ts", import.meta.url),
+    "utf8",
+  );
+  assert.doesNotMatch(editablePagesSource, /3D 全景頁編輯/);
+  assert.doesNotMatch(editablePagesSource, /"\/new\/projects\/panorama"/);
+
+  const projectManagerSource = await readFile(
+    new URL("../components/admin/ProjectsManager.tsx", import.meta.url),
+    "utf8",
+  );
+  assert.match(projectManagerSource, /uploadPanorama/);
+  assert.match(projectManagerSource, /3D 全景展開圖/);
+});
+
 const newProjectSlugs = [
   "light-future",
   "realm-of-light",

@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import type { Data } from "@puckeditor/core";
 import { isAdminAuthenticated } from "@/lib/admin-auth.server";
 import { savePageData } from "@/lib/cms/pages";
+import { isEditablePagePath } from "@/lib/puck/editable-pages";
 
 export async function POST(request: Request) {
   if (!(await isAdminAuthenticated())) {
@@ -12,6 +13,9 @@ export async function POST(request: Request) {
   const payload = (await request.json()) as { path?: string; data?: Data };
   if (!payload.path || !payload.data) {
     return NextResponse.json({ error: "缺少 path 或 data" }, { status: 400 });
+  }
+  if (!isEditablePagePath(payload.path)) {
+    return NextResponse.json({ error: "此頁面不在可編輯清單中" }, { status: 404 });
   }
 
   await savePageData(payload.path, payload.data);
@@ -26,6 +30,9 @@ export async function GET(request: Request) {
   }
 
   const path = new URL(request.url).searchParams.get("path") ?? "/";
+  if (!isEditablePagePath(path)) {
+    return NextResponse.json({ error: "此頁面不在可編輯清單中" }, { status: 404 });
+  }
   const { getPageData } = await import("@/lib/cms/pages");
   const data = await getPageData(path);
   return NextResponse.json({ path, data });

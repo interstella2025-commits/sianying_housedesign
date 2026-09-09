@@ -32,19 +32,25 @@ if (signInError || !sessionData.user) {
 }
 assert.equal(sessionData.user.app_metadata?.tenant_id, tenantId);
 
-const ownTables = [
-  "sianying_inquiries",
-  "sianying_cms_documents",
-  "sianying_bk_projects",
-  "sianying_bk_vendors",
-  "sianying_bk_project_incomes",
-  "sianying_bk_project_expenses",
-  "sianying_bk_expense_payments",
-];
+const ownTables = {
+  sianying_inquiries:
+    "id,created_at,form_type,name,phone,email,house_age,location,budget,project_type,message,line_id,source_path,visitor_hash,status",
+  sianying_cms_documents: "key,data,updated_at",
+  sianying_bk_projects:
+    "id,name,client_name,client_phone,client_tax_id,client_invoice_tax_mode,client_invoice_no,design_invoice_tax_mode,design_invoice_no,prepayment_invoice_tax_mode,prepayment_invoice_no,address,design_fee_amount,prepayment_amount,contract_amount,status,note,created_at,updated_at",
+  sianying_bk_vendors:
+    "id,name,trade,contact_name,phone,tax_id,bank_info,note,created_at,updated_at",
+  sianying_bk_project_incomes:
+    "id,project_id,received_date,income_category,amount,payment_method,reference_no,invoice_tax_mode,client_invoice_status,client_invoice_no,tax_status,tax_amount,tax_paid_date,note,created_at",
+  sianying_bk_project_expenses:
+    "id,project_id,vendor_id,expense_date,trade,description,payable_amount,payable_net_amount,due_date,payment_stage,invoice_no,invoice_amount,vendor_tax_mode,vendor_invoice_status,vendor_invoice_note,note,created_at,updated_at",
+  sianying_bk_expense_payments:
+    "id,expense_id,paid_date,amount,payment_method,reference_no,note,created_at",
+};
 
 const ownCounts = {};
-for (const table of ownTables) {
-  const result = await tenant.from(table).select("*", { count: "exact", head: true });
+for (const [table, columns] of Object.entries(ownTables)) {
+  const result = await tenant.from(table).select(columns, { count: "exact", head: true });
   assert.equal(result.error, null, `${table}: ${result.error?.message}`);
   ownCounts[table] = result.count ?? 0;
 }

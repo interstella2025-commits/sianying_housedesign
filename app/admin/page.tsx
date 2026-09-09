@@ -30,7 +30,7 @@ export default async function AdminDashboardPage() {
 
         <section className="admin-section">
           <h2 className="admin-section-title">介面文字編輯</h2>
-          <p className="admin-note">所有公開頁面的主標、說明、圖片與補充圖文區塊都可用 Puck 編輯。</p>
+          <p className="admin-note">下列公開頁面的主標、說明、圖片與補充圖文區塊可用 Puck 編輯。</p>
           <div className="admin-grid admin-grid-pages">
             {pageEditors.map((item) => (
               <Link className="admin-card" href={item.href} key={item.href}>

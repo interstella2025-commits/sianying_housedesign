@@ -83,16 +83,6 @@ const seeds: Record<EditablePagePath, Omit<SianyingPageSettings, "sections">> = 
     ctaLabel: "聯絡翔胤",
     ctaHref: "/new/contact",
   },
-  "/new/projects/panorama": {
-    eyebrow: "360°",
-    title: "3D 全景作品",
-    subtitle: "Panorama",
-    description: "以 360 度全景保留空間尺度、動線與視線關係。",
-    image: "",
-    imageAlt: "",
-    ctaLabel: "聯絡翔胤",
-    ctaHref: "/new/contact",
-  },
 };
 
 export function createPageSeed(path: EditablePagePath): Data {
