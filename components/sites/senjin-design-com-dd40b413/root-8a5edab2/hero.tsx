@@ -47,9 +47,10 @@ type HeroProps = {
   isMenuOpen: boolean;
   onOpenMenu: MouseEventHandler<HTMLButtonElement>;
   settings?: SianyingPageSettings | null;
+  editorPreview?: boolean;
 };
 
-export function Hero({ isMenuOpen, onOpenMenu, settings }: HeroProps) {
+export function Hero({ isMenuOpen, onOpenMenu, settings, editorPreview = false }: HeroProps) {
   const heroRef = useRef<HTMLElement>(null);
   const hasHandledDownwardIntent = useRef(false);
   const touchStartY = useRef<number | null>(null);
@@ -95,6 +96,8 @@ export function Hero({ isMenuOpen, onOpenMenu, settings }: HeroProps) {
   }, [heroMessage]);
 
   useEffect(() => {
+    if (editorPreview) return;
+
     const moveToContent = () => {
       if (hasHandledDownwardIntent.current) return false;
 
@@ -164,7 +167,7 @@ export function Hero({ isMenuOpen, onOpenMenu, settings }: HeroProps) {
       window.removeEventListener("touchstart", handleTouchStart);
       window.removeEventListener("touchend", handleTouchEnd);
     };
-  }, []);
+  }, [editorPreview]);
 
   return (
     <section

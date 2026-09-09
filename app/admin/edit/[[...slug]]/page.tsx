@@ -2,6 +2,7 @@ import type { Data } from "@puckeditor/core";
 import { notFound } from "next/navigation";
 import { getDefaultPageData, getPageData } from "@/lib/cms/pages";
 import { normalizePageData } from "@/lib/cms/normalize-page-data";
+import { getStoredProjects } from "@/lib/cms/projects-store";
 import {
   EDITABLE_PAGE_LABELS,
   isEditablePagePath,
@@ -24,7 +25,10 @@ export default async function AdminEditPage({ params }: AdminEditPageProps) {
   const path = pathFromSlug(slug);
   if (!isEditablePagePath(path)) notFound();
 
-  const stored = await getPageData(path);
+  const [stored, previewProjects] = await Promise.all([
+    getPageData(path),
+    getStoredProjects(),
+  ]);
   const fallback = getDefaultPageData(path);
   const source = stored ?? fallback;
   if (!source) notFound();
@@ -37,6 +41,7 @@ export default async function AdminEditPage({ params }: AdminEditPageProps) {
         path={path}
         initialData={data}
         headerTitle={EDITABLE_PAGE_LABELS[path]}
+        previewProjects={previewProjects}
       />
     </div>
   );

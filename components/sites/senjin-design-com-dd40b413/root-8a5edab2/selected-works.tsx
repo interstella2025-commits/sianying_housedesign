@@ -1,12 +1,11 @@
 import Link from "next/link";
 
-import { getStoredProjects } from "@/lib/cms/projects-store";
+import type { Project } from "@/lib/project-types";
 
 import { PortfolioProjectMedia } from "./portfolio-project-media";
 import { Reveal } from "./reveal";
 
-export async function SelectedWorks() {
-  const projects = await getStoredProjects();
+export function SelectedWorks({ projects }: { projects: Project[] }) {
   return (
     <section id="works" className="section-anchor pb-28" aria-labelledby="works-heading">
       <div className="portfolio-column">

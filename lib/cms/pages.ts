@@ -11,7 +11,16 @@ const PAGES_KEY = "pages";
 
 export async function getAllPages(): Promise<PageMap> {
   const stored = await readCmsJson<PageMap>(PAGES_KEY);
-  return { ...getAllPageSeeds(), ...(stored ?? {}) };
+  const pages = { ...getAllPageSeeds(), ...(stored ?? {}) };
+
+  // The redesigned homepage used "/" as its storage key before the public
+  // route and editor were explicitly namespaced under /new. Preserve any
+  // content that was already published through the earlier editor.
+  if (!stored?.["/new"] && stored?.["/"]) {
+    pages["/new"] = stored["/"];
+  }
+
+  return pages;
 }
 
 export async function getPageData(path: string): Promise<Data | null> {

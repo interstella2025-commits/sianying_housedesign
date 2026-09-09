@@ -1,0 +1,116 @@
+import Image from "next/image";
+import Link from "next/link";
+
+import { processItems } from "@/app/data";
+import { PageSupplements } from "@/components/cms/page-supplements";
+import { company } from "@/data/siangyin";
+import type { SianyingPageSettings } from "@/lib/puck/page-settings";
+
+export function NewAboutContent({ settings }: { settings: SianyingPageSettings | null }) {
+  return (
+    <div className="new-about-page">
+      <section id="designer" className="new-about-team">
+        <h1>{settings?.title || "Design Team"}</h1>
+        <div className="new-about-team-grid">
+          <div className="new-about-portrait-column">
+            <div className="new-about-portrait">
+              <Image
+                src={settings?.image || "/media/grok-image-8edffe_orig-19da4d8d29.png"}
+                alt={settings?.imageAlt || "翔胤室內設計專案設計師 Chou Su Zung"}
+                fill
+                priority
+                sizes="(max-width: 760px) 82vw, (max-width: 1100px) 42vw, 30vw"
+              />
+            </div>
+            <p className="new-about-history">
+              2010 台北成立 翔胤室內設計<br />
+              20+ 年室內設計與工程實務<br />
+              服務台北、新北、桃園、新竹、宜蘭與台中
+            </p>
+          </div>
+
+          <div className="new-about-team-copy">
+            <nav aria-label="關於頁段落導覽">
+              <a href="#designer">→ 設計師</a>
+              <a href="#awards">→ 獎項</a>
+              <a href="#service">→ 服務流程</a>
+            </nav>
+            <div>
+              <p>{settings?.description || company.about}</p>
+              <p>{company.philosophy}。設計從居住需求、動線與收納開始，再處理採光、材質與整體風格。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <PageSupplements settings={settings} />
+
+      <section className="new-about-designer-profile">
+        <header>
+          <p>Designer</p>
+          <span>｜設計</span>
+        </header>
+        <div className="new-about-designer-intro">
+          <h2>主持設計師 Chou Su Zung</h2>
+          <p>21 歲退伍後投入室內設計產業，累積超過二十年實務經驗，於 2010 年創立翔胤室內設計。</p>
+          <p>以生活需求作為設計起點，讓格局、光線、材質與工程細節形成一致且可長久使用的空間。</p>
+        </div>
+        <div className="new-about-designer-philosophy">
+          <h3>Our Design Philosophy｜設計理念</h3>
+          <strong>誠實於生活</strong>
+          <p>{company.philosophy}。每個決定都從日常動線、收納與居住習慣開始。</p>
+          <strong>誠實於材質</strong>
+          <p>保留材料真實的質地與尺度，讓木、石、金屬與光線自然形成空間層次。</p>
+          <strong>誠實於細節</strong>
+          <p>從設計到工程現場持續校準，讓圖面、工法與完成後的生活維持一致。</p>
+        </div>
+      </section>
+
+      <section id="awards" className="new-about-awards">
+        <div className="new-about-award-media">
+          <Image
+            src="/media/adesignaward-certificate-136768.png"
+            alt="翔胤室內設計 A' Design Award 得獎證書"
+            fill
+            sizes="(max-width: 760px) 100vw, 42vw"
+          />
+        </div>
+        <div>
+          <p>Awards</p>
+          <h2>｜獎項</h2>
+          <strong>2022 — A&apos; Design Award</strong>
+          <span>《鉑金石韻》室內空間及展覽設計類得獎作品</span>
+          <a
+            href="https://competition.adesignaward.com/design.php?ID=136768"
+            target="_blank"
+            rel="noreferrer"
+          >
+            查看官方得獎頁面 ↗
+          </a>
+        </div>
+      </section>
+
+      <section id="service" className="new-about-service">
+        <header>
+          <p>Service</p>
+          <h2>｜服務流程</h2>
+        </header>
+        <ol>
+          {processItems.map((item) => (
+            <li key={item.number}>
+              <span>{item.number}</span>
+              <div>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <div className="new-about-contact-link">
+        <Link href={settings?.ctaHref || "/new/contact"}>{settings?.ctaLabel || "與翔胤討論你的空間"} →</Link>
+      </div>
+    </div>
+  );
+}

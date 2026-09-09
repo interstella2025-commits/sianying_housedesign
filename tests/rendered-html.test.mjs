@@ -101,11 +101,13 @@ test("renders the complete redesigned portfolio at /", async () => {
   assertHeadingsHaveNoTerminalPunctuation(html, "/");
 });
 
-test("redirects the former /new homepage to /", async () => {
+test("renders the redesigned homepage directly at /new", async () => {
   const response = await render("/new");
   assert.equal(response.status, 200);
   const html = await response.text();
-  assert.match(html, /NEXT_REDIRECT;replace;\/;307;/);
+  assert.match(html, /翔胤室內設計｜讓室內空間與生活密不可分/);
+  assert.match(html, /New Projects/);
+  assert.doesNotMatch(html, /NEXT_REDIRECT/);
 });
 
 const newArchitectureRoutes = [
@@ -150,6 +152,34 @@ test("keeps the public panorama gallery while removing its standalone Puck edito
   );
   assert.match(projectManagerSource, /uploadPanorama/);
   assert.match(projectManagerSource, /3D 全景展開圖/);
+});
+
+test("the /new admin editor previews real redesigned page components", async () => {
+  const editablePagesSource = await readFile(
+    new URL("../lib/puck/editable-pages.ts", import.meta.url),
+    "utf8",
+  );
+  const puckConfigSource = await readFile(
+    new URL("../puck.config.tsx", import.meta.url),
+    "utf8",
+  );
+  const previewSource = await readFile(
+    new URL("../components/admin/puck/SianyingPagePreview.tsx", import.meta.url),
+    "utf8",
+  );
+  const newAdminSource = await readFile(
+    new URL("../app/new/admin/page.tsx", import.meta.url),
+    "utf8",
+  );
+
+  assert.match(editablePagesSource, /"\/new"/);
+  assert.doesNotMatch(editablePagesSource, /^\s*"\/",/m);
+  assert.match(puckConfigSource, /SianyingPagePreview/);
+  assert.match(previewSource, /NewAboutContent/);
+  assert.match(previewSource, /NewBlogContent/);
+  assert.match(previewSource, /NewContactContent/);
+  assert.match(previewSource, /ProjectCategoryContent/);
+  assert.match(newAdminSource, /AdminDashboardPage/);
 });
 
 const newProjectSlugs = [

@@ -19,7 +19,8 @@ export async function POST(request: Request) {
   }
 
   await savePageData(payload.path, payload.data);
-  revalidatePath(payload.path === "/" ? "/" : payload.path);
+  revalidatePath(payload.path);
+  if (payload.path === "/new") revalidatePath("/");
 
   return NextResponse.json({ ok: true });
 }
@@ -29,7 +30,7 @@ export async function GET(request: Request) {
     return NextResponse.json({ error: "未授權" }, { status: 401 });
   }
 
-  const path = new URL(request.url).searchParams.get("path") ?? "/";
+  const path = new URL(request.url).searchParams.get("path") ?? "/new";
   if (!isEditablePagePath(path)) {
     return NextResponse.json({ error: "此頁面不在可編輯清單中" }, { status: 404 });
   }

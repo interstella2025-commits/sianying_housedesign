@@ -10,9 +10,13 @@ import { FullscreenMenu } from "./fullscreen-menu";
 import { Hero } from "./hero";
 import type { SianyingPageSettings } from "@/lib/puck/page-settings";
 
-type SiteShellProps = { children: ReactNode; heroSettings?: SianyingPageSettings | null };
+type SiteShellProps = {
+  children: ReactNode;
+  heroSettings?: SianyingPageSettings | null;
+  editorPreview?: boolean;
+};
 
-export function SiteShell({ children, heroSettings }: SiteShellProps) {
+export function SiteShell({ children, heroSettings, editorPreview = false }: SiteShellProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCompact, setIsCompact] = useState(false);
   const activeMenuTriggerRef = useRef<HTMLButtonElement>(null);
@@ -23,6 +27,8 @@ export function SiteShell({ children, heroSettings }: SiteShellProps) {
   const closeMenu = useCallback(() => setIsMenuOpen(false), []);
 
   useEffect(() => {
+    if (editorPreview) return;
+
     let frame = 0;
     const handleScroll = () => {
       window.cancelAnimationFrame(frame);
@@ -37,7 +43,7 @@ export function SiteShell({ children, heroSettings }: SiteShellProps) {
       window.cancelAnimationFrame(frame);
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [editorPreview]);
 
   return (
     <>
@@ -45,7 +51,12 @@ export function SiteShell({ children, heroSettings }: SiteShellProps) {
         跳至主要內容
       </a>
 
-      <Hero isMenuOpen={isMenuOpen} onOpenMenu={openMenu} settings={heroSettings} />
+      <Hero
+        isMenuOpen={isMenuOpen}
+        onOpenMenu={openMenu}
+        settings={heroSettings}
+        editorPreview={editorPreview}
+      />
 
       <div id="content" className="relative bg-[#1d1d1d]">
         <header

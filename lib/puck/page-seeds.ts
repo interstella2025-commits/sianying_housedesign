@@ -3,7 +3,7 @@ import type { EditablePagePath } from "@/lib/puck/editable-pages";
 import type { SianyingPageSettings } from "@/lib/puck/page-settings";
 
 const seeds: Record<EditablePagePath, Omit<SianyingPageSettings, "sections">> = {
-  "/": {
+  "/new": {
     eyebrow: "SIANG YIN / INTERIOR DESIGN",
     title: "翔胤室內設計",
     subtitle: "Design Consulting",

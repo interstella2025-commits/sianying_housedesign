@@ -1,5 +1,5 @@
 export const EDITABLE_PAGE_PATHS = [
-  "/",
+  "/new",
   "/new/about",
   "/new/blog",
   "/new/contact",
@@ -12,7 +12,7 @@ export const EDITABLE_PAGE_PATHS = [
 export type EditablePagePath = (typeof EDITABLE_PAGE_PATHS)[number];
 
 export const EDITABLE_PAGE_LABELS: Record<EditablePagePath, string> = {
-  "/": "首頁內容編輯",
+  "/new": "新版首頁內容編輯",
   "/new/about": "關於翔胤編輯",
   "/new/blog": "消息與媒體編輯",
   "/new/contact": "聯絡頁編輯",

@@ -690,6 +690,27 @@
   height: 100svh;
 }
 
+.puck-page-preview {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* 編輯器畫布只負責選取區塊，避免預覽中的連結、表單與選單離開編輯畫面。 */
+.puck-page-preview :is(a, button, input, select, textarea) {
+  pointer-events: none;
+}
+
+.puck-page-preview .hero-camera-move {
+  animation-play-state: paused;
+  transform: scale(1.04);
+}
+
+.puck-page-preview .reveal,
+.puck-page-preview .reveal:not(.is-visible) {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
 /* Puck 預覽不會載入 SiteEffects，scroll-reveal 需直接顯示 */
 .admin-editor-shell [data-reveal],
 .admin-editor-shell .stagger > *,

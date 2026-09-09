@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { NewDesignFrame } from "@/components/sites/senjin-design-com-dd40b413/root-8a5edab2/new-design-frame";
 import { NewHomeContent } from "@/components/sites/senjin-design-com-dd40b413/root-8a5edab2/new-home-content";
 import { getPageSettings } from "@/lib/cms/pages";
+import { getStoredProjects } from "@/lib/cms/projects-store";
 
 export const metadata: Metadata = {
   title: "翔胤室內設計｜住宅、商業空間與舊屋翻修作品集",
@@ -23,10 +24,13 @@ export const metadata: Metadata = {
 };
 
 export default async function HomePage() {
-  const settings = await getPageSettings("/");
+  const [settings, projects] = await Promise.all([
+    getPageSettings("/new"),
+    getStoredProjects(),
+  ]);
   return (
     <NewDesignFrame>
-      <NewHomeContent settings={settings} />
+      <NewHomeContent settings={settings} projects={projects} />
     </NewDesignFrame>
   );
 }
