@@ -131,6 +131,16 @@
     transform 0.2s ease;
 }
 
+/* /new/admin is rendered inside the redesigned site's dark frame. Keep the
+   light dashboard cards readable instead of inheriting the frame's pale text. */
+.senjin-clone .admin-card {
+  color: #1d1d1d;
+}
+
+.senjin-clone .admin-card p {
+  color: #5f5f5f;
+}
+
 .admin-card:hover {
   border-color: rgba(41, 42, 39, 0.22);
   background: #fff;
@@ -150,6 +160,24 @@
   color: #999;
   font-size: 18px;
   content: "→";
+}
+
+.senjin-clone .admin-card::after {
+  color: #696969;
+}
+
+.senjin-clone .admin-section-title,
+.senjin-clone .admin-note {
+  color: #aaa6a1;
+}
+
+.senjin-clone .admin-button {
+  color: #f8f7f3;
+}
+
+.senjin-clone .admin-button.secondary {
+  border-color: rgba(248, 247, 243, 0.4);
+  color: #f8f7f3;
 }
 
 .admin-form {
