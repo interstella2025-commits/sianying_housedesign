@@ -63,14 +63,6 @@ export default async function AdminDashboardPage() {
           </div>
         </section>
 
-        <section className="admin-section">
-          <h2 className="admin-section-title">影音媒體</h2>
-          <div className="admin-grid admin-grid-single">
-            <Link className="admin-card" href="/admin/media">
-              <h3>媒體庫</h3>
-            </Link>
-          </div>
-        </section>
       </div>
     </div>
   );
