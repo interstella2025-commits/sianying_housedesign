@@ -5,6 +5,10 @@ import { type NextRequest, NextResponse } from "next/server";
 import {
   getSupabaseTenantPassword,
 } from "@/lib/supabase/env";
+import {
+  sendInquiryNotificationEmail,
+  type InquiryNotification,
+} from "@/lib/notifications/inquiry-email";
 import { createSupabaseTenantClient } from "@/lib/supabase/server";
 
 export const runtime = "nodejs";
@@ -74,6 +78,19 @@ export async function POST(request: NextRequest) {
   const phone = text(body, "phone", 20);
   const email = text(body, "email", 120);
   const phoneDigits = phone.replace(/\D/g, "");
+  const inquiry: InquiryNotification = {
+    formType: formType as InquiryNotification["formType"],
+    name,
+    phone,
+    email,
+    houseAge: text(body, "houseAge", 40),
+    location: text(body, "location", 100),
+    budget: text(body, "budget", 60),
+    projectType: text(body, "projectType", 40),
+    message: text(body, "message", 1200),
+    lineId: text(body, "lineId", 80),
+    sourcePath: text(body, "sourcePath", 200) || "/",
+  };
 
   if (formType !== "consultation" && formType !== "reservation") {
     return response("詢問類型無效", 400);
@@ -105,17 +122,24 @@ export async function POST(request: NextRequest) {
       name,
       phone,
       email: email || null,
-      house_age: text(body, "houseAge", 40) || null,
-      location: text(body, "location", 100) || null,
-      budget: text(body, "budget", 60) || null,
-      project_type: text(body, "projectType", 40) || null,
-      message: text(body, "message", 1200) || null,
-      line_id: text(body, "lineId", 80) || null,
-      source_path: text(body, "sourcePath", 200) || "/",
+      house_age: inquiry.houseAge || null,
+      location: inquiry.location || null,
+      budget: inquiry.budget || null,
+      project_type: inquiry.projectType || null,
+      message: inquiry.message || null,
+      line_id: inquiry.lineId || null,
+      source_path: inquiry.sourcePath,
       visitor_hash: visitorHash,
     });
 
     if (insertError) throw insertError;
+
+    try {
+      await sendInquiryNotificationEmail(inquiry);
+    } catch (emailError) {
+      console.error("Unable to send inquiry notification", emailError);
+    }
+
     return NextResponse.json(
       { ok: true },
       { status: 201, headers: { "Cache-Control": "no-store" } },
