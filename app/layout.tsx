@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { AppProviders } from "./components/AppProviders";
 import "./globals.css";
 import "./new/new-site.css";
@@ -68,6 +69,18 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="zh-Hant" data-scroll-behavior="smooth">
       <body>
         <AppProviders>{children}</AppProviders>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-31YHHKNSCN"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-31YHHKNSCN');
+          `}
+        </Script>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
