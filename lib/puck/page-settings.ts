@@ -22,7 +22,22 @@ export type SianyingPageSettings = {
   sections: SianyingPageSection[];
 };
 
+function toPublicHref(href: string): string {
+  if (href === "/new") return "/";
+  return href.startsWith("/new/") ? href.slice(4) : href;
+}
+
 export function extractPageSettings(data: Data | null): SianyingPageSettings | null {
   const block = data?.content.find((item) => item.type === "SianyingPage");
-  return block ? (block.props as unknown as SianyingPageSettings) : null;
+  if (!block) return null;
+
+  const settings = block.props as unknown as SianyingPageSettings;
+  return {
+    ...settings,
+    ctaHref: toPublicHref(settings.ctaHref ?? ""),
+    sections: (settings.sections ?? []).map((section) => ({
+      ...section,
+      linkHref: toPublicHref(section.linkHref ?? ""),
+    })),
+  };
 }

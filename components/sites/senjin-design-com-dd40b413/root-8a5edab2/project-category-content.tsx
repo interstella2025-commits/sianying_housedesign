@@ -24,7 +24,7 @@ export function ProjectIndexCard({
   return (
     <article className="new-project-index-card">
       <Link
-        href={`/new/projects/${project.slug}`}
+        href={`/projects/${project.slug}`}
         className="new-project-index-media"
         aria-label={`查看${project.title}完整作品`}
       >
@@ -37,7 +37,7 @@ export function ProjectIndexCard({
         />
         {project.panorama ? <span>360° PANORAMA</span> : null}
       </Link>
-      <Link href={`/new/projects/${project.slug}`} className="new-project-index-caption">
+      <Link href={`/projects/${project.slug}`} className="new-project-index-caption">
         <div>
           <h2>{project.title}</h2>
           <span>PROJECT {project.number}</span>
@@ -105,7 +105,7 @@ export function NewProjectsOverviewContent({
               <h2>{section.subtitle}</h2>
               <p>{section.english}</p>
             </div>
-            <Link href={`/new/projects/${section.slug}`}>MORE</Link>
+            <Link href={`/projects/${section.slug}`}>MORE</Link>
             <span>New</span>
           </header>
           <div className="new-project-index-grid">

@@ -68,7 +68,7 @@ export function InnerPageShell({
         <footer className="new-inner-footer">
           <div className="new-inner-footer-links">
             <Link href="/">TOP</Link>
-            <Link href="/new/contact">CONTACT</Link>
+            <Link href="/contact">CONTACT</Link>
             <a href={company.facebook} target="_blank" rel="noreferrer">FACEBOOK</a>
             <a href={company.instagram} target="_blank" rel="noreferrer">INSTAGRAM</a>
             <a href={company.youtube} target="_blank" rel="noreferrer">YOUTUBE</a>

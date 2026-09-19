@@ -1,12 +1,12 @@
-import NewAboutPage, { metadata } from "../new/about/page";
+import NewBlogPage, { metadata } from "../new/blog/page";
 import { NewDesignFrame } from "@/components/sites/senjin-design-com-dd40b413/root-8a5edab2/new-design-frame";
 
 export { metadata };
 
-export default function AboutPage() {
+export default function BlogPage() {
   return (
     <NewDesignFrame>
-      <NewAboutPage />
+      <NewBlogPage />
     </NewDesignFrame>
   );
 }

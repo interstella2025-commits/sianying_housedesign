@@ -11,7 +11,7 @@ const seeds: Record<EditablePagePath, Omit<SianyingPageSettings, "sections">> = 
     image: "/sites/senjin-design-com-dd40b413/root-8a5edab2/hero.jpg",
     imageAlt: "翔胤室內設計打造的明亮現代住宅空間",
     ctaLabel: "查看作品",
-    ctaHref: "/new/projects/new",
+    ctaHref: "/projects/new",
   },
   "/new/about": {
     eyebrow: "ABOUT SIANG YIN",
@@ -21,7 +21,7 @@ const seeds: Record<EditablePagePath, Omit<SianyingPageSettings, "sections">> = 
     image: "/media/grok-image-8edffe_orig-19da4d8d29.png",
     imageAlt: "翔胤室內設計團隊",
     ctaLabel: "與翔胤討論你的空間",
-    ctaHref: "/new/contact",
+    ctaHref: "/contact",
   },
   "/new/blog": {
     eyebrow: "JOURNAL",
@@ -31,7 +31,7 @@ const seeds: Record<EditablePagePath, Omit<SianyingPageSettings, "sections">> = 
     image: "/media/adesignaward-certificate-136768.png",
     imageAlt: "翔胤室內設計獎項與媒體",
     ctaLabel: "聯絡翔胤",
-    ctaHref: "/new/contact",
+    ctaHref: "/contact",
   },
   "/new/contact": {
     eyebrow: "Connection",
@@ -51,7 +51,7 @@ const seeds: Record<EditablePagePath, Omit<SianyingPageSettings, "sections">> = 
     image: "",
     imageAlt: "",
     ctaLabel: "查看全部作品",
-    ctaHref: "/new/projects/all",
+    ctaHref: "/projects/all",
   },
   "/new/projects/all": {
     eyebrow: "WORKS",
@@ -61,7 +61,7 @@ const seeds: Record<EditablePagePath, Omit<SianyingPageSettings, "sections">> = 
     image: "",
     imageAlt: "",
     ctaLabel: "聯絡翔胤",
-    ctaHref: "/new/contact",
+    ctaHref: "/contact",
   },
   "/new/projects/residential": {
     eyebrow: "WORKS",
@@ -71,7 +71,7 @@ const seeds: Record<EditablePagePath, Omit<SianyingPageSettings, "sections">> = 
     image: "",
     imageAlt: "",
     ctaLabel: "聯絡翔胤",
-    ctaHref: "/new/contact",
+    ctaHref: "/contact",
   },
   "/new/projects/commercial": {
     eyebrow: "WORKS",
@@ -81,7 +81,7 @@ const seeds: Record<EditablePagePath, Omit<SianyingPageSettings, "sections">> = 
     image: "",
     imageAlt: "",
     ctaLabel: "聯絡翔胤",
-    ctaHref: "/new/contact",
+    ctaHref: "/contact",
   },
 };
 

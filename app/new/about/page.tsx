@@ -7,7 +7,7 @@ import { getPageSettings } from "@/lib/cms/pages";
 export const metadata: Metadata = {
   title: "關於翔胤｜翔胤室內設計",
   description: "翔胤室內設計成立於 2010 年，從格局、動線、材質與工程細節出發。",
-  alternates: { canonical: "/new/about" },
+  alternates: { canonical: "/about" },
 };
 
 export default async function NewAboutPage() {

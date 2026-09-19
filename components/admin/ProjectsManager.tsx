@@ -179,7 +179,7 @@ export function ProjectsManager() {
                 {project.panorama ? <span className="admin-media-row-tag">360°</span> : null}
               </div>
               <span className="admin-project-row-meta-line">
-                PROJECT {project.number} · {project.category === "commercial" ? "商業空間" : "住宅空間"} · /new/projects/{project.slug}
+                PROJECT {project.number} · {project.category === "commercial" ? "商業空間" : "住宅空間"} · /projects/{project.slug}
               </span>
             </div>
             <div className="admin-project-row-stats">

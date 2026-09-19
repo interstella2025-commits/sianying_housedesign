@@ -5,7 +5,7 @@ import { ProjectCategoryPage } from "@/components/sites/senjin-design-com-dd40b4
 export const metadata: Metadata = {
   title: "商業與特殊空間｜翔胤室內設計",
   description: "翔胤室內設計商業與特殊空間作品。",
-  alternates: { canonical: "/new/projects/commercial" },
+  alternates: { canonical: "/projects/commercial" },
 };
 
 export default function CommercialProjectsPage() {

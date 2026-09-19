@@ -12,13 +12,13 @@ import type { Project } from "@/lib/project-types";
 function revalidateProjects(slug?: string) {
   for (const path of [
     "/",
-    "/new/projects/new",
-    "/new/projects/all",
-    "/new/projects/residential",
-    "/new/projects/commercial",
-    "/new/projects/panorama",
+    "/projects/new",
+    "/projects/all",
+    "/projects/residential",
+    "/projects/commercial",
+    "/projects/panorama",
   ]) revalidatePath(path);
-  if (slug) revalidatePath(`/new/projects/${slug}`);
+  if (slug) revalidatePath(`/projects/${slug}`);
 }
 
 export async function GET() {

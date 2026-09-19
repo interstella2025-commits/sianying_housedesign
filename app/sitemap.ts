@@ -7,19 +7,14 @@ const siteUrl = "https://sianying-housedesign.vercel.app";
 const staticRoutes = [
   "",
   "/about",
-  "/awards",
-  "/services",
-  "/press",
+  "/blog",
+  "/contact",
   "/privacy",
-  "/works",
-  "/new/about",
-  "/new/blog",
-  "/new/contact",
-  "/new/projects/new",
-  "/new/projects/all",
-  "/new/projects/residential",
-  "/new/projects/commercial",
-  "/new/projects/panorama",
+  "/projects/new",
+  "/projects/all",
+  "/projects/residential",
+  "/projects/commercial",
+  "/projects/panorama",
 ] as const;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -27,13 +22,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const projects = await getStoredProjects();
   const routes = [
     ...staticRoutes,
-    ...projects.map((project) => `/new/projects/${project.slug}` as const),
+    ...projects.map((project) => `/projects/${project.slug}` as const),
   ];
 
   return routes.map((route) => ({
     url: `${siteUrl}${route}`,
     lastModified: now,
-    changeFrequency: route === "/new/blog" ? "monthly" : "yearly",
-    priority: route === "" ? 1 : route.startsWith("/new/projects/") ? 0.8 : 0.6,
+    changeFrequency: route === "/blog" ? "monthly" : "yearly",
+    priority: route === "" ? 1 : route.startsWith("/projects/") ? 0.8 : 0.6,
   }));
 }

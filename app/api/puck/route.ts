@@ -20,7 +20,8 @@ export async function POST(request: Request) {
 
   await savePageData(payload.path, payload.data);
   revalidatePath(payload.path);
-  if (payload.path === "/new") revalidatePath("/");
+  const publicPath = payload.path === "/new" ? "/" : payload.path.replace(/^\/new/, "");
+  revalidatePath(publicPath || "/");
 
   return NextResponse.json({ ok: true });
 }

@@ -109,7 +109,7 @@ export function NewAboutContent({ settings }: { settings: SianyingPageSettings |
       </section>
 
       <div className="new-about-contact-link">
-        <Link href={settings?.ctaHref || "/new/contact"}>{settings?.ctaLabel || "與翔胤討論你的空間"} →</Link>
+        <Link href={settings?.ctaHref || "/contact"}>{settings?.ctaLabel || "與翔胤討論你的空間"} →</Link>
       </div>
     </div>
   );

@@ -28,7 +28,7 @@ function RoundProjectLink({
 
   return (
     <Link
-      href={`/new/projects/${project.slug}`}
+      href={`/projects/${project.slug}`}
       className={`project-editorial-arrow is-${direction}`}
       aria-label={`${direction === "previous" ? "上一件" : "下一件"}作品：${project.title}`}
     >
@@ -97,21 +97,21 @@ export function ProjectDetailPage({
             <div><dt>3D 全景：</dt><dd>{project.panorama ? "提供 360° 拖曳環視" : "—"}</dd></div>
             <div><dt>設計團隊：</dt><dd>{company.name}</dd></div>
           </dl>
-          <Link href={`/new/projects/${category.slug}`} className="project-back-index">
+          <Link href={`/projects/${category.slug}`} className="project-back-index">
             ↑ Back To Index
           </Link>
         </section>
 
         <nav className="project-detail-pagination" aria-label="其他作品">
           {previousProject ? (
-            <Link href={`/new/projects/${previousProject.slug}`}>
+            <Link href={`/projects/${previousProject.slug}`}>
               <span>← PREVIOUS WORK</span>
               <strong>{previousProject.title}</strong>
               <small>{previousProject.english}</small>
             </Link>
           ) : <span aria-hidden="true" />}
           {nextProject ? (
-            <Link href={`/new/projects/${nextProject.slug}`}>
+            <Link href={`/projects/${nextProject.slug}`}>
               <span>NEXT WORK →</span>
               <strong>{nextProject.title}</strong>
               <small>{nextProject.english}</small>

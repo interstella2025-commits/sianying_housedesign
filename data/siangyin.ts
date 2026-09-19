@@ -7,29 +7,29 @@ export const navigation = [
     label: "關於翔胤",
     heroLabel: "關於我們",
     english: "ABOUT",
-    href: "/new/about",
+    href: "/about",
   },
   {
     label: "作品集",
     heroLabel: "作品集",
     english: "WORKS",
-    href: "/new/projects/new",
+    href: "/projects/new",
   },
-  { label: "消息", heroLabel: "部落格", english: "BLOG", href: "/new/blog" },
+  { label: "消息", heroLabel: "部落格", english: "BLOG", href: "/blog" },
   {
     label: "聯絡我們",
     heroLabel: "聯絡我們",
     english: "CONTACT US",
-    href: "/new/contact",
+    href: "/contact",
   },
 ] as const;
 
 export const projectNavigation = [
-  { label: "最新設計", english: "New Designs", href: "/new/projects/new" },
-  { label: "全部作品", english: "All Projects", href: "/new/projects/all" },
-  { label: "住宅空間", english: "Residential", href: "/new/projects/residential" },
-  { label: "商業空間", english: "Commercial", href: "/new/projects/commercial" },
-  { label: "3D 全景", english: "Panorama", href: "/new/projects/panorama" },
+  { label: "最新設計", english: "New Designs", href: "/projects/new" },
+  { label: "全部作品", english: "All Projects", href: "/projects/all" },
+  { label: "住宅空間", english: "Residential", href: "/projects/residential" },
+  { label: "商業空間", english: "Commercial", href: "/projects/commercial" },
+  { label: "3D 全景", english: "Panorama", href: "/projects/panorama" },
 ] as const;
 
 export const company = {

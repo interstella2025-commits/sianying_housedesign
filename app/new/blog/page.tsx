@@ -7,7 +7,7 @@ import { getPageSettings } from "@/lib/cms/pages";
 export const metadata: Metadata = {
   title: "消息與媒體｜翔胤室內設計",
   description: "翔胤室內設計國際獎項、媒體採訪與設計消息。",
-  alternates: { canonical: "/new/blog" },
+  alternates: { canonical: "/blog" },
 };
 
 export default async function NewBlogPage() {

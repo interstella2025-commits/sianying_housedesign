@@ -173,7 +173,7 @@ export function FullscreenMenu({
             {navigation.map((item) => {
               const isWorks = item.english === "WORKS";
               const isActive = isWorks
-                ? pathname.startsWith("/new/projects")
+                ? pathname.startsWith("/projects")
                 : pathname === item.href;
 
               return (

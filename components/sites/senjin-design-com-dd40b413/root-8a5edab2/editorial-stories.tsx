@@ -12,7 +12,7 @@ export function EditorialStories() {
       <div className="portfolio-column editorial-column">
         <Reveal>
           <h2 id="news-title" className="portfolio-section-title">
-            <Link href="/new/blog">News</Link>
+            <Link href="/blog">News</Link>
           </h2>
         </Reveal>
 

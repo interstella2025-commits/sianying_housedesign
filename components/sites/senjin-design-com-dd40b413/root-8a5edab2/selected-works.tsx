@@ -11,13 +11,13 @@ export function SelectedWorks({ projects }: { projects: Project[] }) {
       <div className="portfolio-column">
         <Reveal>
           <h2 id="works-heading" className="portfolio-section-title">
-            <Link href="/new/projects/new">New Projects</Link>
+            <Link href="/projects/new">New Projects</Link>
           </h2>
         </Reveal>
 
         <div className="works-list">
           {projects.map((project) => {
-            const detailHref = `/new/projects/${project.slug}`;
+            const detailHref = `/projects/${project.slug}`;
 
             return (
               <Reveal key={project.number}>

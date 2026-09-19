@@ -26,12 +26,12 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
     title: `${project.title}｜翔胤室內設計`,
     description,
     alternates: {
-      canonical: `/new/projects/${project.slug}`,
+      canonical: `/projects/${project.slug}`,
     },
     openGraph: {
       title: `${project.title}｜${project.english}`,
       description,
-      url: `/new/projects/${project.slug}`,
+      url: `/projects/${project.slug}`,
       images: [{ url: previewImage, alt: `${project.title}室內設計完工作品` }],
     },
   };
