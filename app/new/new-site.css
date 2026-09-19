@@ -927,13 +927,14 @@
   }
 
   .senjin-clone .editorial-column {
-    width: min(145px, calc(100% - 80px));
+    width: calc(100% - 80px);
     margin-left: 40px;
   }
 
   .senjin-clone .editorial-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 12px;
+    row-gap: 24px;
   }
 
   .senjin-clone #news {
@@ -1057,8 +1058,8 @@
   }
 
   .senjin-clone .editorial-grid {
-    grid-template-columns: 1fr;
-    gap: clamp(0px, calc(1.171875vw - 9px), 3px);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(12px, 2vw, 20px);
   }
 
   .senjin-clone #news {
