@@ -39,6 +39,9 @@ export function NewContactContent({ settings }: { settings: SianyingPageSettings
       <address className="new-contact-address">
         <a href={company.map} target="_blank" rel="noreferrer">{company.headquarters}</a>
         <a href={`tel:${company.phone.replace(/\D/g, "")}`}>Tel：{company.phone}</a>
+        <a href={company.lineUrl} target="_blank" rel="noreferrer noopener">
+          LINE 官方帳號：{company.line}
+        </a>
         <a href={`mailto:${company.email}`}>{company.email}</a>
       </address>
       <PageSupplements settings={settings} />

@@ -216,6 +216,9 @@ export function FullscreenMenu({
             <a href={company.youtube} target="_blank" rel="noreferrer">
               YouTube
             </a>
+            <a href={company.lineUrl} target="_blank" rel="noreferrer noopener">
+              LINE
+            </a>
           </div>
           <p>© 2026 {company.englishName}</p>
         </div>

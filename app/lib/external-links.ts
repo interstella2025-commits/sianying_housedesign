@@ -1,7 +1,11 @@
 export function isDirectExternalHref(href: string) {
   try {
     const { hostname } = new URL(href);
-    return hostname === "line.me" || hostname.endsWith(".line.me");
+    return (
+      hostname === "line.me" ||
+      hostname.endsWith(".line.me") ||
+      hostname === "lin.ee"
+    );
   } catch {
     return false;
   }
