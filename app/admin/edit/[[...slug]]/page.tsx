@@ -15,8 +15,8 @@ type AdminEditPageProps = {
 };
 
 function pathFromSlug(slug?: string[]) {
-  if (!slug?.length) return "/";
-  return `/${slug.join("/")}`;
+  if (!slug?.length) return "/new";
+  return `/new/${slug.join("/")}`;
 }
 
 export default async function AdminEditPage({ params }: AdminEditPageProps) {

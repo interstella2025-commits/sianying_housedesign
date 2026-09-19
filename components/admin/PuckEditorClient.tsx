@@ -37,8 +37,8 @@ export function PuckEditorClient({
       overrides={{
         headerActions: ({ children }) => (
           <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-            <Link href="/new/admin" style={{ fontSize: 13, marginRight: 8 }}>
-              返回新版後台
+            <Link href="/admin" style={{ fontSize: 13, marginRight: 8 }}>
+              返回後台
             </Link>
             {status ? <span style={{ fontSize: 13, color: "#666" }}>{status}</span> : null}
             {children}

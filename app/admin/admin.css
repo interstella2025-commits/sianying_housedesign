@@ -131,8 +131,7 @@
     transform 0.2s ease;
 }
 
-/* /new/admin is rendered inside the redesigned site's dark frame. Keep the
-   light dashboard cards readable instead of inheriting the frame's pale text. */
+/* Keep dashboard cards readable on the dark admin background. */
 .senjin-clone .admin-card {
   color: #1d1d1d;
 }

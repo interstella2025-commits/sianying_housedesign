@@ -4,7 +4,7 @@ import { requireAdminPage } from "@/lib/admin-auth.server";
 import { EDITABLE_PAGE_LABELS, EDITABLE_PAGE_PATHS } from "@/lib/puck/editable-pages";
 
 const pageEditors = EDITABLE_PAGE_PATHS.map((path) => ({
-  href: `/new/admin/edit${path}`,
+  href: path === "/new" ? "/admin/edit" : `/admin/edit${path.slice(4)}`,
   label: EDITABLE_PAGE_LABELS[path],
 }));
 
@@ -14,8 +14,8 @@ export default async function AdminDashboardPage() {
     <div className="admin-page">
       <div className="admin-header">
         <div>
-          <p className="admin-note">目前編輯網站：/new 新版</p>
-          <h1>翔胤新版後台</h1>
+          <p className="admin-note">目前編輯網站：翔胤正式網站</p>
+          <h1>翔胤網站後台</h1>
         </div>
         <AdminLogoutButton />
       </div>

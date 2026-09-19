@@ -4,6 +4,36 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: "/new/admin/edit/new",
+        destination: "/admin/edit",
+        permanent: true,
+      },
+      {
+        source: "/new/admin/edit/new/:path*",
+        destination: "/admin/edit/:path*",
+        permanent: true,
+      },
+      {
+        source: "/new/admin",
+        destination: "/admin",
+        permanent: true,
+      },
+      {
+        source: "/new/admin/:path*",
+        destination: "/admin/:path*",
+        permanent: true,
+      },
+      {
+        source: "/admin/edit/new",
+        destination: "/admin/edit",
+        permanent: true,
+      },
+      {
+        source: "/admin/edit/new/:path*",
+        destination: "/admin/edit/:path*",
+        permanent: true,
+      },
+      {
         source: "/new",
         destination: "/",
         permanent: true,
