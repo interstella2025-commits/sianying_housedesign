@@ -4,6 +4,7 @@ import { PageSupplements } from "@/components/cms/page-supplements";
 import { company } from "@/data/siangyin";
 import type { SianyingPageSettings } from "@/lib/puck/page-settings";
 
+import { LineLogo } from "./line-logo";
 import { NewContactForm } from "./new-contact-form";
 
 export function NewContactContent({ settings }: { settings: SianyingPageSettings | null }) {
@@ -40,7 +41,8 @@ export function NewContactContent({ settings }: { settings: SianyingPageSettings
         <a href={company.map} target="_blank" rel="noreferrer">{company.headquarters}</a>
         <a href={`tel:${company.phone.replace(/\D/g, "")}`}>Tel：{company.phone}</a>
         <a href={company.lineUrl} target="_blank" rel="noreferrer noopener">
-          LINE 官方帳號：{company.line}
+          <LineLogo size={21} aria-hidden="true" />
+          <span>LINE 官方帳號：{company.line}</span>
         </a>
         <a href={`mailto:${company.email}`}>{company.email}</a>
       </address>

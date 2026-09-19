@@ -2713,6 +2713,13 @@
   line-height: 1.7;
 }
 
+.senjin-clone .new-contact-address a {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  gap: 0.45rem;
+}
+
 .senjin-clone .new-contact-form-section {
   grid-column: 2;
   grid-row: 1;

@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  ChatCircleDots,
   FacebookLogo,
   InstagramLogo,
   MapPinLine,
@@ -11,11 +10,13 @@ import Image from "next/image";
 
 import { assetRoot, company } from "@/data/siangyin";
 
+import { LineLogo } from "./line-logo";
+
 const footerLinks = [
   { label: "Instagram", href: company.instagram, Icon: InstagramLogo },
   { label: "Facebook", href: company.facebook, Icon: FacebookLogo },
   { label: "YouTube", href: company.youtube, Icon: YoutubeLogo },
-  { label: "LINE", href: company.lineUrl, Icon: ChatCircleDots },
+  { label: "LINE", href: company.lineUrl, Icon: LineLogo },
   { label: "Google Maps", href: company.map, Icon: MapPinLine },
 ] as const;
 

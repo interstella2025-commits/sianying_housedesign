@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  ChatCircleDots,
   FacebookLogo,
   InstagramLogo,
   YoutubeLogo,
@@ -12,6 +11,8 @@ import { useEffect, useRef, useState } from "react";
 
 import { assetRoot, company, navigation } from "@/data/siangyin";
 import type { SianyingPageSettings } from "@/lib/puck/page-settings";
+
+import { LineLogo } from "./line-logo";
 
 const downwardKeys = new Set(["ArrowDown", "PageDown", " ", "Spacebar"]);
 
@@ -30,7 +31,7 @@ const socialLinks = [
   { label: "Instagram", href: company.instagram, Icon: InstagramLogo },
   { label: "Facebook", href: company.facebook, Icon: FacebookLogo },
   { label: "YouTube", href: company.youtube, Icon: YoutubeLogo },
-  { label: "LINE", href: company.lineUrl, Icon: ChatCircleDots },
+  { label: "LINE", href: company.lineUrl, Icon: LineLogo },
 ] as const;
 
 const defaultHeroMessage = company.philosophy;
