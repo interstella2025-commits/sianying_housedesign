@@ -244,7 +244,7 @@ export const siteMusic = {
 
 export const contact = {
   phone: "0926 160 880",
-  line: "@145erpql",
+  line: "@123sxxbg",
   email: "c.lon@yahoo.com.tw",
   companyId: "42720348",
   headquarters: "新北市五股區西雲路189號",
@@ -257,5 +257,5 @@ export const contact = {
   youtube: "https://www.youtube.com/@Wanna_Ju",
   featuredVideoId: "EXDQRrQ3f0M",
   featuredVideoPoster: "/images/projects/serenity-within/sjd-0060_orig.jpg",
-  lineUrl: "https://lin.ee/9EZ3ZHo",
+  lineUrl: "https://lin.ee/nRtelYW",
 } as const;

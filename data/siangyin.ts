@@ -42,7 +42,7 @@ export const company = {
   about:
     "翔胤室內設計成立於 2010 年，由擁有二十年以上實務經驗的設計團隊，從格局、動線、材質與工程細節出發，讓美感回到每一天的生活。",
   phone: "0926 160 880",
-  line: "@145erpql",
+  line: "@123sxxbg",
   email: "c.lon@yahoo.com.tw",
   companyId: "42720348",
   headquarters: "新北市五股區西雲路189號",
@@ -51,7 +51,7 @@ export const company = {
   facebook: "https://www.facebook.com/Wanna.Ju.design/",
   instagram: "https://www.instagram.com/su_zung/",
   youtube: "https://www.youtube.com/@Wanna_Ju",
-  lineUrl: "https://lin.ee/9EZ3ZHo",
+  lineUrl: "https://lin.ee/nRtelYW",
 } as const;
 
 export const editorialStories = [
