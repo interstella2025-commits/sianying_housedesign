@@ -7,16 +7,10 @@ import type { FormEvent } from "react";
 import { useEffect, useRef, useState } from "react";
 
 import { LineLogo } from "@/components/sites/senjin-design-com-dd40b413/root-8a5edab2/line-logo";
-import { assetRoot, company } from "@/data/siangyin";
+import { assetRoot, company, projects as portfolioProjects } from "@/data/siangyin";
 import { saveInquiry } from "@/lib/inquiries/client";
 
 import styles from "./land.module.css";
-
-const projects = [
-  { src: `${assetRoot}/projects/project-03.webp`, name: "鉑金石韻", note: "寬敞客廳・明亮採光" },
-  { src: `${assetRoot}/projects/project-08.webp`, name: "濢山雅舍", note: "餐廚串聯・生活動線" },
-  { src: `${assetRoot}/projects/project-06.webp`, name: "拾光", note: "系統收納・輕盈隔屏" },
-] as const;
 
 const heroImage = "/images/projects/serenity-within/sjd-0060_orig.jpg";
 
@@ -205,10 +199,10 @@ export function LandExperience() {
           <h2 id="proof-title">國際得獎設計師<br />為你設計有質感的家</h2>
         </div>
         <div className={styles.projectRail}>
-          {projects.map((project) => (
-            <article className={styles.project} key={project.name}>
-              <Image src={project.src} alt={`${project.name}完工作品`} fill sizes="(max-width: 720px) 84vw, 32vw" />
-              <div><strong>{project.name}</strong><span>{project.note}</span></div>
+          {portfolioProjects.map((project) => (
+            <article className={styles.project} key={project.number}>
+              <Image src={project.image} alt={`${project.title}完工作品`} fill sizes="(max-width: 720px) 84vw, 32vw" />
+              <div><strong>{project.title}</strong><span>{project.english}</span></div>
             </article>
           ))}
         </div>
@@ -237,7 +231,7 @@ export function LandExperience() {
       <section className={styles.consultation} id="consultation" aria-labelledby="consultation-title">
         <div className={styles.formIntro}>
           <span>免費到場會勘</span>
-          <h2 id="consultation-title">請留下資料<br />我們將與你預約會勘時間</h2>
+          <h2 id="consultation-title">請留下資料<br />我們會盡快聯繫您</h2>
         </div>
 
         <form className={styles.form} onSubmit={handleSubmit} onFocusCapture={() => {
