@@ -10,6 +10,7 @@ import {
   type InquiryNotification,
 } from "@/lib/notifications/inquiry-email";
 import { createSupabaseTenantClient } from "@/lib/supabase/server";
+import type { Database } from "@/lib/supabase/database.types";
 
 export const runtime = "nodejs";
 
@@ -18,6 +19,9 @@ const MAX_REQUEST_BYTES = 16_000;
 const HOURLY_LIMIT = 5;
 
 type InquiryBody = Record<string, unknown>;
+type AttributionBody = Record<string, unknown>;
+
+const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
 function text(body: InquiryBody, key: string, maxLength: number) {
   const value = typeof body[key] === "string" ? body[key].trim() : "";
@@ -91,6 +95,14 @@ export async function POST(request: NextRequest) {
     lineId: text(body, "lineId", 80),
     sourcePath: text(body, "sourcePath", 200) || "/",
   };
+  const attribution = body.attribution && typeof body.attribution === "object"
+    ? body.attribution as AttributionBody
+    : {};
+  const analyticsSessionId = text(body, "analyticsSessionId", 64);
+  const attributionText = (key: string, maxLength: number) => {
+    const value = typeof attribution[key] === "string" ? attribution[key].trim() : "";
+    return value.slice(0, maxLength) || null;
+  };
 
   if (formType !== "consultation" && formType !== "reservation") {
     return response("詢問類型無效", 400);
@@ -117,7 +129,7 @@ export async function POST(request: NextRequest) {
       return response("送出次數過多，請稍後再試或直接使用 LINE 聯絡", 429);
     }
 
-    const { error: insertError } = await supabase.from(TABLE_NAME).insert({
+    const baseInquiry: Database["public"]["Tables"]["sianying_inquiries"]["Insert"] = {
       form_type: formType,
       name,
       phone,
@@ -130,9 +142,42 @@ export async function POST(request: NextRequest) {
       line_id: inquiry.lineId || null,
       source_path: inquiry.sourcePath,
       visitor_hash: visitorHash,
-    });
+    };
+    const analyticsInquiry = {
+      ...baseInquiry,
+      analytics_session_id: UUID_PATTERN.test(analyticsSessionId) ? analyticsSessionId : null,
+      utm_source: attributionText("utmSource", 300),
+      utm_medium: attributionText("utmMedium", 300),
+      utm_campaign: attributionText("utmCampaign", 500),
+      utm_content: attributionText("utmContent", 500),
+      utm_term: attributionText("utmTerm", 500),
+      campaign_id: attributionText("campaignId", 200),
+      ad_group_id: attributionText("adGroupId", 200),
+      ad_id: attributionText("adId", 200),
+      gclid: attributionText("gclid", 500),
+    };
+    let insertResult = await supabase.from(TABLE_NAME).insert(analyticsInquiry).select("id").single();
+
+    // Keep existing forms operational if code deploys shortly before the analytics migration.
+    if (insertResult.error && ["42703", "PGRST204", "PGRST205"].includes(insertResult.error.code || "")) {
+      insertResult = await supabase.from(TABLE_NAME).insert(baseInquiry).select("id").single();
+    }
+    const { data: inserted, error: insertError } = insertResult;
 
     if (insertError) throw insertError;
+
+    if (inserted?.id && UUID_PATTERN.test(analyticsSessionId)) {
+      const { error: attributionError } = await supabase
+        .from("sianying_web_sessions")
+        .update({
+          converted_inquiry_id: inserted.id,
+          last_stage: "form_success",
+          last_seen_at: new Date().toISOString(),
+          updated_at: new Date().toISOString(),
+        })
+        .eq("id", analyticsSessionId);
+      if (attributionError) console.error("Unable to link inquiry attribution", attributionError);
+    }
 
     try {
       await sendInquiryNotificationEmail(inquiry);

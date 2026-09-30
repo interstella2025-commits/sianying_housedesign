@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import { AppProviders } from "./components/AppProviders";
+import WebAnalyticsTracker from "@/components/analytics/WebAnalyticsTracker";
 import "./globals.css";
 import "./new/new-site.css";
 import "./site-custom.css";
@@ -121,6 +122,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         </Script>
       </head>
       <body>
+        <WebAnalyticsTracker />
         <AppProviders>{children}</AppProviders>
         <script
           type="application/ld+json"

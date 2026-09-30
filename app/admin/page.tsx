@@ -23,10 +23,14 @@ export default async function AdminDashboardPage() {
       <div className="admin-sections">
         <section className="admin-section">
           <h2 className="admin-section-title">客戶詢問</h2>
-          <div className="admin-grid admin-grid-single">
+          <div className="admin-grid">
             <Link className="admin-card" href="/admin/inquiries">
               <h3>網站表單與聯絡進度</h3>
               <p>新詢問、已聯絡、已結案</p>
+            </Link>
+            <Link className="admin-card" href="/admin/analytics">
+              <h3>廣告流量分析</h3>
+              <p>Google Ads、訪客旅程與會勘轉換</p>
             </Link>
           </div>
         </section>

@@ -1,3 +1,5 @@
+import { getAnalyticsContext, trackAnalyticsEvent } from "@/lib/analytics/client";
+
 export type InquiryPayload = {
   formType: "consultation" | "reservation";
   name: string;
@@ -15,13 +17,19 @@ export type InquiryPayload = {
 };
 
 export async function saveInquiry(payload: InquiryPayload) {
+  const analytics = getAnalyticsContext();
   const response = await fetch("/api/inquiries", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
+    body: JSON.stringify({ ...payload, ...analytics }),
   });
 
   if (!response.ok) {
     throw new Error(`Inquiry request failed with ${response.status}`);
   }
+
+  trackAnalyticsEvent({
+    name: "form_success",
+    data: { formType: payload.formType, sourcePath: payload.sourcePath },
+  });
 }

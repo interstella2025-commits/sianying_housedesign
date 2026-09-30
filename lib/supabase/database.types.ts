@@ -12,6 +12,76 @@ export type PublishStatus = "draft" | "published";
 export type Database = {
   public: {
     Tables: {
+      sianying_web_sessions: {
+        Row: {
+          id: string;
+          visitor_id: string;
+          visitor_key: string;
+          ip_hash: string;
+          started_at: string;
+          last_seen_at: string;
+          landing_path: string;
+          landing_url: string;
+          last_page_path: string;
+          referrer: string | null;
+          device_type: "mobile" | "tablet" | "desktop" | "unknown";
+          viewport_width: number | null;
+          utm_source: string | null;
+          utm_medium: string | null;
+          utm_campaign: string | null;
+          utm_content: string | null;
+          utm_term: string | null;
+          campaign_id: string | null;
+          ad_group_id: string | null;
+          ad_id: string | null;
+          gclid: string | null;
+          max_scroll_depth: number;
+          last_stage: string | null;
+          converted_inquiry_id: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: Partial<Database["public"]["Tables"]["sianying_web_sessions"]["Row"]> & {
+          id: string;
+          visitor_id: string;
+          visitor_key: string;
+          ip_hash: string;
+          started_at: string;
+          last_seen_at: string;
+          landing_path: string;
+          landing_url: string;
+          last_page_path: string;
+          device_type: "mobile" | "tablet" | "desktop" | "unknown";
+        };
+        Update: Partial<Database["public"]["Tables"]["sianying_web_sessions"]["Row"]>;
+        Relationships: [];
+      };
+      sianying_web_events: {
+        Row: {
+          id: number;
+          session_id: string;
+          visitor_id: string;
+          event_name: string;
+          page_path: string;
+          section_id: string | null;
+          event_data: Json;
+          occurred_at: string;
+          created_at: string;
+        };
+        Insert: {
+          id?: number;
+          session_id: string;
+          visitor_id: string;
+          event_name: string;
+          page_path: string;
+          section_id?: string | null;
+          event_data?: Json;
+          occurred_at: string;
+          created_at?: string;
+        };
+        Update: Partial<Database["public"]["Tables"]["sianying_web_events"]["Row"]>;
+        Relationships: [];
+      };
       sianying_cms_documents: {
         Row: {
           key: string;
@@ -47,6 +117,16 @@ export type Database = {
           source_path: string;
           visitor_hash: string;
           status: "new" | "contacted" | "closed";
+          analytics_session_id: string | null;
+          utm_source: string | null;
+          utm_medium: string | null;
+          utm_campaign: string | null;
+          utm_content: string | null;
+          utm_term: string | null;
+          campaign_id: string | null;
+          ad_group_id: string | null;
+          ad_id: string | null;
+          gclid: string | null;
         };
         Insert: {
           id?: string;
@@ -64,6 +144,16 @@ export type Database = {
           source_path?: string;
           visitor_hash: string;
           status?: "new" | "contacted" | "closed";
+          analytics_session_id?: string | null;
+          utm_source?: string | null;
+          utm_medium?: string | null;
+          utm_campaign?: string | null;
+          utm_content?: string | null;
+          utm_term?: string | null;
+          campaign_id?: string | null;
+          ad_group_id?: string | null;
+          ad_id?: string | null;
+          gclid?: string | null;
         };
         Update: Partial<Database["public"]["Tables"]["sianying_inquiries"]["Row"]>;
         Relationships: [];
