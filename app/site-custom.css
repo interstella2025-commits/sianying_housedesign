@@ -1,5 +1,80 @@
 /* 翔胤｜保留自訂功能：Logo 圖片、背景音樂、首頁強化區塊、Hero 不換行 */
 
+.facebook-messenger-fab {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 90;
+  display: inline-flex;
+  width: 58px;
+  height: 58px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgb(255 255 255 / 0.3);
+  border-radius: 999px;
+  background: #0866ff;
+  color: #fff;
+  box-shadow: 0 12px 30px rgb(0 0 0 / 0.24);
+  text-decoration: none;
+  transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+}
+
+.facebook-messenger-fab span {
+  position: absolute;
+  right: calc(100% + 10px);
+  padding: 7px 10px;
+  border-radius: 7px;
+  background: rgb(20 20 20 / 0.92);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(5px);
+  transition: opacity 180ms ease, transform 180ms ease;
+  white-space: nowrap;
+}
+
+.facebook-messenger-fab:hover,
+.facebook-messenger-fab:focus-visible {
+  background: #0057e7;
+  box-shadow: 0 16px 36px rgb(0 0 0 / 0.3);
+  transform: translateY(-3px);
+}
+
+.facebook-messenger-fab:hover span,
+.facebook-messenger-fab:focus-visible span {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.facebook-messenger-fab:focus-visible {
+  outline: 3px solid rgb(8 102 255 / 0.35);
+  outline-offset: 4px;
+}
+
+@media (max-width: 640px) {
+  .facebook-messenger-fab {
+    right: 16px;
+    bottom: max(16px, env(safe-area-inset-bottom));
+    width: 54px;
+    height: 54px;
+  }
+
+  .facebook-messenger-fab span {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .facebook-messenger-fab,
+  .facebook-messenger-fab span {
+    transition: none;
+  }
+}
+
 .site-header-integrated .brand-mark {
   background: transparent;
   box-shadow: none;

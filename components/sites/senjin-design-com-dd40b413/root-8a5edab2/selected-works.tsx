@@ -1,11 +1,20 @@
 import Link from "next/link";
 
 import type { Project } from "@/lib/project-types";
+import type { SianyingPageSettings } from "@/lib/puck/page-settings";
+import { applyProjectCards } from "@/lib/puck/project-cards";
 
 import { PortfolioProjectMedia } from "./portfolio-project-media";
 import { Reveal } from "./reveal";
 
-export function SelectedWorks({ projects }: { projects: Project[] }) {
+export function SelectedWorks({
+  projects,
+  settings,
+}: {
+  projects: Project[];
+  settings: SianyingPageSettings | null;
+}) {
+  const displayedProjects = applyProjectCards(projects, settings);
   return (
     <section id="works" className="section-anchor pb-28" aria-labelledby="works-heading">
       <div className="portfolio-column">
@@ -16,7 +25,7 @@ export function SelectedWorks({ projects }: { projects: Project[] }) {
         </Reveal>
 
         <div className="works-list">
-          {projects.map((project) => {
+          {displayedProjects.map((project) => {
             const detailHref = `/projects/${project.slug}`;
 
             return (

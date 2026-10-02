@@ -5,7 +5,7 @@ import { NewBlogContent } from "@/components/sites/senjin-design-com-dd40b413/ro
 import { getPageSettings } from "@/lib/cms/pages";
 
 export const metadata: Metadata = {
-  title: "消息與媒體｜翔胤室內設計",
+  title: "消息與媒體",
   description: "翔胤室內設計國際獎項、媒體採訪與設計消息。",
   alternates: { canonical: "/blog" },
 };

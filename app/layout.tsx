@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { AppProviders } from "./components/AppProviders";
 import WebAnalyticsTracker from "@/components/analytics/WebAnalyticsTracker";
+import { FacebookMessengerButton } from "@/components/FacebookMessengerButton";
 import "./globals.css";
 import "./new/new-site.css";
 import "./site-custom.css";
@@ -124,6 +125,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body>
         <WebAnalyticsTracker />
         <AppProviders>{children}</AppProviders>
+        <FacebookMessengerButton />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}

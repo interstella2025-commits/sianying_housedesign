@@ -3,21 +3,23 @@ import Link from "next/link";
 
 import { ExternalPopupLink } from "@/app/components/ExternalPopupLink";
 import { editorialStories } from "@/data/siangyin";
+import type { SianyingPageSettings } from "@/lib/puck/page-settings";
 
 import { Reveal } from "./reveal";
 
-export function EditorialStories() {
+export function EditorialStories({ settings }: { settings: SianyingPageSettings | null }) {
+  const stories = settings?.stories?.length ? settings.stories : editorialStories;
   return (
     <section id="news" aria-labelledby="news-title" className="section-anchor pb-24">
       <div className="portfolio-column editorial-column">
         <Reveal>
           <h2 id="news-title" className="portfolio-section-title">
-            <Link href="/blog">News</Link>
+            <Link href="/blog">{settings?.newsTitle || "News"}</Link>
           </h2>
         </Reveal>
 
         <div className="editorial-grid">
-          {editorialStories.map((story, index) => (
+          {stories.map((story, index) => (
             <Reveal key={story.href} delay={100 + index * 100}>
               <article className="editorial-story">
                 <ExternalPopupLink
@@ -30,7 +32,7 @@ export function EditorialStories() {
                   <div className="editorial-media relative overflow-hidden bg-[#151515]">
                     <Image
                       src={story.image}
-                      alt={story.alt}
+                      alt={("imageAlt" in story ? story.imageAlt : story.alt) || ""}
                       fill
                       sizes="(min-width: 640px) 272px, calc(100vw - 48px)"
                       className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02] motion-reduce:transition-none"

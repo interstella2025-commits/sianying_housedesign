@@ -1,5 +1,4 @@
 import {
-  getNewProjectSections,
   getProjectsForCategory,
   type ProjectCategorySlug,
 } from "@/app/lib/new-site-projects";
@@ -26,11 +25,10 @@ export async function ProjectCategoryPage({ category }: { category: ProjectCateg
 
 export async function NewProjectsOverview() {
   const sourceProjects = await getStoredProjects();
-  const sections = getNewProjectSections(sourceProjects);
   const settings = await getPageSettings("/new/projects/new");
   return (
     <InnerPageShell tone="light">
-      <NewProjectsOverviewContent sections={sections} settings={settings} />
+      <NewProjectsOverviewContent projects={sourceProjects} settings={settings} />
     </InnerPageShell>
   );
 }

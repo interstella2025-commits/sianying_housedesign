@@ -12,7 +12,7 @@ export function NewBlogContent({ settings }: { settings: SianyingPageSettings | 
         <span>{settings?.eyebrow || "JOURNAL"}</span>
         <p>{settings?.description || "翔胤室內設計國際獎項、媒體採訪與設計消息。"}</p>
       </header>
-      <NewBlogBrowser />
+      <NewBlogBrowser settings={settings} />
       <PageSupplements settings={settings} />
     </div>
   );

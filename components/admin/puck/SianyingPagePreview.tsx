@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  getNewProjectSections,
   getProjectsForCategory,
   type ProjectCategorySlug,
 } from "@/app/lib/new-site-projects";
@@ -27,6 +26,7 @@ const categoryByPath: Partial<Record<string, ProjectCategorySlug>> = {
   "/new/projects/all": "all",
   "/new/projects/residential": "residential",
   "/new/projects/commercial": "commercial",
+  "/new/projects/panorama": "panorama",
 };
 
 export function SianyingPagePreview({
@@ -60,7 +60,7 @@ export function SianyingPagePreview({
     content = (
       <InnerPageShell tone="light">
         <NewProjectsOverviewContent
-          sections={getNewProjectSections(projects)}
+          projects={projects}
           settings={settings}
         />
       </InnerPageShell>

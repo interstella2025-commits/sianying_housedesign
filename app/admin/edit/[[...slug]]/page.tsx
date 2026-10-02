@@ -16,7 +16,10 @@ type AdminEditPageProps = {
 
 function pathFromSlug(slug?: string[]) {
   if (!slug?.length) return "/new";
-  return `/new/${slug.join("/")}`;
+  const normalized = [...slug];
+  while (["admin", "edit", "new"].includes(normalized[0] ?? "")) normalized.shift();
+  if (!normalized.length) return "/new";
+  return `/new/${normalized.join("/")}`;
 }
 
 export default async function AdminEditPage({ params }: AdminEditPageProps) {
@@ -33,7 +36,7 @@ export default async function AdminEditPage({ params }: AdminEditPageProps) {
   const source = stored ?? fallback;
   if (!source) notFound();
 
-  const data = normalizePageData(source as Data);
+  const data = normalizePageData(source as Data, { path, projects: previewProjects });
 
   return (
     <div className="admin-editor-shell">

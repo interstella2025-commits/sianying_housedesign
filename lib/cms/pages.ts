@@ -5,6 +5,7 @@ import { readCmsJson, writeCmsJson } from "@/lib/cms/storage.server";
 import { EDITABLE_PAGE_PATHS, type EditablePagePath } from "@/lib/puck/editable-pages";
 import { createPageSeed, getAllPageSeeds } from "@/lib/puck/page-seeds";
 import { extractPageSettings } from "@/lib/puck/page-settings";
+import { normalizePageData } from "@/lib/cms/normalize-page-data";
 
 type PageMap = Record<string, Data>;
 const PAGES_KEY = "pages";
@@ -25,7 +26,8 @@ export async function getAllPages(): Promise<PageMap> {
 
 export async function getPageData(path: string): Promise<Data | null> {
   const pages = await getAllPages();
-  return pages[path] ?? null;
+  const data = pages[path] ?? null;
+  return data ? normalizePageData(data, { path }) : null;
 }
 
 export async function getPageSettings(path: string) {

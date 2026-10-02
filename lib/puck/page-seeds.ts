@@ -2,6 +2,32 @@ import type { Data } from "@puckeditor/core";
 import type { EditablePagePath } from "@/lib/puck/editable-pages";
 import type { SianyingPageSettings } from "@/lib/puck/page-settings";
 
+const defaultStories = [
+  {
+    title: "翔胤室內設計榮獲 2021–2022 A’ Design Award 國際設計大獎",
+    image: "/sites/senjin-design-com-dd40b413/root-8a5edab2/editorial/award-certificate.png",
+    imageAlt: "翔胤室內設計 A' Design Award 得獎證書",
+    date: "2022.04.15",
+    category: "AWARD" as const,
+    href: "https://competition.adesignaward.com/design.php?ID=136768",
+  },
+  {
+    title: "翔胤室內設計作品再獲國際肯定｜100室內設計師專訪",
+    image: "/sites/senjin-design-com-dd40b413/root-8a5edab2/editorial/award-trophy.png",
+    imageAlt: "翔胤室內設計 A' Design Award 獎座",
+    date: "2022.04.15",
+    category: "PRESS" as const,
+    href: "https://www.100.com.tw/5193",
+  },
+];
+
+const defaultProjectSections = [
+  { slug: "residential" as const, title: "住宅空間", english: "Residential", moreLabel: "MORE", badge: "New" },
+  { slug: "commercial" as const, title: "商業與特殊空間", english: "Commercial", moreLabel: "MORE", badge: "New" },
+  { slug: "panorama" as const, title: "3D 全景作品", english: "Panorama", moreLabel: "MORE", badge: "New" },
+  { slug: "all" as const, title: "全部作品", english: "All Projects", moreLabel: "MORE", badge: "New" },
+];
+
 const seeds: Record<EditablePagePath, Omit<SianyingPageSettings, "sections">> = {
   "/new": {
     eyebrow: "SIANG YIN / INTERIOR DESIGN",
@@ -12,6 +38,8 @@ const seeds: Record<EditablePagePath, Omit<SianyingPageSettings, "sections">> = 
     imageAlt: "翔胤室內設計打造的明亮現代住宅空間",
     ctaLabel: "查看作品",
     ctaHref: "/projects/new",
+    newsTitle: "News",
+    stories: defaultStories,
   },
   "/new/about": {
     eyebrow: "ABOUT SIANG YIN",
@@ -22,6 +50,42 @@ const seeds: Record<EditablePagePath, Omit<SianyingPageSettings, "sections">> = 
     imageAlt: "翔胤室內設計團隊",
     ctaLabel: "與翔胤討論你的空間",
     ctaHref: "/contact",
+    aboutHistory: "2010 台北成立 翔胤室內設計\n20+ 年室內設計與工程實務\n服務台北、新北、桃園、新竹、宜蘭與台中",
+    aboutSecondaryDescription: "讓室內空間與生活密不可分。設計從居住需求、動線與收納開始，再處理採光、材質與整體風格。",
+    designerEyebrow: "Designer",
+    designerLabel: "｜設計",
+    designerName: "主持設計師 Chou Su Zung",
+    designerBio: [
+      { text: "21 歲退伍後投入室內設計產業，累積超過二十年實務經驗，於 2010 年創立翔胤室內設計。" },
+      { text: "以生活需求作為設計起點，讓格局、光線、材質與工程細節形成一致且可長久使用的空間。" },
+    ],
+    philosophyTitle: "Our Design Philosophy｜設計理念",
+    philosophyItems: [
+      { title: "誠實於生活", body: "讓室內空間與生活密不可分。每個決定都從日常動線、收納與居住習慣開始。" },
+      { title: "誠實於材質", body: "保留材料真實的質地與尺度，讓木、石、金屬與光線自然形成空間層次。" },
+      { title: "誠實於細節", body: "從設計到工程現場持續校準，讓圖面、工法與完成後的生活維持一致。" },
+    ],
+    awardEyebrow: "Awards",
+    awardTitle: "｜獎項",
+    awardName: "2022 — A' Design Award",
+    awardDescription: "《鉑金石韻》室內空間及展覽設計類得獎作品",
+    awardImage: "/media/adesignaward-certificate-136768.png",
+    awardImageAlt: "翔胤室內設計 A' Design Award 得獎證書",
+    awardLinkLabel: "查看官方得獎頁面",
+    awardLinkHref: "https://competition.adesignaward.com/design.php?ID=136768",
+    serviceEyebrow: "Service",
+    serviceTitle: "｜服務流程",
+    processItems: [
+      { number: "01", title: "來電或線上諮詢", text: "服務專線與 LINE ID：0926 160 880。" },
+      { number: "02", title: "現場丈量", text: "現場實際丈量、拍攝工地照片與施工動線會勘，同步討論需求及預算分析。" },
+      { number: "03", title: "圖面討論", text: "繪製平面設計圖，針對格局動線規劃及空間配置進行討論。" },
+      { number: "04", title: "報價", text: "依確認內容提供報價明細；簽約前圖面不提供攜回。" },
+      { number: "05", title: "簽訂設計合約", text: "繪製立面、水電、燈具與空調等完整施工圖面，討論材質並修改至定案。" },
+      { number: "06", title: "簽訂工程合約", text: "簽約款 10%、開工款 20%、期中款 30%、期末款 30%、驗收款 10%。" },
+      { number: "07", title: "進場施工", text: "圖面與材質確認後依序施作，控管工程品質並掌握進度。" },
+      { number: "08", title: "完工驗收及交屋", text: "工程竣工後，偕同業主於現場完成驗收。" },
+      { number: "09", title: "維修與保固", text: "自交屋日起提供一年工程品質保固。" },
+    ],
   },
   "/new/blog": {
     eyebrow: "JOURNAL",
@@ -32,6 +96,10 @@ const seeds: Record<EditablePagePath, Omit<SianyingPageSettings, "sections">> = 
     imageAlt: "翔胤室內設計獎項與媒體",
     ctaLabel: "聯絡翔胤",
     ctaHref: "/contact",
+    blogSidebarTitle: "消息",
+    blogSidebarSubtitle: "Blog",
+    blogCategoryTitle: "文章分類｜",
+    stories: defaultStories,
   },
   "/new/contact": {
     eyebrow: "Connection",
@@ -42,6 +110,26 @@ const seeds: Record<EditablePagePath, Omit<SianyingPageSettings, "sections">> = 
     imageAlt: "",
     ctaLabel: "",
     ctaHref: "",
+    contactBrand: "SIANG YIN",
+    contactService: "Design Consulting",
+    contactFeatureLabel: "Selected Work",
+    contactFeatureTitle: "光域未來",
+    contactAddress: "新北市五股區西雲路189號",
+    contactMapHref: "https://maps.app.goo.gl/JzYePnLogpdygDYk7",
+    contactPhone: "0926 160 880",
+    contactLine: "@123sxxbg",
+    contactLineHref: "https://lin.ee/nRtelYW",
+    contactEmail: "c.lon@yahoo.com.tw",
+    contactFormLabels: [
+      { name: "name", label: "姓名｜Name" },
+      { name: "email", label: "信箱｜E-mail" },
+      { name: "phone", label: "電話｜Phone" },
+      { name: "houseAge", label: "屋齡｜House Age" },
+      { name: "location", label: "地區｜Location" },
+      { name: "budget", label: "預算｜Budget" },
+    ],
+    contactMessageLabel: "詢問｜Message",
+    contactTypeOptions: ["住宅空間", "商業空間", "舊屋翻新", "新成屋", "預售屋客變", "其他"].map((text) => ({ text })),
   },
   "/new/projects/new": {
     eyebrow: "NEW DESIGNS",
@@ -52,6 +140,7 @@ const seeds: Record<EditablePagePath, Omit<SianyingPageSettings, "sections">> = 
     imageAlt: "",
     ctaLabel: "查看全部作品",
     ctaHref: "/projects/all",
+    projectSections: defaultProjectSections,
   },
   "/new/projects/all": {
     eyebrow: "WORKS",
@@ -78,6 +167,16 @@ const seeds: Record<EditablePagePath, Omit<SianyingPageSettings, "sections">> = 
     title: "商業與特殊空間",
     subtitle: "Commercial",
     description: "從使用情境與品牌需求出發，建立清楚而耐用的空間秩序。",
+    image: "",
+    imageAlt: "",
+    ctaLabel: "聯絡翔胤",
+    ctaHref: "/contact",
+  },
+  "/new/projects/panorama": {
+    eyebrow: "PANORAMA",
+    title: "3D 全景作品",
+    subtitle: "Panorama",
+    description: "以 360 度全景保留空間尺度、動線與視線關係。",
     image: "",
     imageAlt: "",
     ctaLabel: "聯絡翔胤",

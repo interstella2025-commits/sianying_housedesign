@@ -10,6 +10,7 @@ import {
 import { PageSupplements } from "@/components/cms/page-supplements";
 import { assetRoot } from "@/data/siangyin";
 import type { SianyingPageSettings } from "@/lib/puck/page-settings";
+import { applyProjectCards } from "@/lib/puck/project-cards";
 
 export function ProjectIndexCard({
   project,
@@ -61,6 +62,7 @@ export function ProjectCategoryContent({
   settings,
 }: ProjectCategoryContentProps) {
   const config = projectCategories[category];
+  const displayedProjects = applyProjectCards(projects, settings);
 
   return (
     <div className="new-project-index-page">
@@ -72,8 +74,12 @@ export function ProjectCategoryContent({
       </header>
 
       <section className="new-project-index-grid" aria-label={config.subtitle}>
-        {projects.map((project, index) => (
-          <ProjectIndexCard key={project.slug} project={project} priority={index < 2} />
+        {displayedProjects.map((project, index) => (
+          <ProjectIndexCard
+            key={`${project.slug}-${index}`}
+            project={project}
+            priority={index < 2}
+          />
         ))}
       </section>
       <PageSupplements settings={settings} />
@@ -82,14 +88,29 @@ export function ProjectCategoryContent({
 }
 
 type NewProjectsOverviewContentProps = {
-  sections: ReturnType<typeof getNewProjectSections>;
+  projects: GalleryProject[];
   settings: SianyingPageSettings | null;
 };
 
 export function NewProjectsOverviewContent({
-  sections,
+  projects,
   settings,
 }: NewProjectsOverviewContentProps) {
+  const orderedProjects = applyProjectCards(projects, settings);
+  const baseSections = getNewProjectSections(orderedProjects);
+  const displayedSections = settings?.projectSections?.length
+    ? settings.projectSections.flatMap((editableSection) => {
+        const section = baseSections.find((item) => item.slug === editableSection.slug);
+        return section ? [{
+          ...section,
+          subtitle: editableSection.title || section.subtitle,
+          english: editableSection.english || section.english,
+          moreLabel: editableSection.moreLabel || "MORE",
+          badge: editableSection.badge,
+        }] : [];
+      })
+    : baseSections.map((section) => ({ ...section, moreLabel: "MORE", badge: "New" }));
+
   return (
     <div className="new-project-overview-page">
       <header className="new-project-index-intro">
@@ -98,15 +119,15 @@ export function NewProjectsOverviewContent({
         <span>{settings?.eyebrow || "NEW DESIGNS"}</span>
         <p>{settings?.description || "翔胤最新住宅、商業空間與 3D 全景作品。"}</p>
       </header>
-      {sections.map((section) => (
+      {displayedSections.map((section) => (
         <section key={section.slug} className="new-project-overview-section">
           <header>
             <div>
               <h2>{section.subtitle}</h2>
               <p>{section.english}</p>
             </div>
-            <Link href={`/projects/${section.slug}`}>MORE</Link>
-            <span>New</span>
+            <Link href={`/projects/${section.slug}`}>{section.moreLabel}</Link>
+            {section.badge ? <span>{section.badge}</span> : null}
           </header>
           <div className="new-project-index-grid">
             {section.projects.map((project, index) => (

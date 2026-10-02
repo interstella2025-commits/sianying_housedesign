@@ -5,7 +5,7 @@ import { NewContactContent } from "@/components/sites/senjin-design-com-dd40b413
 import { getPageSettings } from "@/lib/cms/pages";
 
 export const metadata: Metadata = {
-  title: "聯絡我們｜翔胤室內設計",
+  title: "聯絡我們",
   description: "聯絡翔胤室內設計，預約空間丈量與設計需求討論。",
   alternates: { canonical: "/contact" },
 };

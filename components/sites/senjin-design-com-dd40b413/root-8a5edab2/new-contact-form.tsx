@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import { openDirectExternalHref } from "@/app/lib/external-links";
 import { company } from "@/data/siangyin";
 import { saveInquiry } from "@/lib/inquiries/client";
+import type { SianyingPageSettings } from "@/lib/puck/page-settings";
 
 const inputFields = [
   { name: "name", label: "姓名｜Name", type: "text", autoComplete: "name", required: true, maxLength: 80 },
@@ -17,7 +18,7 @@ const inputFields = [
   { name: "budget", label: "預算｜Budget", type: "text", autoComplete: "off", required: false, maxLength: 60 },
 ] as const;
 
-export function NewContactForm() {
+export function NewContactForm({ settings }: { settings: SianyingPageSettings | null }) {
   const submittingRef = useRef(false);
   const startedAtRef = useRef(0);
   const [status, setStatus] = useState<
@@ -49,7 +50,7 @@ export function NewContactForm() {
       `需求說明：${displayValue("message")}`,
     ].join("\n");
 
-    openDirectExternalHref(company.lineUrl);
+    openDirectExternalHref(settings?.contactLineHref || company.lineUrl);
 
     try {
       const [saved, copied] = await Promise.all([
@@ -105,12 +106,18 @@ export function NewContactForm() {
           : status === "manual"
             ? "LINE 已開啟，但內容未能自動複製且資料庫暫時無法儲存，請手動輸入或直接來電。"
             : "";
+  const fieldLabels = new Map(
+    settings?.contactFormLabels?.map((item) => [item.name, item.label]) ?? [],
+  );
+  const projectTypeOptions = settings?.contactTypeOptions?.length
+    ? settings.contactTypeOptions.map((item) => item.text)
+    : ["住宅空間", "商業空間", "舊屋翻新", "新成屋", "預售屋客變", "其他"];
 
   return (
     <form onSubmit={handleSubmit}>
       {inputFields.map((field) => (
         <label key={field.name}>
-          <span>{field.label}</span>
+          <span>{fieldLabels.get(field.name) || field.label}</span>
           <input
             name={field.name}
             type={field.type}
@@ -128,14 +135,9 @@ export function NewContactForm() {
       </label>
       <div className="new-contact-message-field">
         <div className="new-contact-message-heading">
-          <label htmlFor="new-contact-message">詢問｜Message</label>
-          <select name="projectType" defaultValue="住宅空間" aria-label="詢問類型">
-            <option>住宅空間</option>
-            <option>商業空間</option>
-            <option>舊屋翻新</option>
-            <option>新成屋</option>
-            <option>預售屋客變</option>
-            <option>其他</option>
+          <label htmlFor="new-contact-message">{settings?.contactMessageLabel || "詢問｜Message"}</label>
+          <select name="projectType" defaultValue={projectTypeOptions[0]} aria-label="詢問類型">
+            {projectTypeOptions.map((option) => <option key={option}>{option}</option>)}
           </select>
         </div>
         <textarea

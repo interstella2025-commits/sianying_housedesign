@@ -15,8 +15,8 @@ type NewHomeContentProps = {
 export function NewHomeContent({ settings, projects, editorPreview = false }: NewHomeContentProps) {
   return (
     <SiteShell heroSettings={settings} editorPreview={editorPreview}>
-      <EditorialStories />
-      <SelectedWorks projects={projects} />
+      <EditorialStories settings={settings} />
+      <SelectedWorks projects={projects} settings={settings} />
       <PageSupplements settings={settings} />
       <ContactFooter />
     </SiteShell>

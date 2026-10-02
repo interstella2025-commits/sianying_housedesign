@@ -5,31 +5,32 @@ import { useMemo, useState } from "react";
 
 import { ExternalPopupLink } from "@/app/components/ExternalPopupLink";
 import { editorialStories } from "@/data/siangyin";
+import type { SianyingPageSettings } from "@/lib/puck/page-settings";
 
 type StoryCategory = "ALL" | "AWARD" | "PRESS";
 
-const categories: { value: StoryCategory; label: string }[] = [
-  { value: "ALL", label: "全部文章（2）" },
-  { value: "AWARD", label: "國際獎項（1）" },
-  { value: "PRESS", label: "媒體報導（1）" },
-];
-
-export function NewBlogBrowser() {
+export function NewBlogBrowser({ settings }: { settings: SianyingPageSettings | null }) {
   const [category, setCategory] = useState<StoryCategory>("ALL");
+  const stories = settings?.stories?.length ? settings.stories : editorialStories;
+  const categories: { value: StoryCategory; label: string }[] = [
+    { value: "ALL", label: `全部文章（${stories.length}）` },
+    { value: "AWARD", label: `國際獎項（${stories.filter((story) => story.category === "AWARD").length}）` },
+    { value: "PRESS", label: `媒體報導（${stories.filter((story) => story.category === "PRESS").length}）` },
+  ];
 
   const visibleStories = useMemo(() => {
-    return editorialStories.filter((story) => {
+    return stories.filter((story) => {
       return category === "ALL" || story.category === category;
     });
-  }, [category]);
+  }, [category, stories]);
 
   return (
     <div className="new-blog-browser">
       <aside className="new-blog-sidebar">
-        <h2 className="new-blog-sidebar-title">消息</h2>
-        <p>Blog</p>
+        <h2 className="new-blog-sidebar-title">{settings?.blogSidebarTitle || "消息"}</h2>
+        <p>{settings?.blogSidebarSubtitle || "Blog"}</p>
         <div className="new-blog-categories">
-          <h2>文章分類｜</h2>
+          <h2>{settings?.blogCategoryTitle || "文章分類｜"}</h2>
           {categories.map((item) => (
             <button
               key={item.value}
@@ -67,7 +68,7 @@ export function NewBlogBrowser() {
             >
               <Image
                 src={story.image}
-                alt={story.alt}
+                alt={("imageAlt" in story ? story.imageAlt : story.alt) || ""}
                 fill
                 priority={index === 0}
                 sizes="(max-width: 760px) 100vw, 42vw"
