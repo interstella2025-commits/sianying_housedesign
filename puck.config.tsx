@@ -13,7 +13,6 @@ const categoryByPath: Partial<Record<string, ProjectCategorySlug>> = {
   "/new/projects/all": "all",
   "/new/projects/residential": "residential",
   "/new/projects/commercial": "commercial",
-  "/new/projects/panorama": "panorama",
 };
 
 export function createPuckEditorConfig(path: string, projects: Project[]) {
@@ -187,7 +186,6 @@ export function createPuckEditorConfig(path: string, projects: Project[]) {
           options: [
             { label: "住宅空間", value: "residential" },
             { label: "商業空間", value: "commercial" },
-            { label: "3D 全景", value: "panorama" },
             { label: "全部作品", value: "all" },
           ],
         },

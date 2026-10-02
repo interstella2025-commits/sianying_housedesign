@@ -14,7 +14,6 @@ const staticRoutes = [
   "/projects/all",
   "/projects/residential",
   "/projects/commercial",
-  "/projects/panorama",
 ] as const;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

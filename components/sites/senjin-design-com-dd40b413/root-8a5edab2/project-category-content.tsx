@@ -117,7 +117,7 @@ export function NewProjectsOverviewContent({
         <h1>{settings?.title || "最新設計"}</h1>
         <h2>{settings?.subtitle || "New Designs"}</h2>
         <span>{settings?.eyebrow || "NEW DESIGNS"}</span>
-        <p>{settings?.description || "翔胤最新住宅、商業空間與 3D 全景作品。"}</p>
+        <p>{settings?.description || "翔胤最新住宅與商業空間作品。"}</p>
       </header>
       {displayedSections.map((section) => (
         <section key={section.slug} className="new-project-overview-section">

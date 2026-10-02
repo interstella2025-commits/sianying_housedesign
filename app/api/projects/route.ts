@@ -16,7 +16,6 @@ function revalidateProjects(slug?: string) {
     "/projects/all",
     "/projects/residential",
     "/projects/commercial",
-    "/projects/panorama",
   ]) revalidatePath(path);
   if (slug) revalidatePath(`/projects/${slug}`);
 }

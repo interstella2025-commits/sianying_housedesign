@@ -24,7 +24,6 @@ const defaultStories = [
 const defaultProjectSections = [
   { slug: "residential" as const, title: "住宅空間", english: "Residential", moreLabel: "MORE", badge: "New" },
   { slug: "commercial" as const, title: "商業與特殊空間", english: "Commercial", moreLabel: "MORE", badge: "New" },
-  { slug: "panorama" as const, title: "3D 全景作品", english: "Panorama", moreLabel: "MORE", badge: "New" },
   { slug: "all" as const, title: "全部作品", english: "All Projects", moreLabel: "MORE", badge: "New" },
 ];
 
@@ -135,7 +134,7 @@ const seeds: Record<EditablePagePath, Omit<SianyingPageSettings, "sections">> = 
     eyebrow: "NEW DESIGNS",
     title: "最新設計",
     subtitle: "New Designs",
-    description: "翔胤最新住宅、商業空間與 3D 全景作品。",
+    description: "翔胤最新住宅與商業空間作品。",
     image: "",
     imageAlt: "",
     ctaLabel: "查看全部作品",
@@ -167,16 +166,6 @@ const seeds: Record<EditablePagePath, Omit<SianyingPageSettings, "sections">> = 
     title: "商業與特殊空間",
     subtitle: "Commercial",
     description: "從使用情境與品牌需求出發，建立清楚而耐用的空間秩序。",
-    image: "",
-    imageAlt: "",
-    ctaLabel: "聯絡翔胤",
-    ctaHref: "/contact",
-  },
-  "/new/projects/panorama": {
-    eyebrow: "PANORAMA",
-    title: "3D 全景作品",
-    subtitle: "Panorama",
-    description: "以 360 度全景保留空間尺度、動線與視線關係。",
     image: "",
     imageAlt: "",
     ctaLabel: "聯絡翔胤",

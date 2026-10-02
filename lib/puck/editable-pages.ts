@@ -7,7 +7,6 @@ export const EDITABLE_PAGE_PATHS = [
   "/new/projects/all",
   "/new/projects/residential",
   "/new/projects/commercial",
-  "/new/projects/panorama",
 ] as const;
 
 export type EditablePagePath = (typeof EDITABLE_PAGE_PATHS)[number];
@@ -21,7 +20,6 @@ export const EDITABLE_PAGE_LABELS: Record<EditablePagePath, string> = {
   "/new/projects/all": "全部作品頁編輯",
   "/new/projects/residential": "住宅作品頁編輯",
   "/new/projects/commercial": "商業空間頁編輯",
-  "/new/projects/panorama": "3D 全景頁編輯",
 };
 
 export function isEditablePagePath(path: string): path is EditablePagePath {

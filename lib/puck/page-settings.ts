@@ -43,7 +43,7 @@ export type SianyingProcessItem = {
 };
 
 export type SianyingProjectSection = {
-  slug: "residential" | "commercial" | "panorama" | "all";
+  slug: "residential" | "commercial" | "all";
   title: string;
   english: string;
   moreLabel: string;

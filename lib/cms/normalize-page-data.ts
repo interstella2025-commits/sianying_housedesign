@@ -10,7 +10,6 @@ const categoryByPath: Partial<Record<string, ProjectCategorySlug>> = {
   "/new/projects/all": "all",
   "/new/projects/residential": "residential",
   "/new/projects/commercial": "commercial",
-  "/new/projects/panorama": "panorama",
 };
 
 export function normalizePageData(

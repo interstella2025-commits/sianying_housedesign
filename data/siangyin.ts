@@ -29,7 +29,6 @@ export const projectNavigation = [
   { label: "全部作品", english: "All Projects", href: "/projects/all" },
   { label: "住宅空間", english: "Residential", href: "/projects/residential" },
   { label: "商業空間", english: "Commercial", href: "/projects/commercial" },
-  { label: "3D 全景", english: "Panorama", href: "/projects/panorama" },
 ] as const;
 
 export const company = {
