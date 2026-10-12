@@ -20,7 +20,9 @@ export function SelectedWorks({
       <div className="portfolio-column">
         <Reveal>
           <h2 id="works-heading" className="portfolio-section-title">
-            <Link href="/projects/new">New Projects</Link>
+            <Link href={settings?.worksHref || "/projects/new"}>
+              {settings?.worksTitle || "New Projects"}
+            </Link>
           </h2>
         </Reveal>
 

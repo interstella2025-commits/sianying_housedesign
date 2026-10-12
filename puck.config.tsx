@@ -31,6 +31,21 @@ export function createPuckEditorConfig(path: string, projects: Project[]) {
     pageFields.image = { ...imageField, label: "首屏背景圖片" };
     addTextField("imageAlt", "首屏圖片替代文字");
     addTextField("newsTitle", "News 區標題");
+    addTextField("worksTitle", "作品區標題");
+    addTextField("worksHref", "作品區標題連結");
+    addTextField("footerTitle", "頁尾標題");
+    pageFields.footerBackgroundImage = { ...imageField, label: "頁尾背景圖片" };
+    addTextField("footerCompanyName", "頁尾公司名稱");
+    addTextField("footerAddress", "頁尾地址");
+    addTextField("footerMapHref", "頁尾地圖連結");
+    addTextField("footerPhone", "頁尾電話");
+    addTextField("footerEmail", "頁尾 Email");
+    addTextField("footerEnglishName", "頁尾英文公司名稱");
+    addTextField("footerCompanyId", "頁尾統一編號");
+    addTextField("footerInstagramHref", "Instagram 連結");
+    addTextField("footerFacebookHref", "Facebook 連結");
+    addTextField("footerYoutubeHref", "YouTube 連結");
+    addTextField("footerLineHref", "LINE 連結");
   } else if (path === "/new/about") {
     addTextField("title", "頁面主標題");
     addTextField("description", "品牌介紹", "textarea");

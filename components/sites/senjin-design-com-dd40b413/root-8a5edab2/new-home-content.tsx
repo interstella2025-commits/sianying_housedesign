@@ -18,7 +18,7 @@ export function NewHomeContent({ settings, projects, editorPreview = false }: Ne
       <EditorialStories settings={settings} />
       <SelectedWorks projects={projects} settings={settings} />
       <PageSupplements settings={settings} />
-      <ContactFooter />
+      <ContactFooter settings={settings} />
     </SiteShell>
   );
 }
