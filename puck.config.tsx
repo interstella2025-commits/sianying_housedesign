@@ -31,6 +31,20 @@ export function createPuckEditorConfig(path: string, projects: Project[]) {
     pageFields.image = { ...imageField, label: "首屏背景圖片" };
     addTextField("imageAlt", "首屏圖片替代文字");
     addTextField("newsTitle", "News 區標題");
+    addTextField("shortVideoTitle", "短影音區標題");
+    pageFields.shortVideos = {
+      type: "array",
+      label: "YouTube 短影音（拖曳即可排序）",
+      getItemSummary: (item: { title?: string }) => item.title || "新短影音",
+      arrayFields: {
+        title: { type: "text", label: "影片標題" },
+        url: { type: "text", label: "YouTube Shorts 連結" },
+      },
+      defaultItemProps: {
+        title: "新作品分享",
+        url: "",
+      },
+    };
     addTextField("worksTitle", "作品區標題");
     addTextField("worksHref", "作品區標題連結");
     addTextField("footerTitle", "頁尾標題");

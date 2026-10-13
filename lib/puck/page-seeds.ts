@@ -38,6 +38,13 @@ const seeds: Record<EditablePagePath, Omit<SianyingPageSettings, "sections">> = 
     ctaLabel: "查看作品",
     ctaHref: "/projects/new",
     newsTitle: "News",
+    shortVideoTitle: "新作品分享",
+    shortVideos: [
+      {
+        title: "完工新案分享｜光域未來",
+        url: "https://youtube.com/shorts/sHJYrOl2osE?si=JWI-GQU6UQHgem9E",
+      },
+    ],
     worksTitle: "New Projects",
     worksHref: "/projects/new",
     footerTitle: "CONNECTION",

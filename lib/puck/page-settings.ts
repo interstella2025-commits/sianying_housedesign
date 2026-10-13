@@ -27,6 +27,11 @@ export type SianyingEditorialStory = {
   href: string;
 };
 
+export type SianyingShortVideo = {
+  title: string;
+  url: string;
+};
+
 export type SianyingLabelBody = {
   title: string;
   body: string;
@@ -67,6 +72,8 @@ export type SianyingPageSettings = {
   sections: SianyingPageSection[];
   projectCards?: SianyingProjectCard[];
   newsTitle?: string;
+  shortVideoTitle?: string;
+  shortVideos?: SianyingShortVideo[];
   worksTitle?: string;
   worksHref?: string;
   footerTitle?: string;
